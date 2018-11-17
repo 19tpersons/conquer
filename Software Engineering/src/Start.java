@@ -21,8 +21,8 @@ public class Start extends JPanel {
 	}
 	
 	public Start(int width, int height) {
-		HUD content = new HUD(width, height);
-		add(content);
+		GamePane pane = new GamePane(width, height);
+		add(pane);
 	}
 	
 

@@ -6,9 +6,7 @@ import java.io.IOException;
 public class HUD extends JPanel {
 	public HUD(int width, int height) {
 		//Inital Setup
-		setPreferredSize(new Dimension(width, height));
-		
-
+		setPreferredSize(new Dimension(width, height / 2));
 		
 		CardSet cardSet = null;
 		try {
