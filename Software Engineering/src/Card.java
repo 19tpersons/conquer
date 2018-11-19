@@ -8,15 +8,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class Card extends JPanel {
+	//General Stats about card
+	private String title = ""; //The card title
 	private String type = ""; //The type of card
-	private String description = "This is the description!"; //The description
-	private String title = "Norman 1"; //The card title
-	private Image cardImage;
-	private int slot = 0; //This is the location of the card
-	private boolean infoShown = false; //Is the cards descriptive side showing?
+	private String description = ""; //The description
+	private int population = 0; //Population of card
+	private String nickname = ""; //This is a way to identify the card
 	
+	private Image cardImage;
+	private boolean infoShown = false; //Is the cards descriptive side showing?
 	//Initializes variables that are going to be used in the display of the card
-	private JLabel desLabel, titleLabel, infoLabel;
+	private JLabel desLabel, titleLabel, infoLabel, popLabel;
 	private Icon cardIcon;
 	
 	//This sets up the general data for the card.
@@ -45,10 +47,11 @@ public class Card extends JPanel {
 	 */
 	private void printFront() {
 		
-		if (desLabel != null && titleLabel != null && infoLabel != null) {
+		if (desLabel != null && titleLabel != null && infoLabel != null && popLabel != null) {
 			remove(desLabel);
 			remove(titleLabel);
 			remove(infoLabel);
+			remove(popLabel);
 		}
 		
 		cardIcon = new Icon();
@@ -86,6 +89,10 @@ public class Card extends JPanel {
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
 		add(titleLabel);
 		
+		popLabel = new JLabel(Integer.toString(population));
+		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		add(popLabel);
+		
 		infoLabel = new JLabel("-");
 		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
 		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -99,6 +106,8 @@ public class Card extends JPanel {
 		revalidate(); //Tells java you have changed the component structure
 		repaint();
 	}
+	
+	//Defacto getter and setter methods
 	/**
 	 * Gives the card a new Icon
 	 * @param image The new image that is going to be the cards icon
@@ -132,5 +141,66 @@ public class Card extends JPanel {
 		type = this.type;
 	}
 	
+	/**
+	 * Sets the description of card
+	 * @param description The description of the card
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	/**
+	 * This returns the description of the card
+	 * @return description of card
+	 */
+	public String getDescription() {
+		return this.description;
+	}
+	
+	/**
+	 * Sets the title of the card
+	 * @param title The new title of the card
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	/**
+	 * This returns the title of the card
+	 * @return title of card
+	 */
+	public String getTitle() {
+		return this.title;
+	}
 
+	/**
+	 * This sets the cards population to something new
+	 * @param newPop The new population of the card
+	 */
+	public void setPop(int newPop) {
+		this.population = newPop;
+	}
+	/**
+	 * Returns the population of the card
+	 * @return The cards current population
+	 */
+	public int getPop() {
+		return this.population;
+	}
+	
+	/**
+	 * Changes the nickname of the card
+	 * @param name The new nickname
+	 */
+	public void setNickname(String name) {
+		this.nickname = name;
+	}
+	
+	/**
+	 * This returns the nickname of the card
+	 * @return the card nickname
+	 */
+	public String getName() {
+		return this.nickname;
+	}
 }
