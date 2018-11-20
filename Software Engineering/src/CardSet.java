@@ -13,8 +13,6 @@ public class CardSet extends JPanel {
 
 	}
 	
-
-	
 	/**
 	 * This method will display all of the cards in this specific set
 	 */
@@ -52,14 +50,15 @@ public class CardSet extends JPanel {
 	}
 	/**
 	 * This method will remove a card from this specific set
-	 * @param idx The card to remove
+	 * @param nickname The card to remove
 	 */
-	public void removeCard(int idx) {
-		
+	public void removeCard(String nickname) {
+		int index = this.findCard(nickname); //Finds the index of the card with the given nickname
+		cards.remove(index);
 	}
 	
 	/**
-	 * This is a getter class that will return any card in the set given its idx
+	 * This is a getter method that will return any card in the set given its idx
 	 * @param idx The cards "nickname"
 	 * @return The card that was asked for
 	 */
@@ -67,8 +66,28 @@ public class CardSet extends JPanel {
 		return cards.get(idx);
 	}
 	
-	public void changeCard(Card card) {
-		
-		
+	/**
+	 * This method will replace any given card in that has a specified nickname
+	 * @param card The replacement card
+	 * @param nickname The nickname of the card to be replaced
+	 */
+	public void changeCard(Card card, String nickname) {
+		int index = this.findCard(nickname);
+		cards.set(index, card);
+	}
+	
+	/**
+	 * This is a utility method that will return the index of a card that has a given nickname.
+	 * @param nickname The card's nickname
+	 * @return The index of the card with a specific nickname or -1 if no card found
+	 */
+	private int findCard(String nickname) {
+		for (int i = 0; i < cards.size(); i++) {
+			Card card = cards.get(i);
+			if (nickname.equals(card.getName())) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

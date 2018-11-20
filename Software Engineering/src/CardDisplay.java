@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 public class CardDisplay extends JPanel {
-	private CardSet[] sets = new CardSet[3];
+	private CardSet[] sets = new CardSet[2];
 	
 	public CardDisplay(int width, int height) throws IOException {
 		String description = "<html>This is just a test. But it is an amazing test:) I have done something awesome!!</html>";
@@ -21,11 +21,22 @@ public class CardDisplay extends JPanel {
 		sets[0].displaySet();
 	}
 	
-	
+	/**
+	 * This will display the Solar System cards for each set
+	 */
 	public void displaySets() {
 		for (int i = 0; i < sets.length; i++) { //This loops through each of the sets and prints them.
+			add(sets[i]);
 			sets[i].displaySet();
 		}
 		
+	}
+	/**
+	 * This will add a card to any given set
+	 * @param setNum The location in the array of the cardset
+	 * @param card The new card
+	 */
+	public void addCard(int setNum, Card card) {
+		sets[setNum].addCard(card);
 	}
 }

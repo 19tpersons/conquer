@@ -126,6 +126,14 @@ public class Card extends JPanel {
 	}
 	
 	/**
+	 * This will return the card's icon Image object
+	 * @return The cards icon
+	 */
+	public Image getIcon() {
+		return this.cardImage;
+	}
+	
+	/**
 	 * Returns the type of Card
 	 * @return The type of card
 	 */
