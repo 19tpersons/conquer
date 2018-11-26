@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -6,19 +8,36 @@ import javax.swing.*;
 
 public class CardDisplay extends JPanel {
 	private CardSet[] sets = new CardSet[2];
+	private Color playerColor;
 	
-	public CardDisplay(int width, int height) throws IOException {
+	public CardDisplay(int width, int height, Color playerColor) throws IOException {
+		this.playerColor = playerColor;
+		
 		String description = "<html>This is just a test. But it is an amazing test:) I have done something awesome!!</html>";
 		
 		Card card = new Card("Norman 2", description);
 		File icon = new File("images/test.jpg");
 		card.setIcon(icon);
 		card.setPreferredSize(new Dimension(200,320));
+		card.addMouseListener(new clearSetIconListener());
+
 		sets[0] = new CardSet(card);
 		sets[0].setPreferredSize(new Dimension(width, height));
-		sets[0].setBackground(new Color(0,0,0,0));
+		sets[0].setBackground(new Color(0, 0, 204));
+		
+		card = new Card("Norman 3", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
 		add(sets[0]);
-		sets[0].displaySet();
+		sets[0].displaySetIcon();
+	}
+	
+	//This class is looking to see if any of the CardSet icons have been clicked. If so, it will clear the sets' icon
+	private class clearSetIconListener extends MouseAdapter {
+		public void mousePressed(MouseEvent e) {
+			clearSetIcons();
+		}
 	}
 	
 	/**
@@ -27,7 +46,7 @@ public class CardDisplay extends JPanel {
 	public void displaySets() {
 		for (int i = 0; i < sets.length; i++) { //This loops through each of the sets and prints them.
 			add(sets[i]);
-			sets[i].displaySet();
+			sets[i].displaySetIcon();
 		}
 		
 	}
@@ -38,5 +57,15 @@ public class CardDisplay extends JPanel {
 	 */
 	public void addCard(int setNum, Card card) {
 		sets[setNum].addCard(card);
+	}
+	
+	/**
+	 * This will clear each set's icon from the board.
+	 */
+	public void clearSetIcons() {
+		/*for (int i = 0; i < sets.length; i++) {
+			sets[i].clearSetIcon();
+		}*/
+		sets[0].clearSetIcon(this.playerColor);
 	}
 }
