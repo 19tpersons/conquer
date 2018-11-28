@@ -21,11 +21,32 @@ public class CardDisplay extends JPanel {
 		card.setPreferredSize(new Dimension(200,320));
 		card.addMouseListener(new clearSetIconListener());
 
-		sets[0] = new CardSet(card);
+		sets[0] = new CardSet(card, this.playerColor);
 		sets[0].setPreferredSize(new Dimension(width, height));
 		sets[0].setBackground(new Color(0, 0, 204));
 		
 		card = new Card("Norman 3", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 4", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 5", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 6", description);
 		card.setIcon(icon);
 		card.setPreferredSize(new Dimension(200,320));
 		sets[0].addCard(card);
@@ -66,6 +87,6 @@ public class CardDisplay extends JPanel {
 		/*for (int i = 0; i < sets.length; i++) {
 			sets[i].clearSetIcon();
 		}*/
-		sets[0].clearSetIcon(this.playerColor);
+		sets[0].clearSetIcon();
 	}
 }

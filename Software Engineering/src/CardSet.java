@@ -8,16 +8,20 @@ import java.awt.event.*;
 public class CardSet extends JPanel {
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Card solar; //The solar system!
+	private JPanel threeCards = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
+	private Color bgColor;
 	
-	public CardSet(Card solar) throws IOException {
+	
+	public CardSet(Card solar, Color bgColor) throws IOException {
+		this.bgColor = bgColor;
 		this.solar = solar;
-		//this.solar.addMouseListener(new paintCardsListener());
+		this.solar.addMouseListener(new paintCardsListener());
 	}
 	
 	//This is the listener class for the cardset's icon. When clicked, it will call the method that will display the cards in the set.
 	private class paintCardsListener extends MouseAdapter {
 		public void mousePressed(MouseEvent evt) {
-			displayCards();
+			displayCards(0);
 		}
 	}
 	
@@ -25,50 +29,25 @@ public class CardSet extends JPanel {
 	 * This method will display all of the cards in this specific set.
 	 * Precondition: You will need to clear any other cards from the board before running this method.
 	 */
-	public void displayCards() {
-		for (int i = 0; i < cards.size(); i++) {
-			add(cards.get(i));
+	public void displayCards(int startIndex) {
+		this.clearCards();
+		add(threeCards);
+		for (int i = startIndex; i < (startIndex + 3) && i < cards.size(); i++) { //Will only print three cards
+			threeCards.add(cards.get(i));
 		}
 		revalidate();
 	}
 	
-	/**
-	 * This will display the "solar system" card of the set
-	 */
-	public void displaySetIcon() {
-		this.clearCards(); //Will clear the cards that are in this solar system if they are already displayed
-		add(solar);
-	}
-	
-	/**
-	 * This will remove the set's icon from the board.
-	 * @param bgColor the color the filler space rectangle is going to be.
-	 */
-	public void clearSetIcon(Color bgColor) {
-		solar.setVisible(false);
-		remove(solar);
-		JPanel filler = new JPanel() {
-			protected void paintComponent(Graphics g) {
-				Graphics2D g2 = (Graphics2D) g;
-				g2.setColor(bgColor);
-				
-				Rectangle2D rect = new Rectangle2D.Double(0,0, 500, 500);
-				g2.fill(rect);
-				
-			}
-		};
-		filler.setPreferredSize(new Dimension(500, 500));
-		add(filler);
-		remove(filler);
-	}
+
 	
 	/**
 	 * This method will clear the screen of the cards in the set
 	 */
 	public void clearCards() {
 		for (int i = 0; i < cards.size(); i++) {
-			remove(cards.get(i));
+			threeCards.remove(cards.get(i));
 		}
+		remove(threeCards);
 		revalidate();
 	}
 	/**
@@ -119,5 +98,39 @@ public class CardSet extends JPanel {
 			}
 		}
 		return -1;
+	}
+
+	/**
+	 * This will display the "solar system" card of the set
+	 */
+	public void displaySetIcon() {
+		this.clearCards(); //Will clear the cards that are in this solar system if they are already displayed
+		add(solar);
+	}
+	
+	/**
+	 * This will remove the set's icon from the board.
+	 * @param bgColor the color the filler space rectangle is going to be.
+	 */
+	public void clearSetIcon() {
+		solar.setVisible(false);
+		remove(solar);
+		fillerCard();
+	}
+	
+	public void fillerCard() {
+		JPanel filler = new JPanel() {
+			protected void paintComponent(Graphics g) {
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setColor(bgColor);
+				
+				Rectangle2D rect = new Rectangle2D.Double(0,0, 200, 320);
+				g2.fill(rect);
+				
+			}
+		};
+		filler.setPreferredSize(new Dimension(200, 320));
+		add(filler);
+		remove(filler);
 	}
 }
