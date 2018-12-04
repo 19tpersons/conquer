@@ -23,7 +23,7 @@ public class CardDisplay extends JPanel {
 
 		sets[0] = new CardSet(card, this.playerColor);
 		sets[0].setPreferredSize(new Dimension(width, height));
-		sets[0].setBackground(new Color(0, 0, 204));
+		sets[0].setBackground(playerColor);
 		
 		card = new Card("Norman 3", description);
 		card.setIcon(icon);
@@ -47,6 +47,27 @@ public class CardDisplay extends JPanel {
 		sets[0].displaySetIcon();
 		
 		card = new Card("Norma 6", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 7", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 8", description);
+		card.setIcon(icon);
+		card.setPreferredSize(new Dimension(200,320));
+		sets[0].addCard(card);
+		add(sets[0]);
+		sets[0].displaySetIcon();
+		
+		card = new Card("Norma 9", description);
 		card.setIcon(icon);
 		card.setPreferredSize(new Dimension(200,320));
 		sets[0].addCard(card);

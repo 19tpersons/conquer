@@ -8,20 +8,51 @@ import java.awt.event.*;
 public class CardSet extends JPanel {
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Card solar; //The solar system!
-	private JPanel threeCards = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
 	private Color bgColor;
 	
+	//Used in junction with the cardDisplay method
+	private JPanel threeCards = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
+	private int currCount = 0; //Used by cardDisplay() as the index to start displaying cards at
+	private JPanel moveRight, moveLeft;
 	
 	public CardSet(Card solar, Color bgColor) throws IOException {
 		this.bgColor = bgColor;
 		this.solar = solar;
-		this.solar.addMouseListener(new paintCardsListener());
+		this.solar.addMouseListener(new PaintStartingCards());
+		
+		threeCards.setBackground(bgColor);
+		moveRight = new JPanel();
+		moveRight.setPreferredSize(new Dimension(50, 150));
+		moveRight.setBackground(Color.RED);
+		moveRight.addMouseListener(new CardMoveRight());
+
+		moveLeft = new JPanel();
+		moveLeft.addMouseListener(new CardMoveLeft());
+		moveLeft.setPreferredSize(new Dimension(50, 150));
+		moveLeft.setBackground(Color.RED);
 	}
 	
 	//This is the listener class for the cardset's icon. When clicked, it will call the method that will display the cards in the set.
-	private class paintCardsListener extends MouseAdapter {
+	private class PaintStartingCards extends MouseAdapter {
 		public void mousePressed(MouseEvent evt) {
-			displayCards(0);
+			clearSetIcon();
+			displayCards();
+		}
+	}
+	
+	//Moves the starting index by +3
+	private class CardMoveRight extends MouseAdapter {
+		public void mousePressed(MouseEvent evt) {
+				currCount += 3;
+				displayCards();
+		}
+	}
+	
+	//Moves the starting index by -3
+	public class CardMoveLeft extends MouseAdapter {
+		public void mousePressed(MouseEvent evt) {
+				currCount -= 3;
+				displayCards();
 		}
 	}
 	
@@ -29,13 +60,23 @@ public class CardSet extends JPanel {
 	 * This method will display all of the cards in this specific set.
 	 * Precondition: You will need to clear any other cards from the board before running this method.
 	 */
-	public void displayCards(int startIndex) {
+	public void displayCards() {
+		if (currCount < 0) { //Current index too small? Then, lets move to the end of the card set
+			currCount = cards.size() - 4;
+		}else if (currCount > cards.size()) { //Current Index too big? Then, lets go to the beginning of the card set
+			currCount = 0;
+		}
+		
 		this.clearCards();
-		add(threeCards);
-		for (int i = startIndex; i < (startIndex + 3) && i < cards.size(); i++) { //Will only print three cards
+		threeCards.add(moveLeft);
+		for (int i = currCount; i < (currCount + 3) && i < cards.size(); i++) { //Will only print three cards
 			threeCards.add(cards.get(i));
 		}
+		threeCards.add(moveRight);
+		add(threeCards);
+
 		revalidate();
+		repaint();
 	}
 	
 
@@ -44,10 +85,12 @@ public class CardSet extends JPanel {
 	 * This method will clear the screen of the cards in the set
 	 */
 	public void clearCards() {
+		remove(threeCards);
 		for (int i = 0; i < cards.size(); i++) {
 			threeCards.remove(cards.get(i));
 		}
-		remove(threeCards);
+		threeCards.remove(moveLeft);
+		threeCards.remove(moveRight);
 		revalidate();
 	}
 	/**
@@ -133,4 +176,5 @@ public class CardSet extends JPanel {
 		add(filler);
 		remove(filler);
 	}
+	
 }

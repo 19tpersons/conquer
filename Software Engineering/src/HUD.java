@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class HUD extends JPanel {
 	private Color playerColor = new Color(0, 0, 204);
-	
+	//private Color playerColor = new Color(255, 151, 53);
+
 	public HUD(int width, int height) {
 		//Inital Setup
 		setPreferredSize(new Dimension(width, height));
@@ -39,7 +40,7 @@ public class HUD extends JPanel {
 		int height = getHeight();
 		int width = getWidth();
 		Rectangle2D rect = new Rectangle2D.Double(0, 0, width, height);
-		g2.setColor(new Color(0, 0, 204));
+		g2.setColor(playerColor);
 		g2.fill(rect);
 	}
 	
