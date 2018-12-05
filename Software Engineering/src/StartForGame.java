@@ -64,6 +64,11 @@ public class StartForGame extends JPanel implements ActionListener
        button.addActionListener(this);
        buttonBar.add(button);
        
+       button = new JButton("Instructions");
+       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
+       button.addActionListener(this);
+       buttonBar.add(button);
+       
        button = new JButton("Credits");
        //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
@@ -107,6 +112,12 @@ public class StartForGame extends JPanel implements ActionListener
              "This is the button that will show the settings.");
          //message.setText("You closed the message dialog.");
       }
+      else if (command.equals("Instructions")) {
+         //message.setText("Displaying message dialog.");
+         JOptionPane.showMessageDialog(this,
+             "This is the button that will show the instructions.");
+         //message.setText("You closed the message dialog.");
+      }
       else if (command.equals("Credits")) {
          //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
@@ -139,3 +150,4 @@ public class StartForGame extends JPanel implements ActionListener
       }
     }
 }
+
