@@ -15,22 +15,36 @@ public class Card extends JPanel {
 	private int population = 0; //Population of card
 	private String nickname = ""; //This is a way to identify the card
 	
-	private Image cardImage;
-	private boolean infoShown = false; //Is the cards descriptive side showing?
 	//Initializes variables that are going to be used in the display of the card
 	private JLabel desLabel, titleLabel, infoLabel, popLabel;
-	private Icon cardIcon;
+	private CardIcon icon = new CardIcon();
 	
 	//This sets up the general data for the card.
-	public Card(String title, String description) {
+	public Card(String title, String description, File imageLoc, boolean planetType) throws IOException {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		//setBorder(new EmptyBorder(0, 5, 0, 5));
 
 		this.title = title;
-		this.description = description; 
+		this.description = description;
+		
+		//This creates the icon
+		if (planetType) {
+			icon = new CardIcon(imageLoc, 200, 250, true);
+		}else {
+			icon = new CardIcon(imageLoc, 200, 250, false);
+		}
+		//The cards title
+		titleLabel = new JLabel(title);
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+		//Description of the card
+		desLabel = new JLabel(description);
+		desLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		//The population label
+		popLabel = new JLabel(Integer.toString(population));
+		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		
 		
 		printFront();
-		
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -54,11 +68,9 @@ public class Card extends JPanel {
 			remove(popLabel);
 		}
 		
-		cardIcon = new Icon();
-		add(cardIcon);
+		add(icon);
+		repaint(); //Repaints the icon
 		
-		titleLabel = new JLabel(title);
-		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
 		add(titleLabel);
 		
 		infoLabel = new JLabel("+");
@@ -75,23 +87,13 @@ public class Card extends JPanel {
 	}
 
 	public void printBack() {
-		if (cardIcon != null && titleLabel != null && infoLabel != null) { //Makes sure that we can switch back
-			remove(cardIcon);
-			remove(titleLabel);
-			remove(infoLabel);
-		}
+		remove(icon); //Remove icon from card
+		remove(titleLabel); //Remove title
+		remove(infoLabel); //Remove "+" from card
 		
-		desLabel = new JLabel(description); //Description of card
-		desLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		add(desLabel);
-		
-		titleLabel = new JLabel(title);
-		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+		add(desLabel);	//Description
 		add(titleLabel);
-		
-		popLabel = new JLabel(Integer.toString(population));
-		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		add(popLabel);
+		add(popLabel); //Current Population of Card
 		
 		infoLabel = new JLabel("-");
 		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -113,24 +115,16 @@ public class Card extends JPanel {
 	 * @param image The new image that is going to be the cards icon
 	 */
 	public void setIcon(File imageLoc) throws IOException {
-		Image newImg = ImageIO.read(imageLoc);
-		Image scaledImg = newImg.getScaledInstance(200, 250, Image.SCALE_AREA_AVERAGING);
-		cardImage = scaledImg;
+		icon = new CardIcon(imageLoc, 200, 250, true);
 	}
 	
-	private class Icon extends JPanel {
-		protected void paintComponent(Graphics g) {
-			Graphics2D g2 = (Graphics2D) g;
-			g2.drawImage(cardImage, 0, 0, this); //Card Image
-		}
-	}
 	
 	/**
 	 * This will return the card's icon Image object
 	 * @return The cards icon
 	 */
-	public Image getIcon() {
-		return this.cardImage;
+	public CardIcon getIcon() {
+		return this.icon;
 	}
 	
 	/**

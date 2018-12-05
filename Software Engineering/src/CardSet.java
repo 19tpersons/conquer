@@ -61,9 +61,11 @@ public class CardSet extends JPanel {
 	 * Precondition: You will need to clear any other cards from the board before running this method.
 	 */
 	public void displayCards() {
-		if (currCount < 0) { //Current index too small? Then, lets move to the end of the card set
-			currCount = cards.size() - 4;
-		}else if (currCount > cards.size()) { //Current Index too big? Then, lets go to the beginning of the card set
+		if (currCount < 0 && currCount > -3) {
+			currCount = 0;
+		} else if (currCount < 0) { //Current index too small? Then, lets move to the end of the card set
+			currCount = cards.size() - 3;
+		} else if (currCount > cards.size()) { //Current Index too big? Then, lets go to the beginning of the card set
 			currCount = 0;
 		}
 		

@@ -15,9 +15,8 @@ public class CardDisplay extends JPanel {
 		
 		String description = "<html>This is just a test. But it is an amazing test:) I have done something awesome!!</html>";
 		
-		Card card = new Card("Norman 2", description);
 		File icon = new File("images/test.jpg");
-		card.setIcon(icon);
+		Card card = new Card("Norman 2", description, icon, false);
 		card.setPreferredSize(new Dimension(200,320));
 		card.addMouseListener(new clearSetIconListener());
 
@@ -25,52 +24,10 @@ public class CardDisplay extends JPanel {
 		sets[0].setPreferredSize(new Dimension(width, height));
 		sets[0].setBackground(playerColor);
 		
-		card = new Card("Norman 3", description);
-		card.setIcon(icon);
+		card = new Card("Norman 3", description, icon, true);
 		card.setPreferredSize(new Dimension(200,320));
 		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
 		
-		card = new Card("Norma 4", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
-		
-		card = new Card("Norma 5", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
-		
-		card = new Card("Norma 6", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
-		
-		card = new Card("Norma 7", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
-		
-		card = new Card("Norma 8", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
-		add(sets[0]);
-		sets[0].displaySetIcon();
-		
-		card = new Card("Norma 9", description);
-		card.setIcon(icon);
-		card.setPreferredSize(new Dimension(200,320));
-		sets[0].addCard(card);
 		add(sets[0]);
 		sets[0].displaySetIcon();
 	}
