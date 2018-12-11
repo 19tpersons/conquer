@@ -16,40 +16,65 @@ public class Card extends JPanel {
 	private String nickname = ""; //This is a way to identify the card
 	
 	//Initializes variables that are going to be used in the display of the card
-	private JLabel desLabel, titleLabel, infoLabel, popLabel;
-	private CardIcon icon = new CardIcon();
+	private CardIcon icon;
+	private JPanel topInfo = new JPanel(); //This is the top of the card
+	private JPanel bottomInfo = new JPanel();//This is the bottom of the card
 	
 	//This sets up the general data for the card.
 	public Card(String title, String description, File imageLoc, boolean planetType) throws IOException {
+		//Sets up card
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		//setBorder(new EmptyBorder(0, 5, 0, 5));
-
 		this.title = title;
 		this.description = description;
 		
 		//This creates the icon
 		if (planetType) {
 			icon = new CardIcon(imageLoc, 200, 250, true);
-		}else {
+		} else {
 			icon = new CardIcon(imageLoc, 200, 250, false);
 		}
-		//The cards title
-		titleLabel = new JLabel(title);
+			
+		//This section defines the top of the card
+		JLabel titleLabel = new JLabel(title); //The cards title
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-		//Description of the card
-		desLabel = new JLabel(description);
-		desLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		//The population label
-		popLabel = new JLabel(Integer.toString(population));
-		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		topInfo.add(titleLabel);
+		JLabel infoLabel = new JLabel("+"); //This is the button that will show the back of the card
+		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
+		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		infoLabel.addMouseListener( new MouseAdapter() { 
+			public void mousePressed(MouseEvent evt) {
+				printBack();
+			} 
+		});
+		topInfo.add(infoLabel);		
+		topInfo.setPreferredSize(new Dimension(200, 320 - 250));
+		topInfo.setBackground(new Color(0,0,0,0)); //Allows the card's color to show!
 		
+		//This section defines the contents for the back of the card
+		JLabel desLabel = new JLabel(description);	//Description of the card
+		desLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		bottomInfo.add(desLabel);
+		JLabel popLabel = new JLabel(Integer.toString(population)); //The population label
+		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
+		bottomInfo.add(popLabel);
+		infoLabel = new JLabel("-"); //This button will show the front of the card
+		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
+		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		infoLabel.addMouseListener( new MouseAdapter() { 
+			public void mousePressed(MouseEvent evt) {
+				printFront();
+			} 
+		});
+		bottomInfo.add(infoLabel);
+		bottomInfo.setPreferredSize(new Dimension(200, 320 - 250));		
+		bottomInfo.setBackground(new Color(0,0,0,0)); //Allows the card's color to show!
 		
 		printFront();
 	}
 	
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		
 		Rectangle2D bg = new Rectangle2D.Double(0, 0, getWidth(), getHeight()); //This is the background of the card
 		g2.setColor(Color.ORANGE);
 		g2.fill(bg);		
@@ -60,51 +85,22 @@ public class Card extends JPanel {
 	 * Draws the front side of the card
 	 */
 	private void printFront() {
-		
-		if (desLabel != null && titleLabel != null && infoLabel != null && popLabel != null) {
-			remove(desLabel);
-			remove(titleLabel);
-			remove(infoLabel);
-			remove(popLabel);
+		if (bottomInfo != null) {
+			remove(bottomInfo);
 		}
 		
 		add(icon);
+		add(topInfo);
+		
 		repaint(); //Repaints the icon
-		
-		add(titleLabel);
-		
-		infoLabel = new JLabel("+");
-		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
-		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		infoLabel.addMouseListener( new MouseAdapter() { 
-			public void mousePressed(MouseEvent evt) {
-				printBack();
-			} 
-		});
-		add(infoLabel);
-		
 		revalidate();
 	}
 
 	public void printBack() {
-		remove(icon); //Remove icon from card
-		remove(titleLabel); //Remove title
-		remove(infoLabel); //Remove "+" from card
-		
-		add(desLabel);	//Description
-		add(titleLabel);
-		add(popLabel); //Current Population of Card
-		
-		infoLabel = new JLabel("-");
-		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
-		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		infoLabel.addMouseListener( new MouseAdapter() { 
-			public void mousePressed(MouseEvent evt) {
-				printFront();
-			} 
-		});
-		add(infoLabel);
-		
+		remove(topInfo);
+		remove(icon);
+		add(bottomInfo);
+			
 		revalidate(); //Tells java you have changed the component structure
 		repaint();
 	}

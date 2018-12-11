@@ -1,5 +1,8 @@
 
 public class U {
+	public static final int width = 1500;
+	public static final int height = 800;
+	
 	/**
 	 * This method will calculate the dynamic size for any element when given the window's width/height and the percent
 	 * @param percent The percent width/height of the element (should be a whole number)

@@ -7,16 +7,18 @@ import java.awt.geom.*;
 import java.io.IOException;
 
 public class HUD extends JPanel {
-	private Color playerColor = new Color(0, 0, 204);
+	//private Color playerColor = new Color(0, 0, 204);
 	//private Color playerColor = new Color(255, 151, 53);
-
-	public HUD(int width, int height) {
+	private Color playerColor;
+	
+	public HUD(int width, int height, Color playerColor) {
 		//Inital Setup
 		setPreferredSize(new Dimension(width, height));
+		this.playerColor = playerColor;
 
 		try {
 			CardDisplay disp = new CardDisplay(width, height, playerColor);
-			disp.addMouseListener(new hudRepaintListener());
+			//disp.addMouseListener(new hudRepaintListener());
 			disp.setPreferredSize(new Dimension(width, height));
 			disp.setBackground(new Color(0,0,0,0));
 			add(disp);
@@ -24,7 +26,8 @@ public class HUD extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		//SideNav sideNav = new SideNav();
 	}
 	
 	//This will repaint the HUD every time CardDisp class is clicked. It is used to allow for the removing of components from the CardDisp class.

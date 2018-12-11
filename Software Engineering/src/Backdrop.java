@@ -9,14 +9,11 @@ public class Backdrop extends JPanel {
 	public Backdrop(int width, int height) {
 		this.width = width;
 		this.height = height;
+		setBackground(new Color(51,204,51));
+
 	}
-	
-	protected void paintComponent(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
-		
-		Rectangle2D backdrop = new Rectangle2D.Double(0,0, width, height);
-		g2.fill(backdrop);
-	}
+
+
 	
 	
 }
