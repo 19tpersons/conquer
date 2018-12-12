@@ -4,6 +4,7 @@ public class PlayerStats {
 	private int totalPop = 0;
 	private int armySize = 0;
 	private int resourceCount = 0;
+	private int turnStage = -1;
 	private Color playerColor;
 	
 	/**
@@ -12,6 +13,7 @@ public class PlayerStats {
 	 */
 	public PlayerStats(Color playerColor) {
 		this.playerColor = playerColor;
+
 	}
 	
 	/**
@@ -115,5 +117,30 @@ public class PlayerStats {
 	 */
 	public Color getColor() {
 		return playerColor;
+	}
+	
+	/**
+	 * This method returns the current stage of the turn
+	 * @return 1 => draw, 2 => build, 3 => fight, -1 => Not their TURN
+	 */
+	public int getStage() {
+		return turnStage;
+	}
+	
+	/**
+	 * Sets the turn to the next phase. -1 => 1, 1 => 2, 2 => 3, 3 => -1
+	 * Phase 1: Draw
+	 * Phase 2: Build
+	 * Phase 3: Fight
+	 * Phase -1: Not your TURN
+	 */
+	public void nextStage() {
+		turnStage++;
+		if (turnStage > 3) {
+			turnStage = -1;
+		}else if (turnStage == 0) {
+			turnStage = 1;
+		}
+		
 	}
 }

@@ -9,7 +9,7 @@ public class Backdrop extends JPanel {
 	public Backdrop(int width, int height) {
 		this.width = width;
 		this.height = height;
-		setBackground(new Color(51,204,51));
+		setBackground(new Color(102,102,102));
 
 	}
 

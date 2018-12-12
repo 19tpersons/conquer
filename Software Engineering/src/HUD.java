@@ -11,31 +11,29 @@ public class HUD extends JPanel {
 	//private Color playerColor = new Color(255, 151, 53);
 	private Color playerColor;
 	
-	public HUD(int width, int height, Color playerColor) {
+	public HUD(int width, int height, PlayerStats stats) {
 		//Inital Setup
+		setLayout(new BorderLayout(0,0));
 		setPreferredSize(new Dimension(width, height));
-		this.playerColor = playerColor;
-
+		this.playerColor = stats.getColor();
+		
 		try {
-			CardDisplay disp = new CardDisplay(width, height, playerColor);
-			//disp.addMouseListener(new hudRepaintListener());
-			disp.setPreferredSize(new Dimension(width, height));
+			CardDisplay disp = new CardDisplay(width - 275, height, playerColor);
+			disp.setPreferredSize(new Dimension(width - 275, height));
 			disp.setBackground(new Color(0,0,0,0));
-			add(disp);
+			add(BorderLayout.CENTER, disp);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		//SideNav sideNav = new SideNav();
+		CardSideNav sideNav = new CardSideNav(275, height, stats);
+		add(BorderLayout.LINE_END, sideNav);
+
 	}
 	
-	//This will repaint the HUD every time CardDisp class is clicked. It is used to allow for the removing of components from the CardDisp class.
-	private class hudRepaintListener extends MouseAdapter {
-		public void mousePressed(MouseEvent evt) {
-			repaint();
-		}
-	}
+
 	
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;

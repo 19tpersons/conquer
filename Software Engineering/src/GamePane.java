@@ -15,7 +15,7 @@ public class GamePane extends JPanel {
 		drop.setPreferredSize(new Dimension(width, height / 2));
 		add(drop);
 		
-		HUD content = new HUD(width, height / 2, stats.getColor());
+		HUD content = new HUD(width, height / 2, stats);
 		add(content);
 		
 	}
