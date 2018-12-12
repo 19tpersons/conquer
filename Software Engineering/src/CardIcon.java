@@ -25,7 +25,7 @@ public class CardIcon extends JPanel{
 		history = icon; //Used for the hover function
 		
 		//buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		buttonPanel.setBackground(new Color(255, 255, 255, 50)); //TODO: Make the buttons!
+		buttonPanel.setBackground(new Color(255,255,255, 50)); //TODO: Make the buttons!
 		buttonPanel.setPreferredSize(new Dimension(width, height));
 		buttonPanel.add(fightBtn);
 		
@@ -54,11 +54,16 @@ public class CardIcon extends JPanel{
 				}
 			});
 		}
-		
+
 	}
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(Color.ORANGE);
+		g2.fillRect(0, 0, width, height);
+		
 		g2.drawImage(icon, 0, 0, this); //Card Image
+		
 	}
 	
 	
