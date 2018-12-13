@@ -41,6 +41,9 @@ public class CardSideNav extends JPanel {
 		resourceCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
 		disp.add(resourceCount);
 		
+		TurnControl tControl = new TurnControl();
+		//disp.add(tControl);
+		
 		//Configures the disp jpanel
 		disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
 		disp.setBackground(new Color(255, 230, 255));
