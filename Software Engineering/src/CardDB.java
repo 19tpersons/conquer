@@ -7,20 +7,30 @@ import javax.swing.*;
  * This is a class that parses a CSV file containing the planets, solar systems, and actions. The class
  * will make the appropriate objects for each type of card, but will not do any calculations on its own
  * for where a card will go, that job is up the TurnControl class.
+ * 
+ * The CSV file is in the following order:
+ * 	idx, type, sub_type, title, description, population, defacto, range, image_location
  */
 
 
 public class CardDB {
 	private String file = "cardDB.csv";
-	private ArrayList<String> rows = new ArrayList<String>(); //This an array list of the individual rows in the table
+	private ArrayList<ArrayList<String>> rows = new ArrayList<ArrayList<String>>(); //This an array list of the individual rows in the table
 	
+	//These three array lists are the three types of rows within the database
+	private ArrayList<Card> planets = new ArrayList<Card>();
+	private ArrayList<Card> solarSystems = new ArrayList<Card>();
+	private ArrayList<ActionCard> actions = new ArrayList<ActionCard>();
 	
 	public CardDB() throws FileNotFoundException {
 		this.parseDB();
 
-		this.createCards();
+		this.sortCards();
 	}
 	
+	/**
+	 * This will parse the CSV file for the game.
+	 */
 	private void parseDB() {
 		//This section reads data from the file and stores it in an arrayList
 		try (BufferedReader br = new BufferedReader(new FileReader(file))){
@@ -47,11 +57,51 @@ public class CardDB {
 						}
 					}
 				}
+				rows.add(row);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * This will figure out where the rows go!
+	 */
+	public void sortCards() {
+		for(ArrayList<String> row: rows) {
+			String type = row.get(1);
+			
+			if (type.equals("action")) {
+				this.makeAction(row);
+			} else {
+				this.makeCard(row);
+			}
+		}
+	}
+	
+	public void makeAction(ArrayList<String> row) {
+		String sub_type = row.get(2);
+		String title = row.get(3);
+		String description = row.get(4);
+		int popChange = Integer.parseInt(row.get(5));
+		int defacto = Integer.parseInt(row.get(6));
+		String image_location = row.get(8);
+		
+		ActionCard newCard = new ActionCard(sub_type, popChange, defacto);
+		newCard.makeModal(title, description, image_location);
+		actions.add(newCard); //adds the news created action to an array
+	}
+
+	public void makeCard(ArrayList<String> row) {
+		String title = row.get(3);
+		String description = row.get(4);
+		int popChange = Integer.parseInt(row.get(5));
+		int range = Integer.parseInt(row.get(7));
+		String image_location = row.get(8);
+		
+		Card newCard = new Card(sub_type, popChange, defacto);
+		actions.add(newCard); //adds the news created action to an array
 	}
 	
 	//public ActionCard getAction() {}
