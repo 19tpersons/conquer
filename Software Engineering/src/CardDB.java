@@ -3,6 +3,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+/*
+ * This is a class that parses a CSV file containing the planets, solar systems, and actions. The class
+ * will make the appropriate objects for each type of card, but will not do any calculations on its own
+ * for where a card will go, that job is up the TurnControl class.
+ */
+
 
 public class CardDB {
 	private String file = "cardDB.csv";
@@ -48,7 +54,9 @@ public class CardDB {
 		}
 	}
 	
-	private void createCards() {
-		
-	}
+	//public ActionCard getAction() {}
+	
+	//public Card getPlanetCard() {}
+
+	//public Card getSolarCard() {}
 }
