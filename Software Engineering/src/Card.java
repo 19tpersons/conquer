@@ -21,7 +21,7 @@ public class Card extends JPanel {
 	private JPanel bottomInfo = new JPanel();//This is the bottom of the card
 	
 	//This sets up the general data for the card.
-	public Card(String title, String description, File imageLoc, boolean planetType) throws IOException {
+	public Card(String title, String description, File imageLoc, String type) throws IOException {
 		//Sets up card
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		//setBorder(new EmptyBorder(0, 5, 0, 5));
@@ -29,7 +29,7 @@ public class Card extends JPanel {
 		this.description = description;
 		
 		//This creates the icon
-		if (planetType) {
+		if (type.equals("planet")) {
 			icon = new CardIcon(imageLoc, 200, 250, true);
 		} else {
 			icon = new CardIcon(imageLoc, 200, 250, false);
@@ -183,6 +183,26 @@ public class Card extends JPanel {
 	 * @return The cards current population
 	 */
 	public int getPop() {
+		return this.population;
+	}
+	
+	/**
+	 * This method will add more population to the card and return the sum.
+	 * @param additive The pop. to add
+	 * @return the sum.
+	 */
+	public int addPop(int additive) {
+		this.population += additive;
+		return this.population;
+	}
+	
+	/**
+	 * This method will subtract more population to the card and return the difference.
+	 * @param amt The pop. to subtract
+	 * @return the difference.
+	 */
+	public int subPop(int amt) {
+		this.population -= amt;
 		return this.population;
 	}
 	

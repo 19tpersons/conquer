@@ -16,7 +16,7 @@ public class CardDisplay extends JPanel {
 		String description = "<html>This is just a test. But it is an amazing test:) I have done something awesome!!</html>";
 		
 		File icon = new File("images/test.jpg");
-		Card card = new Card("Norman 2", description, icon, false);
+		Card card = new Card("Norman 2", description, icon, "solar");
 		card.setPreferredSize(new Dimension(200,320));
 		card.addMouseListener(new clearSetIconListener());
 
@@ -24,7 +24,7 @@ public class CardDisplay extends JPanel {
 		sets[0].setPreferredSize(new Dimension(width, height));
 		sets[0].setBackground(playerColor);
 		
-		card = new Card("Norman 3", description, icon, true);
+		card = new Card("Norman 3", description, icon, "planet");
 		card.setPreferredSize(new Dimension(200,320));
 		sets[0].addCard(card);
 		

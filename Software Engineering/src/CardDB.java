@@ -7,13 +7,18 @@ import javax.swing.*;
 public class CardDB {
 	private String file = "cardDB.csv";
 	private ArrayList<String> rows = new ArrayList<String>(); //This an array list of the individual rows in the table
-	private String[] colHeadings;
+	
+	
 	public CardDB() throws FileNotFoundException {
-		
+		this.parseDB();
+
+		this.createCards();
+	}
+	
+	private void parseDB() {
 		//This section reads data from the file and stores it in an arrayList
 		try (BufferedReader br = new BufferedReader(new FileReader(file))){
 			String topLine = br.readLine();
-			this.colHeadings = topLine.split(",");
 			
 			while (br.ready()) {
 				ArrayList<String> row = new ArrayList<String>();
@@ -41,7 +46,9 @@ public class CardDB {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	}
+	
+	private void createCards() {
 		
 	}
 }

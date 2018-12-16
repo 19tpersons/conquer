@@ -1,0 +1,4 @@
+idx,type,sub_type,title,description,population,defacto,range,image_location
+1,action,null,The Hulk,A hulking beast has decended upon your empire and is set about destroying everything in its path!!,-100,0.50,0.10,null
+2,solar,null,S2,This solar system seems to be full of pretty things:),500,0.50,0.10,null
+3,planet,null,Earth,We have people:),300,0.50,0.10,null
