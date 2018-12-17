@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.*;
 /*
@@ -94,19 +95,47 @@ public class CardDB {
 	}
 
 	public void makeCard(ArrayList<String> row) {
-		String title = row.get(3);
-		String description = row.get(4);
-		int popChange = Integer.parseInt(row.get(5));
-		int range = Integer.parseInt(row.get(7));
-		String image_location = row.get(8);
+		String title = row.get(3); //Title of the card
+		String description = row.get(4); //Description of the card
+		File image_location = new File(row.get(8)); //The image of the card.
+		String type = row.get(1); //Is it card a planet or solar system
+		int population = Integer.parseInt(row.get(5));
+		int changeRangeRate = Integer.parseInt(row.get(7)); //This number is used to give the population a sense of randomness for every specific game.		
+		//This section is used to calculate the population change.
+		Random rand = new Random();
+		int popChange = rand.nextInt(population * changeRangeRate); //This is the number that will be either added or subtracted from the default population of the planet/solar system.
+		int operator = rand.nextInt(2); //zero is plus, one is negative
+		if (operator == 0) {
+			population += popChange;
+		} else {
+			population -= popChange;
+		}
 		
-		Card newCard = new Card(sub_type, popChange, defacto);
-		actions.add(newCard); //adds the news created action to an array
+		Card newCard = new Card(title, description, image_location , type);
+		newCard.setPop(population);
+		
+		if (type.equals("planet")) {
+			planets.add(newCard); //adds the news created planet to an array
+		}else { //Must be a solar system
+			solarSystems.add(newCard);
+		}
 	}
 	
-	//public ActionCard getAction() {}
+	public ActionCard getAction() {
+		ActionCard temp = actions.get(0);
+		actions.remove(0);
+		return temp;
+	}
 	
-	//public Card getPlanetCard() {}
+	public Card getPlanetCard() {
+		Card temp = planets.get(0);
+		planets.remove(0);
+		return temp;
+	}
 
-	//public Card getSolarCard() {}
+	public Card getSolarCard() {
+		Card temp = solarSystems.get(0);
+		solarSystems.remove(0);
+		return temp;
+	}
 }
