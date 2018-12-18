@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.File;
 import java.util.Random;
 import javax.swing.*;
 
@@ -13,12 +14,19 @@ public class ActionCard extends JPanel {
 	 * @param popChange This is the positive or negative number of population the action will cause
 	 * @param actionPercentChange This is the percent change of amount of affect any action will have.
 	 */
-	public ActionCard(String sub_type, int popChange, int actionPercentChange) {
+	public ActionCard(String sub_type, double popChange, double actionPercentChange) {
 		this.sub_type = sub_type;
-		this.popChange = popChange;
+		this.popChange = (int) popChange;
 		
 		Random rand = new Random();
-		int randChange =  rand.nextInt(popChange * actionPercentChange); //This is a number that adds randomness to the amount of change an action can cause to any given population.
+		double positivePop;
+		if (popChange < 0) { //This random integer generator needs a positive number so we make this number positive.
+			positivePop = -1 * popChange;
+		} else {
+			positivePop = popChange;
+		}
+		
+		int randChange =  rand.nextInt((int) (positivePop * actionPercentChange)); //This is a number that adds randomness to the amount of change an action can cause to any given population.
 		int operator = rand.nextInt(2);
 		if (operator == 0) { //zero means add the randChange to the popChange
 			this.popChange += randChange;
@@ -42,7 +50,7 @@ public class ActionCard extends JPanel {
 	 * @param description The description of the action
 	 * @param image_location The image for the action
 	 */
-	public void makeModal(String title, String description, String image_location) {
+	public void makeModal(String title, String description, File image_location) {
 		this.modal = new InfoModal(title, description, image_location);
 	}
 	

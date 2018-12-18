@@ -1,4 +1,5 @@
-idx,type,sub_type,title,description,population,defacto,range,image_location
-1,action,null,The Hulk,A hulking beast has decended upon your empire and is set about destroying everything in its path!!,-100,0.50,0.10,null
-2,solar,null,S2,This solar system seems to be full of pretty things:),500,0.50,0.10,null
-3,planet,null,Earth,We have people:),300,0.50,0.10,null
+idx,type,sub_type,title,description,population,action_type_percent_rate,pop_change_rate,image_location
+,action,weather,Snowmagdon,Let is snow!,-100,null,0.3,images/snow.jpg
+,solar,weather,Ice System 1,We like ice in our solar system:),300,0.25,0.3,images/ice_system.jpg
+,solar,null,Ocotpi,We are an allien race of octopi!,500,null,0.2,images/octopus.png
+,planet,null,Earth,We are human.,600,null,0.03,images/earth.jpg

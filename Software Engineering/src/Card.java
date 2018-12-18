@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.io.*;
+import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
@@ -14,6 +15,8 @@ public class Card extends JPanel {
 	private String description = ""; //The description
 	private int population = 0; //Population of card
 	private String nickname = ""; //This is a way to identify the card
+	private String sub_type = "";
+	private double subTypeRate = 0.0;
 	
 	//Initializes variables that are going to be used in the display of the card
 	private CardIcon icon;
@@ -140,6 +143,29 @@ public class Card extends JPanel {
 	}
 	
 	/**
+	 * This method returns this cards sub_type
+	 * @return the cards sub_type
+	 */
+	public String getSubType() {
+		return sub_type;
+	}
+	
+	/**
+	 * This class will set a cards sub_type. If a card has a sub_type it will be that much more likely 
+	 * of being chosen for a given action of the same sub_type.
+	 * @param sub_type The cards sub_type.
+	 * @param subTypeRate This is the additional chance of a given action occuring to this.
+	 */
+	public void setSubType(String sub_type, double subTypeRate) {
+		this.sub_type = sub_type;
+		this.subTypeRate = subTypeRate;
+	}
+	
+	public double getSubTypeRate() {
+		return this.subTypeRate;
+	}
+	
+	/**
 	 * Sets the description of card
 	 * @param description The description of the card
 	 */
@@ -172,11 +198,29 @@ public class Card extends JPanel {
 	}
 
 	/**
-	 * This sets the cards population to something new
-	 * @param newPop The new population of the card
+	 * This sets the card's population to something new
+	 * @param newPop the new population of the card
 	 */
 	public void setPop(int newPop) {
 		this.population = newPop;
+	}
+	
+	/**
+	 * This sets the cards population to something new
+	 * @param newPop The new population of the card
+	 * @param changeRangeRate This is a percentage that will be multiplied by the given population to allow for some randomness in populations per game.
+	 */
+	public void setPop(double newPop, double changeRangeRate) {
+		this.population = (int) newPop;
+		//This section is used to calculate the population change.
+		Random rand = new Random();
+		int popChange = rand.nextInt((int) (this.population * changeRangeRate)); //This is the number that will be either added or subtracted from the default population of the planet/solar system.
+		int operator = rand.nextInt(2); //zero is plus, one is negative
+		if (operator == 0) {
+			this.population += popChange;
+		} else {
+			this.population -= popChange;
+		}
 	}
 	/**
 	 * Returns the population of the card

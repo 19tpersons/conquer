@@ -42,7 +42,7 @@ public class CardSideNav extends JPanel {
 		disp.add(resourceCount);
 		
 		TurnControl tControl = new TurnControl();
-		//disp.add(tControl);
+		disp.add(tControl);
 		
 		//Configures the disp jpanel
 		disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
