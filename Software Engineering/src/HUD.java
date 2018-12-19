@@ -18,7 +18,7 @@ public class HUD extends JPanel {
 		this.playerColor = stats.getColor();
 		
 		try {
-			CardDisplay disp = new CardDisplay(width - 275, height, playerColor);
+			CardDisplay disp = new CardDisplay(width - 275, height, stats);
 			disp.setPreferredSize(new Dimension(width - 275, height));
 			disp.setBackground(new Color(0,0,0,0));
 			add(BorderLayout.CENTER, disp);

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class PlayerStats {
 	private int totalPop = 0;
@@ -6,6 +7,7 @@ public class PlayerStats {
 	private int resourceCount = 0;
 	private int turnStage = -1;
 	private Color playerColor;
+	public ArrayList<CardSet> sets = new ArrayList<CardSet>();
 	
 	/**
 	 * This is the default constructor
@@ -142,5 +144,18 @@ public class PlayerStats {
 			turnStage = 1;
 		}
 		
+	}
+	
+	/**
+	 * This method returns an array of the player's cardSets
+	 * @return the array of cardSets
+	 */
+	public CardSet[] getCardSets() {
+		return (CardSet[]) this.sets.toArray(new CardSet[sets.size()]);
+	}
+	
+	public void addCardSet(CardSet set) {
+		this.sets.add(set);
+		//CardDisplay.addSet(this.getCardSets()); //This will refresh the CardDisplay
 	}
 }

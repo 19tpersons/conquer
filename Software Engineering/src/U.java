@@ -3,6 +3,7 @@ import java.awt.Color;
 public class U {
 	public static final int width = 1500;
 	public static final int height = 800;
+	public static final int cardSetLimit = 3;
 	
 	/**
 	 * This method will calculate the dynamic size for any element when given the window's width/height and the percent
