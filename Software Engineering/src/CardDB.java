@@ -126,7 +126,7 @@ public class CardDB {
 		} catch (IOException e) {
 			return;
 		}
-		
+		newCard.setPreferredSize(new Dimension(200,320));
 		
 		//This section finishes up the method by adding the new Card to its arrayList
 		if (type.equals("planet")) {

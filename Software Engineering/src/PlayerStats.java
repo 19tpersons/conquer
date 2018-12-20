@@ -150,8 +150,8 @@ public class PlayerStats {
 	 * This method returns an array of the player's cardSets
 	 * @return the array of cardSets
 	 */
-	public CardSet[] getCardSets() {
-		return (CardSet[]) this.sets.toArray(new CardSet[sets.size()]);
+	public ArrayList<CardSet> getCardSets() {
+		return this.sets;
 	}
 	
 	public void addCardSet(CardSet set) {

@@ -165,7 +165,7 @@ public class CardSet extends JPanel {
 	 * @param bgColor the color the filler space rectangle is going to be.
 	 */
 	public void clearSetIcon() {
-		solar.setVisible(false);
+		//solar.setVisible(false);
 		remove(solar);
 		fillerCard();
 	}

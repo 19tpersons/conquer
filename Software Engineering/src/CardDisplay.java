@@ -10,17 +10,19 @@ import javax.swing.*;
 public class CardDisplay extends JPanel {
 	//private static CardSet[] sets;
 	private static ArrayList<CardSet> sets;
+	private PlayerStats stats;
 	private Color playerColor;
 	
 	public CardDisplay(int width, int height, PlayerStats stats) throws IOException {
 		this.playerColor = stats.getColor();
 		//this.sets = stats.getCardSets();
 		this.sets = stats.sets;
+		this.stats = stats;
 
 		
 		String description = "<html>This is just a test. But it is an amazing test:) I have done something awesome!!</html>";
 		
-		File icon = new File("images/norman.jpg");
+		/*File icon = new File("images/norman.jpg");
 		Card card = new Card("Norman 2", description, icon, "solar");
 		card.setPreferredSize(new Dimension(200,320));
 		card.addMouseListener(new clearSetIconListener());
@@ -30,28 +32,14 @@ public class CardDisplay extends JPanel {
 		temp.setBackground(playerColor);
 		stats.addCardSet(temp);
 
-		//this.sets = stats.getCardSets();
-		//add(sets[0]);
-		temp.displaySetIcon();
+		temp.displaySetIcon();*/
 		
-		TurnControl.draw.addMouseListener(new addSetsListener());
 	}
 	
 	//This class is looking to see if any of the CardSet icons have been clicked. If so, it will clear the sets' icon
 	private class clearSetIconListener extends MouseAdapter {
 		public void mousePressed(MouseEvent e) {
 			clearSetIcons();
-		}
-	}
-	
-	private class addSetsListener extends MouseAdapter {
-		public void mousePressed(MouseEvent evt) {
-			//clearSetIcons();
-			for (int i = 0; i < sets.size(); i++) {
-				add(sets.get(i));
-			}
-			revalidate();
-			repaint();
 		}
 	}
 	
@@ -81,6 +69,14 @@ public class CardDisplay extends JPanel {
 	 */
 	public static void addSet(CardSet[] sets) {
 		//CardDisplay.sets = sets;
+	}
+	public void refreshSets() {		
+		//If there are any sets currently being displayed clear them
+		clearSetIcons();
+		
+		//Now display the sets with any new additions
+		displaySets();
+
 	}
 	
 	/**

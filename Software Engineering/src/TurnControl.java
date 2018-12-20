@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
@@ -12,14 +13,16 @@ import javax.swing.*;
 
 public class TurnControl extends JPanel{
 	private PlayerStats stats;
-	private CardSet[] sets;
+	private ArrayList<CardSet> sets;
 	private Random rand = new Random();
-	public static JButton draw = new JButton("Draw");
-
-	public TurnControl(PlayerStats stats) {
+	private CardDisplay disp;
+	
+	public TurnControl(PlayerStats stats, CardDisplay disp) {
 		this.stats = stats;
 		sets = stats.getCardSets();
+		this.disp = disp;
 		
+		JButton draw = new JButton("Draw");
 		draw.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				getCard();
@@ -34,29 +37,30 @@ public class TurnControl extends JPanel{
 	 */
 	private void getCard() {
 		int cardTypeInt; //This will be used to figure out what type of card to draw for the user. 0 => planet, 1 => action, 2 => solar
-		if (sets.length < U.cardSetLimit) {
+		if (sets.size() < U.cardSetLimit) {
 			cardTypeInt = 3;
 		} else {
 			cardTypeInt = 2;
 		}
 		
 		int type;
-		if (sets.length == 0) { //If the user doesn't have any solar systems, then give them one.
+		if (sets.size() == 0) { //If the user doesn't have any solar systems, then give them one.
 			type = 2;
 		} else {
 			type = rand.nextInt(cardTypeInt);
 		}
+
 		switch(type) {
 			case 0:
 				this.addToSet(CardDB.getPlanetCard()); //if zero get a planet card.
 				break;
 			case 1:
-				//this.performAction(CardDB.getAction());
+				this.performAction(CardDB.getAction());
 				break;
 			case 2:
 				this.addSet(CardDB.getSolarCard());
+				break;
 		}
-		sets[0].addCard(CardDB.getPlanetCard());
 	}
 	
 	/**
@@ -65,25 +69,33 @@ public class TurnControl extends JPanel{
 	 */
 	private void addToSet(Card card) {
 		//If any of the sets do not have any cards place the planet in that solar system.
-		for (int i = 0; i < sets.length; i++) {
-			if (sets[i].getSetSize() == 0) {
-				sets[i].addCard(card);
+		for (int i = 0; i < sets.size(); i++) {
+			if (sets.get(i).getSetSize() == 0) {
+				sets.get(i).addCard(card);
 				return;
 			}
 		}
 		
 		//If all of the solar systems have at least one planet then go ahead and pick a random one to put the new card in.
-		int setSelect = rand.nextInt(sets.length);
-		sets[setSelect].addCard(card);
+		int setSelect = rand.nextInt(sets.size());
+		sets.get(setSelect).addCard(card);
 	}
 	
 	 private void addSet(Card newSet) {
-		 try {
-			stats.addCardSet(new CardSet(newSet, stats.getColor()));
+		try {
+			CardSet tmp = new CardSet(newSet, stats.getColor());
+			tmp.setPreferredSize(new Dimension(disp.getWidth(), disp.getHeight()));
+			tmp.setBackground(stats.getColor());
+			
+			stats.addCardSet(tmp);
+			disp.refreshSets();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		 this.sets = stats.getCardSets();
+	 }
+	 
+	 private void performAction(ActionCard action) {
+		 
 	 }
 }

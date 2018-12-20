@@ -1,11 +1,13 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
 public class Start extends JPanel {
-
 	public static void main(String[] args) {
+
 		JFrame window = new JFrame("Conquer!");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setSize(U.width, U.height);
@@ -40,6 +42,7 @@ public class Start extends JPanel {
 		User one = new User(new Color(0, 0, 204));
 		one.showPane();
 		add(one);
+		
 	}
 	
 

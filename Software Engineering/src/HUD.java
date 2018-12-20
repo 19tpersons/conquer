@@ -17,8 +17,9 @@ public class HUD extends JPanel {
 		setPreferredSize(new Dimension(width, height));
 		this.playerColor = stats.getColor();
 		
+		CardDisplay disp = null;
 		try {
-			CardDisplay disp = new CardDisplay(width - 275, height, stats);
+			disp = new CardDisplay(width - 275, height, stats);
 			disp.setPreferredSize(new Dimension(width - 275, height));
 			disp.setBackground(new Color(0,0,0,0));
 			add(BorderLayout.CENTER, disp);
@@ -28,7 +29,7 @@ public class HUD extends JPanel {
 			e.printStackTrace();
 		}
 		
-		CardSideNav sideNav = new CardSideNav(275, height, stats);
+		CardSideNav sideNav = new CardSideNav(275, height, stats, disp);
 		add(BorderLayout.LINE_END, sideNav);
 
 	}

@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -6,7 +9,14 @@ public class CardSideNav extends JPanel {
 	private PlayerStats stats;
 	private JPanel disp = new JPanel(); //This is the display for the information
 	
-	public CardSideNav(int width, int height, PlayerStats stats) {
+	/**
+	 * This is the default constructor for the CardSideNav class. It displays a player's statistics and allows them to continue on with their turn
+	 * @param width The is the width of the panel
+	 * @param height this is the height of the panel
+	 * @param stats this is a reference to a player's stats
+	 * @param cardDisp this is a reference to the player's card display. It is needed for the turncontrol
+	 */
+	public CardSideNav(int width, int height, PlayerStats stats, CardDisplay cardDisp) {
 		//Sets up the class
 		FlowLayout tmp = new FlowLayout(); //This is used to fix the horz. and vert. margins
 		tmp.setHgap(0);
@@ -41,8 +51,10 @@ public class CardSideNav extends JPanel {
 		resourceCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
 		disp.add(resourceCount);
 		
-		TurnControl tControl = new TurnControl(stats);
+		TurnControl tControl = new TurnControl(stats, cardDisp);
+		tControl.setBackground(new Color(0,0,0,0));
 		disp.add(tControl);
+	
 		
 		//Configures the disp jpanel
 		disp.setLayout(new BoxLayout(disp, BoxLayout.Y_AXIS));
