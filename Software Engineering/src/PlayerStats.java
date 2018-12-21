@@ -146,16 +146,9 @@ public class PlayerStats {
 		
 	}
 	
-	/**
-	 * This method returns an array of the player's cardSets
-	 * @return the array of cardSets
-	 */
-	public ArrayList<CardSet> getCardSets() {
-		return this.sets;
-	}
+
 	
 	public void addCardSet(CardSet set) {
 		this.sets.add(set);
-		//CardDisplay.addSet(this.getCardSets()); //This will refresh the CardDisplay
 	}
 }

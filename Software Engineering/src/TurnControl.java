@@ -19,7 +19,7 @@ public class TurnControl extends JPanel{
 	
 	public TurnControl(PlayerStats stats, CardDisplay disp) {
 		this.stats = stats;
-		sets = stats.getCardSets();
+		sets = stats.sets;
 		this.disp = disp;
 		
 		JButton draw = new JButton("Draw");
@@ -84,15 +84,15 @@ public class TurnControl extends JPanel{
 	 private void addSet(Card newSet) {
 		try {
 			CardSet tmp = new CardSet(newSet, stats.getColor());
-			tmp.setPreferredSize(new Dimension(disp.getWidth(), disp.getHeight()));
 			tmp.setBackground(stats.getColor());
 			
 			stats.addCardSet(tmp);
+			disp.addClearIconList(stats.sets.size() - 1); //This will add the listener to the newest solar system card
 			disp.refreshSets();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		 this.sets = stats.getCardSets();
+		 this.sets = stats.sets;
 	 }
 	 
 	 private void performAction(ActionCard action) {

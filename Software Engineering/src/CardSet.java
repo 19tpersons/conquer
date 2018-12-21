@@ -18,7 +18,7 @@ public class CardSet extends JPanel {
 	public CardSet(Card solar, Color bgColor) throws IOException {
 		this.bgColor = bgColor;
 		this.solar = solar;
-		this.solar.addMouseListener(new PaintStartingCards());
+		this.solar.getIcon().addMouseListener(new PaintStartingCards());
 		
 		threeCards.setBackground(bgColor);
 		moveRight = new JPanel();
@@ -81,7 +81,6 @@ public class CardSet extends JPanel {
 		repaint();
 	}
 	
-
 	
 	/**
 	 * This method will clear the screen of the cards in the set
@@ -165,7 +164,6 @@ public class CardSet extends JPanel {
 	 * @param bgColor the color the filler space rectangle is going to be.
 	 */
 	public void clearSetIcon() {
-		//solar.setVisible(false);
 		remove(solar);
 		fillerCard();
 	}
@@ -186,4 +184,11 @@ public class CardSet extends JPanel {
 		remove(filler);
 	}
 	
+	/**
+	 * This method will return a reference to the solar card of this set
+	 * @return the set's solar card
+	 */
+	public Card getSolar() {
+		return this.solar;
+	}
 }

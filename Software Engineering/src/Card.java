@@ -27,7 +27,6 @@ public class Card extends JPanel {
 	public Card(String title, String description, File imageLoc, String type) throws IOException {
 		//Sets up card
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		//setBorder(new EmptyBorder(0, 5, 0, 5));
 		this.title = title;
 		this.description = description;
 		
