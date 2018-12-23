@@ -232,21 +232,17 @@ public class Card extends JPanel {
 	/**
 	 * This method will add more population to the card and return the sum.
 	 * @param additive The pop. to add
-	 * @return the sum.
 	 */
-	public int addPop(int additive) {
+	public void addPop(int additive) {
 		this.population += additive;
-		return this.population;
 	}
 	
 	/**
 	 * This method will subtract more population to the card and return the difference.
 	 * @param amt The pop. to subtract
-	 * @return the difference.
 	 */
-	public int subPop(int amt) {
+	public void removePop(int amt) {
 		this.population -= amt;
-		return this.population;
 	}
 	
 	/**

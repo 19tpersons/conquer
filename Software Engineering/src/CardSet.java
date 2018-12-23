@@ -145,13 +145,6 @@ public class CardSet extends JPanel {
 	}
 	
 	/**
-	 * This will return the number of cards that the CardSet currently holds.
-	 * @return the number of cards.
-	 */
-	public int getSetSize() {
-		return cards.size();
-	}
-	/**
 	 * This will display the "solar system" card of the set
 	 */
 	public void displaySetIcon() {
@@ -190,5 +183,21 @@ public class CardSet extends JPanel {
 	 */
 	public Card getSolar() {
 		return this.solar;
+	}
+	
+	/**
+	 * This will return the number of cards the set currently holds
+	 * @return the number of cards in the set
+	 */
+	public int getCardNumber() {
+		return this.cards.size();
+	}
+	
+	/**
+	 * This will return all of the cards in the set
+	 * @return all of the cards
+	 */
+	public ArrayList<Card> getCards() {
+		return this.cards;
 	}
 }

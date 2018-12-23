@@ -9,6 +9,8 @@ public class CardSideNav extends JPanel {
 	private PlayerStats stats;
 	private JPanel disp = new JPanel(); //This is the display for the information
 	
+	//These are the statistics
+	private JLabel stage, popCount, armySize, resourceCount;
 	/**
 	 * This is the default constructor for the CardSideNav class. It displays a player's statistics and allows them to continue on with their turn
 	 * @param width The is the width of the panel
@@ -28,30 +30,30 @@ public class CardSideNav extends JPanel {
 		this.stats = stats;
 
 		//The current stage of the player's turn
-		JLabel stage = new JLabel("Phase " + Integer.toString(stats.getStage()));
+		stage = new JLabel("Phase " + Integer.toString(stats.getStage()));
 		stage.setFont(new Font("Arial", Font.BOLD, 22));
 		stage.setBorder(new EmptyBorder(20,25,0,0));//top,left,bottom,right
 		disp.add(stage);
 		
 		//The current player's population
-		JLabel popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()));
+		popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()));
 		popCount.setFont(new Font("Arial", Font.BOLD, 22));
 		popCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
 		disp.add(popCount);
 		
 		//The current player's army size
-		JLabel armySize = new JLabel("Army Size: " + Integer.toString(stats.getPopulation()));
+		armySize = new JLabel("Army Size: " + Integer.toString(stats.getPopulation()));
 		armySize.setFont(new Font("Arial", Font.BOLD, 22));
 		armySize.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
 		disp.add(armySize);
 		
 		//The current player's resource count
-		JLabel resourceCount = new JLabel("Resource Count: " + Integer.toString(stats.getResource()));
+		resourceCount = new JLabel("Resource Count: " + Integer.toString(stats.getResource()));
 		resourceCount.setFont(new Font("Arial", Font.BOLD, 22));
 		resourceCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
 		disp.add(resourceCount);
 		
-		TurnControl tControl = new TurnControl(stats, cardDisp);
+		TurnControl tControl = new TurnControl(stats, cardDisp, this);
 		tControl.setBackground(new Color(0,0,0,0));
 		disp.add(tControl);
 	
@@ -64,5 +66,11 @@ public class CardSideNav extends JPanel {
 		add(disp);
 	}
 	
+	public void updateStats() {
+		stage.setText("Stage" + stats.getStage()); 
+		popCount.setText("Population: " + stats.getPopulation()); 
+		armySize.setText("Army Size: " + stats.getArmySize()); 
+		resourceCount.setText("Resources: " + stats.getResource());
+	}
 	
 }

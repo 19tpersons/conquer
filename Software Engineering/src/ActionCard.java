@@ -67,4 +67,12 @@ public class ActionCard extends JPanel {
 	public void hideModal() {
 		remove(modal);
 	}
+	
+	/**
+	 * This will return the type of action
+	 * @return the action type
+	 */
+	public String getSubType() {
+		return this.sub_type;
+	}
 }
