@@ -39,7 +39,7 @@ public class Start extends JPanel {
 		flow.setVgap(-5);
 		setLayout(flow);
 		
-		User one = new User(new Color(0, 0, 204));
+		User one = new User(width, height, new Color(0, 0, 204));
 		one.showPane();
 		add(one);
 		

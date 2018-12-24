@@ -2,39 +2,58 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class User extends JPanel {
-
-	
+	private int width, height;
 	private PlayerStats stats;
 	private GamePane pane;
+	private InfoModal modal;
+	private JLayeredPane layered = new JLayeredPane();
 
-	public User(Color playerColor) {
+	public User(int width, int height, Color playerColor) {
+		this.width = width;
+		this.height = height;
+		
+		layered.setPreferredSize(new Dimension(width, height));
+		layered.setLayout(null);
+		layered.setBackground(Color.blue);
+		
 		this.stats = new PlayerStats(playerColor);
+		stats.setUser(this);
 		this.pane = new GamePane(stats);
+		pane.setBounds(0,0, width, height);
+		
+		add(layered);
 	}
+	
+	
+
+	/**
+	 * If there is a modal that the game wants to display they just use this.
+	 * @param modal
+	 */
+	public void setModal(Modal modal) {
+		modal.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				layered.remove(modal);
+				revalidate();
+				repaint();
+			}
+		});
+		modal.setBounds(0,0, width, height);
+		layered.add(modal, 0);
+		repaint();
+	}
+	
 	
 	/**
-	 * This is the first stage of a players turn. The player gets a new card that will 
-	 *  affect his/her population size, or known planets/solar systems.
+	 * This will show the user's game pane.
 	 */
-	public void drawStage() {
-		//Show draw button
-		
-		//Once clicked, Draw card!
-		
-		//How does it affect him? show (description and location) or show (description) and delete/add (population).
-		
-		//End
-	}
-	
-	public void buildStage() {}
-	
-	public void fightStage() {}
-	
-	
 	public void showPane() {
-		add(pane);
+		layered.add(pane, 1);
 		revalidate();
 		repaint();
 	}

@@ -15,6 +15,7 @@ public class Card extends JPanel {
 	private String description = ""; //The description
 	private int population = 0; //Population of card
 	private String nickname = ""; //This is a way to identify the card
+	private File imageLoc;
 	private String sub_type = "";
 	private double subTypeRate = 0.0;
 	
@@ -29,6 +30,7 @@ public class Card extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.title = title;
 		this.description = description;
+		this.imageLoc = imageLoc;
 		
 		//This creates the icon
 		if (type.equals("planet")) {
@@ -259,5 +261,9 @@ public class Card extends JPanel {
 	 */
 	public String getName() {
 		return this.nickname;
+	}
+	
+	public InfoModal getModal() {
+		return new InfoModal(this.title, this.description, imageLoc);
 	}
 }

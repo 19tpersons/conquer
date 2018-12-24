@@ -59,6 +59,7 @@ public class CardIcon extends JPanel{
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
+		//The background
 		g2.setColor(Color.ORANGE);
 		g2.fillRect(0, 0, width, height);
 		

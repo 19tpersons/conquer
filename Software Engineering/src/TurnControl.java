@@ -18,17 +18,23 @@ public class TurnControl extends JPanel{
 	private Random rand = new Random();
 	private CardDisplay disp;
 	private CardSideNav nav;
+	private User user;
 	
 	public TurnControl(PlayerStats stats, CardDisplay disp, CardSideNav nav) {
 		this.stats = stats;
 		sets = stats.sets;
 		this.disp = disp;
 		this.nav = nav;
+		this.user = stats.getUser();
 		
 		JButton draw = new JButton("Draw");
 		draw.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				getCard();
+				//remove(draw); //This will get rid of the button so that the next phase can begin.
+				revalidate();
+				repaint();
+				
 			}
 		});
 		add(draw);
@@ -58,7 +64,6 @@ public class TurnControl extends JPanel{
 		switch(type) {
 			case 0:
 				this.addToSet(CardDB.getPlanetCard()); //if zero get a planet card.
-				//this.performAction(CardDB.getAction());
 				break;
 			case 1:
 				this.performAction(CardDB.getAction());
@@ -75,6 +80,7 @@ public class TurnControl extends JPanel{
 	 */
 	private void addToSet(Card card) {
 		//Show info modal
+		this.user.setModal(card.getModal());
 		
 		//Updates the players total population
 		stats.addPop(card.getPop());
@@ -99,6 +105,7 @@ public class TurnControl extends JPanel{
 	 */
 	 private void addSet(Card newSet) {
 		 //Show info modal
+		 this.user.setModal(newSet.getModal());
 		 
 		 //Updates the player's total population
 		 stats.addPop(newSet.getPop());
@@ -123,6 +130,7 @@ public class TurnControl extends JPanel{
 	  */
 	 private void performAction(ActionCard action) {
 		 //Show info modal
+		 this.user.setModal(action.getModal());
 		 
 		 //Choose a system
 		 //This section is used to catalog the probabilities of the action happening to any given CardSet

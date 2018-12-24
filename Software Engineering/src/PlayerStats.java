@@ -7,6 +7,7 @@ public class PlayerStats {
 	private int resourceCount = 0;
 	private int turnStage = -1;
 	private Color playerColor;
+	private User user;
 	public ArrayList<CardSet> sets = new ArrayList<CardSet>();
 	
 	/**
@@ -146,9 +147,27 @@ public class PlayerStats {
 		
 	}
 	
-
-	
+	/**
+	 * This will add another card set to the arraylist
+	 * @param set the new set to be added
+	 */
 	public void addCardSet(CardSet set) {
 		this.sets.add(set);
+	}
+	
+	/**
+	 * This will set the user class for this player
+	 * @param user The user class
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	/**
+	 * This will returns this player's user class.
+	 * @return
+	 */
+	public User getUser() {
+		return this.user;
 	}
 }

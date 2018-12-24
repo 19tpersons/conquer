@@ -55,17 +55,11 @@ public class ActionCard extends JPanel {
 	}
 	
 	/**
-	 * This will show the modal.
+	 * This will return the action card's modal.
+	 * @return The modal
 	 */
-	public void showModal() {
-		add(modal);
-	}
-	
-	/**
-	 * This will hide the modal.
-	 */
-	public void hideModal() {
-		remove(modal);
+	public InfoModal getModal() {
+		return this.modal;
 	}
 	
 	/**
