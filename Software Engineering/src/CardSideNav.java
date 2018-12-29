@@ -5,6 +5,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * This is the panel at the far right of the GamePane. It displays the user's statistics
+ * @author Tyler Persons
+ * @date 12.27.18
+ *
+ */
 public class CardSideNav extends JPanel {
 	private PlayerStats stats;
 	private JPanel disp = new JPanel(); //This is the display for the information
@@ -32,25 +38,25 @@ public class CardSideNav extends JPanel {
 		//The current stage of the player's turn
 		stage = new JLabel("Phase " + Integer.toString(stats.getStage()));
 		stage.setFont(new Font("Arial", Font.BOLD, 22));
-		stage.setBorder(new EmptyBorder(20,25,0,0));//top,left,bottom,right
+		stage.setBorder(new EmptyBorder(20,15,0,0));//top,left,bottom,right
 		disp.add(stage);
 		
 		//The current player's population
 		popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()));
 		popCount.setFont(new Font("Arial", Font.BOLD, 22));
-		popCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
+		popCount.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
 		disp.add(popCount);
 		
 		//The current player's army size
 		armySize = new JLabel("Army Size: " + Integer.toString(stats.getPopulation()));
 		armySize.setFont(new Font("Arial", Font.BOLD, 22));
-		armySize.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
+		armySize.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
 		disp.add(armySize);
 		
 		//The current player's resource count
 		resourceCount = new JLabel("Resource Count: " + Integer.toString(stats.getResource()));
 		resourceCount.setFont(new Font("Arial", Font.BOLD, 22));
-		resourceCount.setBorder(new EmptyBorder(5,25,0,0));//top,left,bottom,right
+		resourceCount.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
 		disp.add(resourceCount);
 		
 		TurnControl tControl = new TurnControl(stats, cardDisp, this);

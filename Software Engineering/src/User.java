@@ -10,7 +10,7 @@ public class User extends JPanel {
 	private int width, height;
 	private PlayerStats stats;
 	private GamePane pane;
-	private InfoModal modal;
+	private Modal modal;
 	private JLayeredPane layered = new JLayeredPane();
 
 	public User(int width, int height, Color playerColor) {
@@ -36,6 +36,7 @@ public class User extends JPanel {
 	 * @param modal
 	 */
 	public void setModal(Modal modal) {
+		this.modal = modal;
 		modal.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				layered.remove(modal);
@@ -48,6 +49,14 @@ public class User extends JPanel {
 		repaint();
 	}
 	
+	/**
+	 * This clears the modal from the screen.
+	 */
+	public void hideModal() {
+		layered.remove(this.modal);
+		revalidate();
+		repaint();
+	}
 	
 	/**
 	 * This will show the user's game pane.
@@ -56,6 +65,14 @@ public class User extends JPanel {
 		layered.add(pane, 1);
 		revalidate();
 		repaint();
+	}
+	
+	/**
+	 * This will return this user's game panel
+	 * @return the game panel
+	 */
+	public GamePane getPane() {
+		return this.pane;
 	}
 
 }

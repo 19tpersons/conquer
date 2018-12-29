@@ -4,43 +4,90 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 
+
+/**
+ * This is the abstraction of a solar system. It will hold all of the cards in a solar system 
+ * 	and will also hold the card that is shown to the user to be the solar system.
+ * @author Tyler Persons
+ * @date 12.28.18
+ *
+ */
 public class CardSet extends JPanel {
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Card solar; //The solar system!
 	private Color bgColor;
+	private PlayerStats stats;
 	
 	//Used in junction with the cardDisplay method
 	private JPanel threeCards = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
 	private int currCount = 0; //Used by cardDisplay() as the index to start displaying cards at
-	private JPanel moveRight, moveLeft;
+	private JPanel rightPanel, leftPanel;
+	private String noCardMsg; //This will be used when there are no cards currently in the set
 	
-	public CardSet(Card solar, Color bgColor) throws IOException {
-		this.bgColor = bgColor;
+	public CardSet(Card solar, PlayerStats stats) throws IOException {
+		this.bgColor = stats.getColor();
 		this.solar = solar;
+		this.stats = stats;
 		this.solar.getIcon().addMouseListener(new PaintStartingCards());
 		
 		threeCards.setBackground(bgColor);
-		moveRight = new JPanel();
+		
+		//This is the panel that is on the far right of the three cards currently being displayed
+		rightPanel = new JPanel();
+		rightPanel.setPreferredSize(new Dimension(50, 220));
+		rightPanel.setBackground(new Color(0,0,0,0));
+		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+		JPanel backBtn = new JPanel(); //This is the back button that will take the user back to the solar system view.
+		backBtn.setPreferredSize(new Dimension(50, 40));
+		backBtn.setBackground(Color.GREEN);
+		backBtn.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				stats.getUser().getPane().getHud().getCardDisplay().refreshSets();
+			}
+		});
+		rightPanel.add(backBtn);
+		rightPanel.add(Box.createRigidArea(new Dimension(50,5))); //This is used to give 5 pixels of space between the two buttons
+		JPanel moveRight = new JPanel(); //This is the button that will show the next three cards in the set
 		moveRight.setPreferredSize(new Dimension(50, 150));
 		moveRight.setBackground(Color.RED);
 		moveRight.addMouseListener(new CardMoveRight());
+		rightPanel.add(moveRight);
 
-		moveLeft = new JPanel();
+		//This is the panel that is on the far left of the three cards currently being displayed
+		leftPanel = new JPanel();
+		leftPanel.setPreferredSize(new Dimension(50, 220));
+		leftPanel.setBackground(new Color(0,0,0,0));
+		leftPanel.add(Box.createRigidArea(new Dimension(50, 45))); //This is used to align the left button with the right button
+		JPanel moveLeft = new JPanel(); //This is the button that will show the previous three cards in the set.
 		moveLeft.addMouseListener(new CardMoveLeft());
 		moveLeft.setPreferredSize(new Dimension(50, 150));
 		moveLeft.setBackground(Color.RED);
+		leftPanel.add(moveLeft);
+		//This is the message that will be displayed when there are no cards in the set
+		noCardMsg = "No planets have been found!";
+
 	}
 	
-	//This is the listener class for the cardset's icon. When clicked, it will call the method that will display the cards in the set.
+	/**
+	 * This is the listener class for the cardset's icon. 
+	 * When called, it will call the method that will display the cards in the set.
+	 *
+	 */
 	private class PaintStartingCards extends MouseAdapter {
 		public void mousePressed(MouseEvent evt) {
-			clearSetIcon();
-			displayCards();
+			if (cards.size() != 0) { //If there are cards show them
+				displayCards();
+			} else { //Display a message that says there are not any cards.
+				stats.getUser().setModal(new Modal(noCardMsg));
+			}
 		}
 	}
 	
-	//Moves the starting index by +3
+	/**
+	 * Moves the starting index by +3
+	 */
 	private class CardMoveRight extends MouseAdapter {
 		public void mousePressed(MouseEvent evt) {
 				currCount += 3;
@@ -48,7 +95,9 @@ public class CardSet extends JPanel {
 		}
 	}
 	
-	//Moves the starting index by -3
+	/**
+	 * Moves the starting index by -3
+	 */
 	public class CardMoveLeft extends MouseAdapter {
 		public void mousePressed(MouseEvent evt) {
 				currCount -= 3;
@@ -70,11 +119,11 @@ public class CardSet extends JPanel {
 		}
 		
 		this.clearCards();
-		threeCards.add(moveLeft);
+		threeCards.add(leftPanel);
 		for (int i = currCount; i < (currCount + 3) && i < cards.size(); i++) { //Will only print three cards
 			threeCards.add(cards.get(i));
 		}
-		threeCards.add(moveRight);
+		threeCards.add(rightPanel);
 		add(threeCards);
 
 		revalidate();
@@ -90,17 +139,18 @@ public class CardSet extends JPanel {
 		for (int i = 0; i < cards.size(); i++) {
 			threeCards.remove(cards.get(i));
 		}
-		threeCards.remove(moveLeft);
-		threeCards.remove(moveRight);
+		threeCards.remove(leftPanel);
+		threeCards.remove(rightPanel);
 		revalidate();
 	}
+	
 	/**
 	 * This method will add a new card to this specific set
 	 */
 	public void addCard(Card newCard) {
 		cards.add(newCard);
-		
-	}
+	}	
+	
 	/**
 	 * This method will remove a card from this specific set
 	 * @param nickname The card to remove
@@ -161,6 +211,9 @@ public class CardSet extends JPanel {
 		fillerCard();
 	}
 	
+	/**
+	 * This is used by the clearSetIcon method to make the solar card disappear.
+	 */
 	public void fillerCard() {
 		JPanel filler = new JPanel() {
 			protected void paintComponent(Graphics g) {

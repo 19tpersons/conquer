@@ -10,6 +10,8 @@ public class HUD extends JPanel {
 	//private Color playerColor = new Color(0, 0, 204);
 	//private Color playerColor = new Color(255, 151, 53);
 	private Color playerColor;
+	private CardDisplay disp = null;
+	private CardSideNav sideNav;
 	
 	public HUD(int width, int height, PlayerStats stats) {
 		//Inital Setup
@@ -17,7 +19,6 @@ public class HUD extends JPanel {
 		setPreferredSize(new Dimension(width, height));
 		this.playerColor = stats.getColor();
 		
-		CardDisplay disp = null;
 		try {
 			disp = new CardDisplay(width - 275, height, stats);
 			disp.setPreferredSize(new Dimension(width - 275, height));
@@ -29,7 +30,7 @@ public class HUD extends JPanel {
 			e.printStackTrace();
 		}
 		
-		CardSideNav sideNav = new CardSideNav(275, height, stats, disp);
+		sideNav = new CardSideNav(275, height, stats, disp);
 		add(BorderLayout.LINE_END, sideNav);
 
 	}
@@ -46,5 +47,19 @@ public class HUD extends JPanel {
 		g2.fill(rect);
 	}
 	
+	/**
+	 * This will return the HUD's CardSideNav
+	 * @return the side nav
+	 */
+	public CardSideNav getSideNav() {
+		return this.sideNav;
+	}
 	
+	/**
+	 * This will return the HUD's CardDisplay
+	 * @return the card display
+	 */
+	public CardDisplay getCardDisplay() {
+		return this.disp;
+	}
 }

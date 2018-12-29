@@ -5,11 +5,13 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.*;
-/*
+
+/**
  * This class controls where cards will go. It also keeps track of where the cards are so that it can
  * update their respective populations everytime a fight/action occurs in the game.
+ * @author Tyler Persons
+ * @date 12.28.18 
  */
 
 public class TurnControl extends JPanel{
@@ -82,6 +84,9 @@ public class TurnControl extends JPanel{
 		//Show info modal
 		this.user.setModal(card.getModal());
 		
+		//Since this is a planet, we need to give it a button panel.
+		card.setButtonPanel(stats);
+		
 		//Updates the players total population
 		stats.addPop(card.getPop());
 		this.nav.updateStats();
@@ -112,7 +117,7 @@ public class TurnControl extends JPanel{
 		 this.nav.updateStats();
 		 
 		try {
-			CardSet tmp = new CardSet(newSet, stats.getColor());
+			CardSet tmp = new CardSet(newSet, stats);
 			tmp.setBackground(stats.getColor());
 			
 			stats.addCardSet(tmp);
@@ -137,23 +142,22 @@ public class TurnControl extends JPanel{
 		 ArrayList<Card> cardSetTmp = new ArrayList<Card>(); //This is sent into the getSubTypeCard method
 		 HashMap<Card, CardSet> map = new HashMap<Card, CardSet>(); //This is used to map the returned value
 		 for (int i = 0; i < sets.size(); i++) {
-			 if (sets.get(i).getCardNumber() != 0) {
+			 if (sets.get(i).getCardNumber() > 0) {
 				 Card solar = sets.get(i).getSolar();
 				 cardSetTmp.add(solar);
 				 map.put(solar, sets.get(i));
 			 }
 		 }
 		 
-		 if (cardSetTmp.size() == 0) {
-			 //TODO:
-		 }
-		 
+
 		 Card index = this.getSubTypeCard(cardSetTmp, action.getSubType());
 		 CardSet cardSet = map.get(index);
 		 
 		 
 		 //Choose a card from the system
-		 Card card = this.getSubTypeCard(cardSet.getCards(), action.getSubType());
+		 ArrayList<Card> a = cardSet.getCards();
+		 String b = action.getSubType();
+		 Card card = this.getSubTypeCard(a, b);
 		 
 		 //Apply the action
 		 int change = action.getChange();

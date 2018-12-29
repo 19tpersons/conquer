@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.*;
-/*
+/**
  * This is a class that parses a CSV file containing the planets, solar systems, and actions. The class
  * will make the appropriate objects for each type of card, but will not do any calculations on its own
  * for where a card will go, that job is up the TurnControl class.
  * 
  * The CSV file is in the following order:
  * 	idx, type, sub_type, title, description, population, defacto, range, image_location
+ * 
+ * @author Tyler Persons
+ * @date 12.27.18
  */
 
 
@@ -18,10 +21,16 @@ public class CardDB {
 	private String file = "cardDB.csv";
 	private ArrayList<ArrayList<String>> rows = new ArrayList<ArrayList<String>>(); //This an array list of the individual rows in the table
 	
-	//These three array lists are the three types of rows within the database
+	//These three arraylists are the three types of rows within the database
 	private static ArrayList<Card> planets = new ArrayList<Card>();
 	private static ArrayList<Card> solarSystems = new ArrayList<Card>();
 	private static ArrayList<ActionCard> actions = new ArrayList<ActionCard>();
+	
+	//These three arraylists will be used to provide the game with card repeats only if one of the above three arraylists run out.
+	private static int pCount = 0, sCount = 0, aCount = 0; //Used to keep track of which cards have already been replayed.
+	private static ArrayList<Card> usedPlanets = new ArrayList<Card>();
+	private static ArrayList<Card> usedSolarSystems = new ArrayList<Card>();
+	private static ArrayList<ActionCard> usedActions = new ArrayList<ActionCard>();
 	
 	public CardDB() throws FileNotFoundException {
 		this.parseDB();
@@ -117,12 +126,14 @@ public class CardDB {
 		Card newCard;
 		try {
 			
-			newCard = new Card(title, description, image_location , type);
+			newCard = new Card(title, description, image_location, type);
 			if (!sub_type.equals("null") && !subTypeRate.equals("null")) { //If this card has a specific sub_type then define it.
 				newCard.setSubType(sub_type, Double.parseDouble(subTypeRate));
 			}
-			newCard.setPop(population, changeRangeRate);
-
+			newCard.setPop(population, changeRangeRate); //Set the population
+			
+			newCard.defineBack(); //Since, the population changed, we need to update the back of the card.
+			
 		} catch (IOException e) {
 			return;
 		}
@@ -136,21 +147,65 @@ public class CardDB {
 		}
 	}
 	
+	/**
+	 * This will allow the system to get a new action card
+	 * @return the new action card
+	 */
 	public static ActionCard getAction() {
-		ActionCard temp = actions.get(0);
-		actions.remove(0);
-		return temp;
+		if (actions.size() == 0) { //If there are no un-drawn action cards, re-draw some.
+			ActionCard temp = usedActions.get(aCount).clone();
+			aCount++;
+			if (aCount >= usedActions.size()) {
+				aCount = 0;
+			}
+			return temp;
+		} else {
+			ActionCard temp = actions.get(0);
+			usedActions.add(temp);
+			actions.remove(0);
+			return temp; 
+		}
 	}
 	
+	/**
+	 * This will return a new planet card
+	 * @return a planet card
+	 */
 	public static Card getPlanetCard() {
-		Card temp = planets.get(0);
-		planets.remove(0);
-		return temp;
+		if (planets.size() == 0) { //If all of the planet cards have already been played 
+			Card temp = usedPlanets.get(pCount).clone(); //get the used card
+
+			pCount++;
+			if (pCount >= usedPlanets.size()) {
+				pCount = 0;
+			}
+			return temp;
+		} else { //If there are un-drawn cards, use those.
+			Card temp = planets.get(0);
+			usedPlanets.add(temp);
+			planets.remove(0);
+			return temp;
+		}
 	}
 
+	/**
+	 * This allows you to gets a Solar System.
+	 * @return the new solar system
+	 */
 	public static Card getSolarCard() {
-		Card temp = solarSystems.get(0);
-		solarSystems.remove(0);
-		return temp;
+		if (solarSystems.size() == 0) { //If all of the solar systems cards have already been played
+			Card temp = usedSolarSystems.get(sCount).clone(); //Played cards
+			
+			sCount++; //Add one to count
+			if (sCount >= usedSolarSystems.size()) {
+				sCount = 0;
+			}
+			return temp;
+		} else {
+			Card temp = solarSystems.get(0); //Get new card
+			usedSolarSystems.add(temp); 
+			solarSystems.remove(0);
+			return temp;
+		}
 	}
 }

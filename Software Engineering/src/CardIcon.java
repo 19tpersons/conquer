@@ -8,15 +8,20 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
+/**
+ * This class is the actual picture on any given card. It is separate from the card class, because
+ *   there was a need to give it a special listener to display more options that can be taken on the card.
+ * @author Tyler Persons
+ * @date 12.27.18
+ *
+ */
 public class CardIcon extends JPanel{
 	private Image icon;
-	private JPanel buttonPanel = new JPanel();
 	private Image history;
 	private int width, height;
-	private JButton fightBtn = new JButton("Fight");
 	
-	public CardIcon(File imageLoc, int width, int height, boolean planetType) throws IOException {
+			
+	public CardIcon(File imageLoc, int width, int height) throws IOException {
 		//This section sets up the card
 		this.setPreferredSize(new Dimension(width, height)); //Sets size of icon
 		this.height = height; //height of icon
@@ -24,15 +29,18 @@ public class CardIcon extends JPanel{
 		this.setIcon(imageLoc); //Sets the cards icon
 		history = icon; //Used for the hover function
 		
-		//buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		buttonPanel.setBackground(new Color(255,255,255, 50)); //TODO: Make the buttons!
-		buttonPanel.setPreferredSize(new Dimension(width, height));
-		buttonPanel.add(fightBtn);
+		//Gets rid of vertical gap
+		FlowLayout layout = new FlowLayout();
+		layout.setVgap(0);
+		this.setLayout(layout);
+	}
+
+	public void planetSetUp(PlayerStats stats, Card card) {
+			CardButtonPanel buttonPanel = new CardButtonPanel(width, height, stats, card);
 		
-		if (planetType) {
 			this.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent evt) {
-						if(!isComponentInPanel(fightBtn)) {
+						if(!isComponentInPanel(buttonPanel)) { //Is the mouse even in the panel?
 							icon = null;
 							add(buttonPanel);
 							revalidate();
@@ -43,7 +51,7 @@ public class CardIcon extends JPanel{
 				public void mouseExited(MouseEvent evt) {
 					Point p = new Point(evt.getLocationOnScreen());
 					SwingUtilities.convertPointFromScreen(p, evt.getComponent());
-					if (evt.getComponent().contains(p)) {
+					if (evt.getComponent().contains(p)) { //Is the point inside of the panel still? This was added because I was having trouble with the parent calling this listener every time the mouse went from a child panel to the parent.
 						return;
 					} else {
 						icon = history;
@@ -51,11 +59,10 @@ public class CardIcon extends JPanel{
 						repaint();
 						revalidate();
 					}
-				}
-			});
-		}
-
+			}
+		});
 	}
+	
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
@@ -81,4 +88,5 @@ public class CardIcon extends JPanel{
 	private boolean isComponentInPanel(Component component) {
 		return java.util.Arrays.asList(this.getComponents()).contains(component);
 	}
+	
 }

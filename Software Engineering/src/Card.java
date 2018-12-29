@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class Card extends JPanel {
+public class Card extends JPanel implements Cloneable {
 	//General Stats about card
 	private String title = ""; //The card title
 	private String type = ""; //The type of card
@@ -21,6 +21,7 @@ public class Card extends JPanel {
 	
 	//Initializes variables that are going to be used in the display of the card
 	private CardIcon icon;
+	private JTextArea backText;
 	private JPanel topInfo = new JPanel(); //This is the top of the card
 	private JPanel bottomInfo = new JPanel();//This is the bottom of the card
 	
@@ -31,14 +32,18 @@ public class Card extends JPanel {
 		this.title = title;
 		this.description = description;
 		this.imageLoc = imageLoc;
+		this.type = type;
 		
+		this.defineTop();
+		
+		this.defineBack();
+	}
+		
+	
+	private void defineTop() throws IOException {
 		//This creates the icon
-		if (type.equals("planet")) {
-			icon = new CardIcon(imageLoc, 200, 250, true);
-		} else {
-			icon = new CardIcon(imageLoc, 200, 250, false);
-		}
-			
+		icon = new CardIcon(imageLoc, 200, 250);
+
 		//This section defines the top of the card
 		JLabel titleLabel = new JLabel(title); //The cards title
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
@@ -54,29 +59,59 @@ public class Card extends JPanel {
 		topInfo.add(infoLabel);		
 		topInfo.setPreferredSize(new Dimension(200, 320 - 250));
 		topInfo.setBackground(new Color(0,0,0,0)); //Allows the card's color to show!
+
+	}
+	
+	public void defineBack() throws IOException{
+		bottomInfo = new JPanel();
 		
 		//This section defines the contents for the back of the card
-		JLabel desLabel = new JLabel(description);	//Description of the card
-		desLabel.setFont(new Font("Arial", Font.BOLD, 18));
-		bottomInfo.add(desLabel);
-		JLabel popLabel = new JLabel(Integer.toString(population)); //The population label
-		popLabel.setFont(new Font("Arial", Font.BOLD, 16));
-		bottomInfo.add(popLabel);
-		infoLabel = new JLabel("-"); //This button will show the front of the card
+		backText = new JTextArea("Description: \n" + description, 1, 1);
+		JScrollPane scrollPane = new JScrollPane(backText);
+		backText.setEditable(false);
+		backText.setFont(new Font("Arial", Font.BOLD, 18));
+		backText.setLineWrap(true);
+		backText.setBackground(Color.ORANGE);
+		backText.append("\n\nPopulation: " + population); //Population
+		backText.setMargin(new Insets(5,5,0,0));
+		bottomInfo.add(backText);
+		
+		JLabel infoLabel = new JLabel("-"); //This button will show the front of the card
 		infoLabel.setHorizontalAlignment(JLabel.RIGHT);
-		infoLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		infoLabel.setFont(new Font("Arial", Font.BOLD, 36));
 		infoLabel.addMouseListener( new MouseAdapter() { 
 			public void mousePressed(MouseEvent evt) {
 				printFront();
 			} 
 		});
 		bottomInfo.add(infoLabel);
-		bottomInfo.setPreferredSize(new Dimension(200, 320 - 250));		
-		bottomInfo.setBackground(new Color(0,0,0,0)); //Allows the card's color to show!
+		bottomInfo.setPreferredSize(new Dimension(200, 320 - 250));
+		bottomInfo.setLayout(new BoxLayout(bottomInfo, BoxLayout.Y_AXIS));
+		bottomInfo.setBackground(Color.ORANGE); //Allows the card's color to show!
 		
 		printFront();
 	}
 	
+	/**
+	 * If this is a Planet card, the TurnControl class is going to call this to setup the card's button panel.
+	 * @param stats The Player's Statistics
+	 */
+	public void setButtonPanel(PlayerStats stats) {
+		this.icon.planetSetUp(stats, this);
+	}
+	
+	/**
+	 * This method allows for the game to reuse the card.
+	 */
+	public Card clone() { 
+	   try {
+		return new Card(this.title, this.description, this.imageLoc, this.type);
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+	   return null; //There will always be something returned. 
+	} 
+
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle2D bg = new Rectangle2D.Double(0, 0, getWidth(), getHeight()); //This is the background of the card
@@ -115,7 +150,7 @@ public class Card extends JPanel {
 	 * @param image The new image that is going to be the cards icon
 	 */
 	public void setIcon(File imageLoc) throws IOException {
-		icon = new CardIcon(imageLoc, 200, 250, true);
+		icon = new CardIcon(imageLoc, 200, 250);
 	}
 	
 	
@@ -223,6 +258,7 @@ public class Card extends JPanel {
 			this.population -= popChange;
 		}
 	}
+	
 	/**
 	 * Returns the population of the card
 	 * @return The cards current population
@@ -263,7 +299,11 @@ public class Card extends JPanel {
 		return this.nickname;
 	}
 	
-	public InfoModal getModal() {
-		return new InfoModal(this.title, this.description, imageLoc);
+	/**
+	 * This will make a modal that will describe this card.
+	 * @return the new modal.
+	 */
+	public CardInfoModal getModal() {
+		return new CardInfoModal(this.title, this.description, imageLoc);
 	}
 }
