@@ -1,9 +1,17 @@
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * This class holds all of the data for a user.
+ * @author Tyler Persons
+ * @date 12.31.18
+ *
+ */
+
 public class PlayerStats {
 	private int totalPop = 0;
 	private int armySize = 0;
+	private int maxArmySize = 0;
 	private int resourceCount = 0;
 	private int turnStage = -1;
 	private Color playerColor;

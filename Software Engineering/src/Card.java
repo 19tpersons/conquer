@@ -8,12 +8,21 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * This is the abstraction of planet and solar system cards. It holds all of the data for any given planet, and allows
+ * the system to manipulate the data.
+ * @author Tyler Persons
+ * @date 12.31.18
+ *
+ */
+
 public class Card extends JPanel implements Cloneable {
 	//General Stats about card
 	private String title = ""; //The card title
 	private String type = ""; //The type of card
 	private String description = ""; //The description
 	private int population = 0; //Population of card
+	private int resources = 0;
 	private String nickname = ""; //This is a way to identify the card
 	private File imageLoc;
 	private String sub_type = "";
@@ -62,6 +71,10 @@ public class Card extends JPanel implements Cloneable {
 
 	}
 	
+	/**
+	 * This will update the back of the card
+	 * @throws IOException 
+	 */
 	public void defineBack() throws IOException{
 		bottomInfo = new JPanel();
 		
@@ -71,8 +84,10 @@ public class Card extends JPanel implements Cloneable {
 		backText.setEditable(false);
 		backText.setFont(new Font("Arial", Font.BOLD, 18));
 		backText.setLineWrap(true);
+		backText.setWrapStyleWord(true);
 		backText.setBackground(Color.ORANGE);
-		backText.append("\n\nPopulation: " + population); //Population
+		backText.append("\n\nCurrent Population:\n" + population + "M"); //Population
+		backText.append("\n\nOriginal Resources:\n" + this.resources);
 		backText.setMargin(new Insets(5,5,0,0));
 		bottomInfo.add(backText);
 		
@@ -112,6 +127,9 @@ public class Card extends JPanel implements Cloneable {
 	   return null; //There will always be something returned. 
 	} 
 
+	/**
+	 * This overrides the paintComponent method of the panel
+	 */
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle2D bg = new Rectangle2D.Double(0, 0, getWidth(), getHeight()); //This is the background of the card
@@ -135,6 +153,9 @@ public class Card extends JPanel implements Cloneable {
 		revalidate();
 	}
 
+	/**
+	 * This will print the back of the card
+	 */
 	public void printBack() {
 		remove(topInfo);
 		remove(icon);
@@ -197,6 +218,12 @@ public class Card extends JPanel implements Cloneable {
 		this.subTypeRate = subTypeRate;
 	}
 	
+	/**
+	 * This will get the rate that the card has for a specific sub type. The rate is the extra percent chance that
+	 * any given action will occur on this card.
+	 *
+	 * @return the rate
+	 */
 	public double getSubTypeRate() {
 		return this.subTypeRate;
 	}
@@ -284,6 +311,30 @@ public class Card extends JPanel implements Cloneable {
 	}
 	
 	/**
+	 * This will set the resource count for the card
+	 * @param resourceAmt The amount to set the resource count to.
+	 */
+	public void setResources(int resourceAmt) {
+		this.resources = resourceAmt;
+	}
+	
+	/**
+	 * This will subtract resources from the total of the card
+	 * @param sub The amount to subtract
+	 */
+	public void subResources(int sub) {
+		this.resources -= sub;
+	}
+	
+	/**
+	 * This will return the current amount of resources in the card.
+	 * @return the amount of resources
+	 */
+	public int getResources() {
+		return this.resources;
+	}
+	
+	/**
 	 * Changes the nickname of the card
 	 * @param name The new nickname
 	 */
@@ -304,6 +355,6 @@ public class Card extends JPanel implements Cloneable {
 	 * @return the new modal.
 	 */
 	public CardInfoModal getModal() {
-		return new CardInfoModal(this.title, this.description, imageLoc);
+		return new CardInfoModal(this.title, this.description, this.population, this.resources, imageLoc);
 	}
 }

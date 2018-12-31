@@ -96,6 +96,10 @@ public class CardDB {
 		}
 	}
 	
+	/**
+	 * This will will make an action card from the information in the database
+	 * @param row A single row in the database that holds the information for a single card
+	 */
 	public void makeAction(ArrayList<String> row) {
 		String sub_type = row.get(2); //A cards given sub_type
 		String title = row.get(3); //The title of the action
@@ -109,6 +113,10 @@ public class CardDB {
 		actions.add(newCard); //adds the news created action to an array
 	}
 
+	/**
+	 * This will will make a generic card from the information in the database. The card will either be a planet or a solar system.
+	 * @param row A single row in the database that holds the information for a single card.
+	 */
 	public void makeCard(ArrayList<String> row) {
 		String title = row.get(3); //Title of the card
 		String description = row.get(4); //Description of the card
@@ -121,6 +129,7 @@ public class CardDB {
 		double population = Double.parseDouble(row.get(5));
 		double changeRangeRate = Double.parseDouble(row.get(7)); //This number is used to give the population a sense of randomness for every specific game.		
 
+		int resourceCount = Integer.parseInt(row.get(9));
 		
 		//This will try to make a new card and if it can't will just return the method
 		Card newCard;
@@ -131,6 +140,7 @@ public class CardDB {
 				newCard.setSubType(sub_type, Double.parseDouble(subTypeRate));
 			}
 			newCard.setPop(population, changeRangeRate); //Set the population
+			newCard.setResources(resourceCount);
 			
 			newCard.defineBack(); //Since, the population changed, we need to update the back of the card.
 			

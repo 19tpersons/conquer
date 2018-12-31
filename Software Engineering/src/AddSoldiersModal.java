@@ -7,6 +7,13 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * This will allow a player to add troops to their army.
+ * @author Tyler Persons
+ * @date 12.31.18
+ *
+ */
+
 public class AddSoldiersModal extends Modal {
 	private int modalWidth = 300;
 	private int modalHeight = 200;

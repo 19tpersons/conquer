@@ -64,7 +64,7 @@ public class ActionCard extends JPanel {
 		this.description = description;
 		this.image_location = image_location;
 		
-		this.modal = new CardInfoModal(title, description, image_location);
+		this.modal = new CardInfoModal(title, description, this.popChange, 0, image_location);
 	}
 	
 	/**

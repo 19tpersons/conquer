@@ -16,7 +16,7 @@ public class CardInfoModal extends Modal {
 	private int modalHeight = 250;
 	private int modalWidth = 500;
 	
-	public CardInfoModal(String title, String description, File image_location) {
+	public CardInfoModal(String title, String description, int population, int resources, File image_location) {
 		this.setBackground(new Color(0,0,0, 90));
 		this.setLayout(null);
 		
@@ -57,7 +57,9 @@ public class CardInfoModal extends Modal {
 		
 		
 		JTextArea desc = new JTextArea(title + ":\n\n");
-		desc.append(description);
+		desc.append(description + "\n\n");
+		desc.append("Native Populution: " + population + "M\n\n");
+		desc.append("Resouces: " + resources);
 		desc.setEditable(false);
 		desc.setLineWrap(true);
 		desc.setFont(new Font("Arial", Font.BOLD, 18));
