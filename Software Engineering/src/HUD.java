@@ -6,6 +6,12 @@ import javax.swing.*;
 import java.awt.geom.*;
 import java.io.IOException;
 
+/**
+ * This is the bottom half of the screen. It is what the player interacts with the most as they play the game.
+ * @author Tyler Persons
+ *
+ */
+
 public class HUD extends JPanel {
 	//private Color playerColor = new Color(0, 0, 204);
 	//private Color playerColor = new Color(255, 151, 53);

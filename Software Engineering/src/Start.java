@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
+/**
+ * This is the current way to start a game.
+ * @author Tyler Persons
+ *
+ */
 public class Start extends JPanel {
 	public static void main(String[] args) {
 

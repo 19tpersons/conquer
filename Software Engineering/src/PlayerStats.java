@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class PlayerStats {
 	private int totalPop = 0;
 	private int armySize = 0;
-	private int maxArmySize = 0;
+	private int maxArmySize = 500;
 	private int resourceCount = 0;
 	private int turnStage = -1;
 	private Color playerColor;
@@ -177,5 +177,12 @@ public class PlayerStats {
 	 */
 	public User getUser() {
 		return this.user;
+	}
+	
+	/**
+	 * This will return the user's max army size.
+	 */
+	public int getMaxArmySize() {
+		return this.maxArmySize;
 	}
 }

@@ -32,8 +32,19 @@ public class AddSoldiersModal extends Modal {
 		title.setText("Add men to army!");
 		content.add(title);
 		
-		JSlider slider = new JSlider(0, card.getPop(), 0);
-		slider.setMajorTickSpacing(1);
+		if (stats.getArmySize() > stats.getMaxArmySize()) { //A player has a maximum allowed army size.
+			stats.getUser().hideModal();
+			String issue = "Your army is either bigger than the maximum allowed size for your population.";
+			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
+			return;
+		} else if ((card.getPop() - card.getTroopContribution()) < U.planetMinPop) { //A planet must have a certain amount of population not in the army.
+			String issue = "You cannot add more people from this planet to the army.";
+			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
+			return;
+		}
+		
+		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
+		slider.setMajorTickSpacing(10);
 		slider.setPreferredSize(new Dimension(modalWidth - 30, 50));
 		slider.setPaintTicks(true);
 		content.add(slider);
@@ -42,17 +53,12 @@ public class AddSoldiersModal extends Modal {
 		submit.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				int change = slider.getValue();
-				card.removePop(change);
-				try {
-					card.defineBack();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				stats.removePop(change);
-				stats.addSoliders(change);
-				stats.getUser().getPane().getHud().getSideNav().updateStats();
-				stats.getUser().hideModal();
+				
+				card.addTroops(change); //The amount of troops this planet is currently contributing to the army is now increased.	
+				stats.addSoliders(change); //Add the soliders to the army.
+				
+				stats.getUser().getPane().getHud().getSideNav().updateStats(); //Update the statistics panel.
+				stats.getUser().hideModal(); //Once processed remove the modal from the screen.
 			}
 		});
 		content.add(submit);

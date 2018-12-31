@@ -80,7 +80,7 @@ public class CardSet extends JPanel {
 			if (cards.size() != 0) { //If there are cards show them
 				displayCards();
 			} else { //Display a message that says there are not any cards.
-				stats.getUser().setModal(new Modal(noCardMsg));
+				stats.getUser().setModal(new Modal("No Planets", noCardMsg));
 			}
 		}
 	}

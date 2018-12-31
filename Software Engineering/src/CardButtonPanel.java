@@ -22,7 +22,8 @@ public class CardButtonPanel extends JPanel {
 		JButton soldiersBtn = new JButton("Add Soldiers");
 		soldiersBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
-				stats.getUser().setModal(new AddSoldiersModal(stats, card));
+				Modal modal = new AddSoldiersModal(stats, card);
+				stats.getUser().setModal(modal);
 			}
 		});
 		buttonPanel.add(soldiersBtn);

@@ -22,11 +22,11 @@ public class Card extends JPanel implements Cloneable {
 	private String type = ""; //The type of card
 	private String description = ""; //The description
 	private int population = 0; //Population of card
-	private int resources = 0;
-	private String nickname = ""; //This is a way to identify the card
+	private int resources = 0; //A planet or solar system can have natural resources
 	private File imageLoc;
 	private String sub_type = "";
 	private double subTypeRate = 0.0;
+	private int troopsInArmy = 0; //The current amount of troops this planet has contributed to the army.
 	
 	//Initializes variables that are going to be used in the display of the card
 	private CardIcon icon;
@@ -335,26 +335,34 @@ public class Card extends JPanel implements Cloneable {
 	}
 	
 	/**
-	 * Changes the nickname of the card
-	 * @param name The new nickname
-	 */
-	public void setNickname(String name) {
-		this.nickname = name;
-	}
-	
-	/**
-	 * This returns the nickname of the card
-	 * @return the card nickname
-	 */
-	public String getName() {
-		return this.nickname;
-	}
-	
-	/**
 	 * This will make a modal that will describe this card.
 	 * @return the new modal.
 	 */
 	public CardInfoModal getModal() {
 		return new CardInfoModal(this.title, this.description, this.population, this.resources, imageLoc);
+	}
+	
+	/**
+	 * This will will return the current amount of troops this planet has contributed to the player's army.
+	 * @return current troop amount
+	 */
+	public int getTroopContribution() {
+		return this.troopsInArmy;
+	}
+	
+	/**
+	 * This will add to the amount of troops the planet has contributed to the army.
+	 * @param the amount.
+	 */
+	public void addTroops(int additive) {
+		this.troopsInArmy += additive;
+	}
+	
+	/**
+	 * This will subtract from the amount of troop the planet has contributed to the army.
+	 * @param the amount
+	 */
+	public void subTroops(int sub) {
+		this.troopsInArmy -= sub;
 	}
 }

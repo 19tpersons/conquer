@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.*;
 
@@ -22,11 +25,12 @@ public class Modal extends JPanel {
 	
 	/**
 	 * This can be used to display a simple message to the user
-	 * @param message THe message to be displayed
+	 * @param title the title of the modal
+	 * @param message The message to be displayed
 	 */
-	public Modal(String message) {
+	public Modal(String title, String message) {
 		setLayout(null);
-		setBackground(new Color(0,0,0,0));
+		setBackground(new Color(0,0,0,90));
 		
 		JPanel content = new JPanel();
 		int x = U.width / 2 - modalWidth / 2;
@@ -34,11 +38,15 @@ public class Modal extends JPanel {
 		content.setBounds(x, y, modalWidth, modalHeight);
 		content.setBackground(Color.ORANGE);
 		
+		JLabel titleLabel = new JLabel(title);
+		titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		content.add(titleLabel);
+		
 		JTextArea text = new JTextArea(message);
 		text.setPreferredSize(new Dimension(modalWidth, modalHeight));
 		text.setEditable(false);
 		text.setFont(new Font("Arial", Font.BOLD, 22));
-		text.setBackground(new Color(0,0,0,0));
+		text.setBackground(Color.ORANGE);
 		text.setMargin(new Insets(10,10,10,10));
 		text.setWrapStyleWord(true);
 		text.setLineWrap(true);
@@ -46,4 +54,6 @@ public class Modal extends JPanel {
 		
 		add(content);
 	}
+	
+
 }

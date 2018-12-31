@@ -6,6 +6,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+ * This is the abstraction of all of the actions any user can take. It holds their individual statistics and game interface.
+ * @author Tyler Persons
+ *
+ */
 public class User extends JPanel {
 	private int width, height;
 	private PlayerStats stats;
@@ -45,7 +50,8 @@ public class User extends JPanel {
 			}
 		});
 		modal.setBounds(0,0, width, height);
-		layered.add(modal, 0);
+		layered.add(modal, 0, 0);
+		modal.requestFocus();
 		repaint();
 	}
 	
@@ -62,7 +68,7 @@ public class User extends JPanel {
 	 * This will show the user's game pane.
 	 */
 	public void showPane() {
-		layered.add(pane, 1);
+		layered.add(pane, 0);
 		revalidate();
 		repaint();
 	}
