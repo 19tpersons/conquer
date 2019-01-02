@@ -30,7 +30,8 @@ public class Modal extends JPanel {
 	 */
 	public Modal(String title, String message) {
 		setLayout(null);
-		setBackground(new Color(0,0,0,90));
+		setBackground(new Color(0,0,0,10));
+		setOpaque(true);
 		
 		JPanel content = new JPanel();
 		int x = U.width / 2 - modalWidth / 2;
@@ -41,18 +42,24 @@ public class Modal extends JPanel {
 		JLabel titleLabel = new JLabel(title);
 		titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		content.add(titleLabel);
+		content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		
 		JTextArea text = new JTextArea(message);
-		text.setPreferredSize(new Dimension(modalWidth, modalHeight));
+		text.setPreferredSize(new Dimension(modalWidth - 10, modalHeight)); //Subtracted by 10 so that the border can be seen.
 		text.setEditable(false);
 		text.setFont(new Font("Arial", Font.BOLD, 22));
 		text.setBackground(Color.ORANGE);
 		text.setMargin(new Insets(10,10,10,10));
 		text.setWrapStyleWord(true);
 		text.setLineWrap(true);
-		content.add(text);
+
+		JScrollPane scroll = new JScrollPane(text);
+		content.add(scroll);
+		
+		content.add(Box.createRigidArea(new Dimension(modalWidth - 10, 10)));
 		
 		add(content);
+		
 	}
 	
 

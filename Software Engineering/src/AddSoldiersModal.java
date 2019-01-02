@@ -45,9 +45,13 @@ public class AddSoldiersModal extends Modal {
 		
 		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
 		slider.setMajorTickSpacing(10);
-		slider.setPreferredSize(new Dimension(modalWidth - 30, 50));
+		slider.setPreferredSize(new Dimension(modalWidth - 30, 60));
 		slider.setPaintTicks(true);
 		content.add(slider);
+		
+		JLabel currentContribution = new JLabel("Current Troop Contributions: \n" + card.getTroopContribution());
+		currentContribution.setFont(new Font("Arial", Font.BOLD, 18));
+		content.add(currentContribution);
 		
 		JButton submit = new JButton("Submit");
 		submit.addMouseListener(new MouseAdapter() {
@@ -55,7 +59,7 @@ public class AddSoldiersModal extends Modal {
 				int change = slider.getValue();
 				
 				card.addTroops(change); //The amount of troops this planet is currently contributing to the army is now increased.	
-				stats.addSoliders(change); //Add the soliders to the army.
+				stats.addSoliders(change); //Add the soldiers to the army.
 				
 				stats.getUser().getPane().getHud().getSideNav().updateStats(); //Update the statistics panel.
 				stats.getUser().hideModal(); //Once processed remove the modal from the screen.

@@ -153,7 +153,6 @@ public class TurnControl extends JPanel{
 		 Card index = this.getSubTypeCard(cardSetTmp, action.getSubType());
 		 CardSet cardSet = map.get(index);
 		 
-		 
 		 //Choose a card from the system
 		 ArrayList<Card> a = cardSet.getCards();
 		 String b = action.getSubType();
@@ -165,7 +164,7 @@ public class TurnControl extends JPanel{
 			 card.addPop(change);
 			 stats.addPop(change);
 		 } else {
-			 change = change * -1;
+			 change *= -1;
 			 card.removePop(change);
 			 stats.removePop(change);
 		 }

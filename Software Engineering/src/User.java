@@ -50,8 +50,7 @@ public class User extends JPanel {
 			}
 		});
 		modal.setBounds(0,0, width, height);
-		layered.add(modal, 0, 0);
-		modal.requestFocus();
+		layered.add(modal, 0);
 		repaint();
 	}
 	
@@ -68,7 +67,7 @@ public class User extends JPanel {
 	 * This will show the user's game pane.
 	 */
 	public void showPane() {
-		layered.add(pane, 0);
+		layered.add(pane, 1);
 		revalidate();
 		repaint();
 	}
