@@ -67,7 +67,7 @@ public class CardInfoModal extends Modal {
 		desc.setLineWrap(true);
 		desc.setWrapStyleWord(true);
 		desc.setFont(new Font("Arial", Font.BOLD, 18));
-		desc.setBackground(new Color(0,0,0,0));
+		desc.setBackground(Color.ORANGE);
 		desc.setMargin(new Insets(0,10,0,0));
 		words.add(desc);
 		content.add(words);
