@@ -123,6 +123,8 @@ public class TurnControl extends JPanel{
 			stats.addCardSet(tmp);
 			disp.addClearIconList(stats.sets.size() - 1); //This will add the listener to the newest solar system card
 			disp.refreshSets();
+			
+			stats.getUser().getPane().getBackDrop().addSmartStar(tmp, stats);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}

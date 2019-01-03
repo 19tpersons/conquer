@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Random; 
 
 /**
@@ -10,6 +11,7 @@ import java.util.Random;
  */
 public class Backdrop extends JPanel {
 	private int width, height;
+	private static ArrayList<SmartStar> smartStars = new ArrayList<SmartStar>();
 	
 	public Backdrop(int width, int height) {
 		this.width = width;
@@ -17,6 +19,8 @@ public class Backdrop extends JPanel {
 		setBackground(new Color(51,51,51));
 		setLayout(null);
 		
+		
+		//This will make "dumb" stars- stars that are there just for looks.
 		Random rand = new Random();
 		for (int i = 0; i < 180; i++) {
 			int x = rand.nextInt(width);
@@ -46,6 +50,26 @@ public class Backdrop extends JPanel {
 		add(dumbStar);
 		
 	}
-	
+
+	/**
+	 * This will add a new smart card to the backdrop. The smart card will give the user a visual view of their solar systems.
+	 * @param set the solar system.
+	 * @param playerColor the player's color.
+	 */
+	public void addSmartStar(CardSet set, PlayerStats stats) {
+		Random rand = new Random();
+		int x = rand.nextInt(width - 100);
+		if (x < 100)
+			x += 100;
+		int y = rand.nextInt(height - 50);
+		if (y < 50) //Try to keep the stars away from the edges.
+			y += 50;
+		
+		SmartStar star = new SmartStar(set, stats);
+		star.setBounds(x, y, 15, 15);
+		
+		this.smartStars.add(star); //So it can be accessed later.
+		add(star); //Add it to the panel
+	}
 	
 }

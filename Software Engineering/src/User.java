@@ -44,14 +44,28 @@ public class User extends JPanel {
 		this.modal = modal;
 		modal.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
-				layered.remove(modal);
-				revalidate();
-				repaint();
-			}
+				Point p = new Point(evt.getLocationOnScreen());
+				Modal modal = (Modal) evt.getComponent();
+				SwingUtilities.convertPointFromScreen(p, modal.getContent());
+				if (!modal.getContent().contains(p)) {
+					layered.remove(modal);
+					revalidate();
+					repaint();
+					getPane().getHud().getCardDisplay().refreshSets();
+				}			}
 		});
 		modal.setBounds(0,0, width, height);
 		layered.add(modal, 0);
 		repaint();
+	}
+	
+	/**
+	 * Used to see if the mouse is inside the component.
+	 * @param component
+	 * @return
+	 */
+	private boolean isComponentInPanel(Component component) {
+		return java.util.Arrays.asList(this.getComponents()).contains(component);
 	}
 	
 	/**

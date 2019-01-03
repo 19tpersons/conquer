@@ -15,17 +15,20 @@ import javax.swing.event.ChangeListener;
  */
 
 public class AddSoldiersModal extends Modal {
-	private int modalWidth = 300;
-	private int modalHeight = 200;
+	private static int width = 300;
+	private static int height = 200;
+	private JPanel content;
 	
 	public AddSoldiersModal(PlayerStats stats, Card card) {
+		super(width, height);
+		
 		setBackground(new Color(0,0,0,0));
 		setLayout(null);
 		
-		JPanel content = new JPanel();
-		int x = U.width / 2 - modalWidth / 2;
-		int y = U.height / 2 - modalWidth / 2;
-		content.setBounds(x, y, modalWidth, modalHeight);
+		content = new JPanel();
+		int x = U.width / 2 - width / 2;
+		int y = U.height / 2 - height / 2;
+		content.setBounds(x, y, width, height);
 		content.setBackground(Color.ORANGE);
 		
 		JLabel title = new JLabel();
@@ -45,7 +48,7 @@ public class AddSoldiersModal extends Modal {
 		
 		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
 		slider.setMajorTickSpacing(10);
-		slider.setPreferredSize(new Dimension(modalWidth - 30, 60));
+		slider.setPreferredSize(new Dimension(width - 30, 60));
 		slider.setPaintTicks(true);
 		content.add(slider);
 		
@@ -68,5 +71,13 @@ public class AddSoldiersModal extends Modal {
 		content.add(submit);
 		
 		add(content);
+	}
+	
+	/**
+	 * This will return the modal's content panel.
+	 * @return content panel.
+	 */
+	public JPanel getContent() {
+		return this.content;
 	}
 }

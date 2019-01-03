@@ -1,4 +1,4 @@
-idx,type,sub_type,title,description,population,action_type_percent_rate,pop_change_rate,image_location,rource_count
+idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_change_rate,image_location*,rource_count
 1,action,weather,Snowmagdon,Let is snow!,-100,null,0.30,images/snow.jpg,0
 2,solar,weather,Ice System 1,We like ice in our solar system:),300,0.25,0.30,images/ice_system.jpg,50
 3,solar,null,Ocotpi,We are an allien race of octopi!,500,null,0.20,images/octopus.png,50

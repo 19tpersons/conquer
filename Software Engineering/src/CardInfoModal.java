@@ -13,15 +13,18 @@ import javax.swing.border.EmptyBorder;
  */
 public class CardInfoModal extends Modal {
 	private Image icon;
-	private int modalHeight = 250;
-	private int modalWidth = 500;
+	private static int height = 250;
+	private static int width = 500;
+	private JPanel content;
 	
 	public CardInfoModal(String title, String description, int population, int resources, File image_location) {
+		super(width, height);
+		
 		this.setBackground(new Color(0,0,0, 90));
 		this.setLayout(null);
 		
-		JPanel content = new JPanel();
-		content.setBounds((U.width / 2) - 250, (U.height / 2) - 125, modalWidth, modalHeight);
+		content = new JPanel();
+		content.setBounds((U.width / 2) - 250, (U.height / 2) - 125, width, height);
 		content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
 		content.setBackground(Color.ORANGE);
 		content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
@@ -33,7 +36,7 @@ public class CardInfoModal extends Modal {
 		} catch (IOException e) {
 			return;
 		}
-		Image scaledImg = newImg.getScaledInstance(U.cardWidth, modalHeight, Image.SCALE_AREA_AVERAGING);
+		Image scaledImg = newImg.getScaledInstance(U.cardWidth, height, Image.SCALE_AREA_AVERAGING);
 		icon = scaledImg;
 		JPanel iconPanel = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -41,7 +44,7 @@ public class CardInfoModal extends Modal {
 				g2.drawImage(icon, 0, 0, this); //Card Image
 			}
 		};
-		iconPanel.setPreferredSize(new Dimension(U.cardWidth, modalHeight));
+		iconPanel.setPreferredSize(new Dimension(U.cardWidth, height));
 		iconPanel.setBackground(new Color(0,0,0,0));
 		content.add(iconPanel);
 		
@@ -62,6 +65,7 @@ public class CardInfoModal extends Modal {
 		desc.append("Resouces: " + resources);
 		desc.setEditable(false);
 		desc.setLineWrap(true);
+		desc.setWrapStyleWord(true);
 		desc.setFont(new Font("Arial", Font.BOLD, 18));
 		desc.setBackground(new Color(0,0,0,0));
 		desc.setMargin(new Insets(0,10,0,0));
@@ -70,6 +74,14 @@ public class CardInfoModal extends Modal {
 		
 		
 		add(content);
+	}
+	
+	/**
+	 * This will return the modal's content panel.
+	 * @return content panel.
+	 */
+	public JPanel getContent() {
+		return this.content;
 	}
 	
 }

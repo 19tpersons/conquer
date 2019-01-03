@@ -18,9 +18,11 @@ import javax.swing.*;
 public class Modal extends JPanel {
 	private int modalWidth = 300;
 	private int modalHeight = 225;
+	private JPanel content;
 	
-	public Modal() {
-		
+	public Modal(int modalWidth, int modalHeight) {
+		this.modalWidth = modalWidth;
+		this.modalHeight = modalHeight;
 	}
 	
 	/**
@@ -33,7 +35,7 @@ public class Modal extends JPanel {
 		setBackground(new Color(0,0,0,10));
 		setOpaque(true);
 		
-		JPanel content = new JPanel();
+		this.content = new JPanel();
 		int x = U.width / 2 - modalWidth / 2;
 		int y = U.height / 2 - modalHeight / 2;
 		content.setBounds(x, y, modalWidth, modalHeight);
@@ -62,5 +64,28 @@ public class Modal extends JPanel {
 		
 	}
 	
-
+	/**
+	 * This will return the modal's width.
+	 * @return the modal's width
+	 */
+	public int getModalWidth() {
+		return this.modalWidth;
+	}
+	
+	/**
+	 * This will return the modal's height.
+	 * @return the modal's height.
+	 */
+	public int getModalHeight() {
+		return this.modalHeight;
+	}
+	
+	/**
+	 * This will return the modal's content panel.
+	 * @return content panel.
+	 */
+	public JPanel getContent() {
+		return this.content;
+	}
+	
 }

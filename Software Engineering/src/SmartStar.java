@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * This class is what the user clicks on if they would like to see the other player's planets or if they would like to fight them.
@@ -8,5 +10,23 @@ import java.awt.*;
  */
 
 public class SmartStar extends JPanel{
+	private Color color = new Color(255, 102, 0);
+	
+	public SmartStar(CardSet set, PlayerStats stats) {
+		this.color = stats.getColor();
+		
+		this.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				stats.getUser().setModal(new BackDropModal(set, stats.getColor().brighter()));
+			}
+		});
+	}
+
+	public void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(color);
+		g2.fillRect(0, 0, 15, 15);
+	}
 
 }

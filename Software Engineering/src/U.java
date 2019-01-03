@@ -9,6 +9,7 @@ public class U {
 	public static final int width = 1500;
 	public static final int height = 800;
 	public static final int cardSetLimit = 3;
+	public static final int playerLimit = 2;
 	public static final int cardWidth = 200;
 	public static final int cardHeight = 250;
 	public static final int planetMinPop = 50; //This is the minimum amount of population a planet needs.
@@ -37,23 +38,4 @@ public class U {
 	}
 	
 
-    /**
-     * Make a color brighten. From stackoverflow
-     *
-     * @param color Color to make brighten.
-     * @param fraction Darkness fraction.
-     * @return Lighter color.
-     */
-    public static Color brighten(Color color, double fraction) {
-
-        int red = (int) Math.round(Math.min(255, color.getRed() + 255 * fraction));
-        int green = (int) Math.round(Math.min(255, color.getGreen() + 255 * fraction));
-        int blue = color.getBlue();
-        //int blue = (int) Math.round(Math.min(255, color.getBlue() + 255 * fraction));
-
-        int alpha = color.getAlpha();
-
-        return new Color(red, green, blue, alpha);
-
-    }
 }
