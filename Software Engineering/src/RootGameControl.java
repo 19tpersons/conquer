@@ -30,6 +30,14 @@ public class RootGameControl extends JPanel {
 	}
 	
 	/**
+	 * This is a static method that will return the User that is currently being played
+	 * @return the current user
+	 */
+	public static User getCurUser() {
+		return users[userCount];
+	}
+	
+	/**
 	 * This will start the game.
 	 */
 	public void startGame() {

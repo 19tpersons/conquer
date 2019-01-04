@@ -22,7 +22,8 @@ public class SmartStar extends JPanel{
 				if (set.getCardNumber() == 0) {
 					return;
 				} else {
-					stats.getUser().setModal(new BackDropModal(set, stats.getColor().brighter()));
+					User user = RootGameControl.getCurUser();
+					user.setModal(new BackDropModal(set, stats.getColor().brighter()));
 				}
 			}
 		});
