@@ -49,6 +49,7 @@ public class Backdrop extends JPanel {
 		dumbStar.setBounds(x, y, 5, 5); //Since, the backdrop has a layout of null we need to define where to put it
 		add(dumbStar);
 		
+		
 	}
 
 	/**
@@ -69,7 +70,23 @@ public class Backdrop extends JPanel {
 		star.setBounds(x, y, 15, 15);
 		
 		this.smartStars.add(star); //So it can be accessed later.
-		add(star); //Add it to the panel
+	}
+	
+	/**
+	 * This will refresh the panel, so that any new solar systems are added to the backdrop.
+	 */
+	public void refreshSmartStars() {
+		//If there are any currently on display, then remove them.
+		for (int i = 0; i < smartStars.size(); i++) {
+			remove(smartStars.get(i));
+		}
+		revalidate();
+		repaint();
+		
+		//Add all of the stars to the panel with any additions
+		for (int i = 0; i < smartStars.size(); i++) {
+			add(smartStars.get(i));
+		}
 	}
 	
 }

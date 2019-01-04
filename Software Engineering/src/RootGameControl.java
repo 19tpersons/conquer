@@ -11,7 +11,7 @@ public class RootGameControl extends JPanel {
 	private int height = U.height; //This is the window's height.
 	private static User[] users;
 	private static int userCount = 0; //Keeps track of the user's turn.
-	
+	private int numPlayers; //This is the number of players in the game.
 	
 	/**
 	 * This is the default constructor for the class. It expects the number of players in the game, and an array with the right amount of colors.
@@ -19,6 +19,7 @@ public class RootGameControl extends JPanel {
 	 * @param playerColors An array of colors that will be used for each user.
 	 */
 	public RootGameControl(int numPlayers, Color[] playerColors) {
+		this.numPlayers = numPlayers;
 		this.users = new User[numPlayers]; //This will create an array of Users'
 		
 		for (int i = 0; i < numPlayers; i++) {
@@ -42,11 +43,18 @@ public class RootGameControl extends JPanel {
 	 * This will move the game onto the next player's turn.
 	 */
 	public void nextTurn() {
-		remove(users[userCount]);
-		userCount++;
+		remove(users[userCount]); //Removes the current user from the display
+		
+		//Changes the player's turn
+		if (userCount == (this.numPlayers - 1)) {
+			userCount = 0;
+		} else {
+			userCount++;
+		}
 		User user = users[userCount];
 		user.startTurn();
-		add(user);
+		add(user); //Adds the player to the panel.
+		
 		revalidate();
 		repaint();
 	}

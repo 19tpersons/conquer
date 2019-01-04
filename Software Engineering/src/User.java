@@ -104,6 +104,7 @@ public class User extends JPanel {
 	 * This will start a player's turn.
 	 */
 	public void startTurn() {
+		this.getPane().getBackDrop().refreshSmartStars(); //Refresh the backdrop:)
 		stats.nextStage();
 	}
 	

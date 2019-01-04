@@ -62,6 +62,10 @@ public class TurnControl extends JPanel{
 		draw.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				getCard();
+				
+				//Updates the backdrop
+				stats.getUser().getPane().getBackDrop().refreshSmartStars();
+
 				remove(draw); //This will get rid of the button so that the next phase can begin.
 				stats.nextStage();
 				add(fight);
@@ -147,7 +151,7 @@ public class TurnControl extends JPanel{
 		 //Updates the player's total population
 		 stats.addPop(newSet.getPop());
 		 this.nav.updateStats();
-		 
+		 			
 		try {
 			CardSet tmp = new CardSet(newSet, stats);
 			tmp.setBackground(stats.getColor());
