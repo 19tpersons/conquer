@@ -21,6 +21,7 @@ public class TurnControl extends JPanel{
 	private CardDisplay disp;
 	private CardSideNav nav;
 	private User user;
+	private JButton fight, draw, next;
 	
 	public TurnControl(PlayerStats stats, CardDisplay disp, CardSideNav nav) {
 		this.stats = stats;
@@ -29,11 +30,42 @@ public class TurnControl extends JPanel{
 		this.nav = nav;
 		this.user = stats.getUser();
 		
-		JButton draw = new JButton("Draw");
+		// This will finish the turn and allow the other player to take their turnStage
+		next = new JButton("Next Turn");
+		next.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				stats.nextStage();
+				remove(next);
+				add(draw);
+				nav.updateStats();
+				stats.getUser().endTurn();
+				revalidate();
+				repaint();
+			}
+		});
+		
+		//This is the fight button. It will continue the game to the next stage.
+		fight = new JButton("Fight");
+		fight.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				stats.nextStage();
+				remove(fight);
+				add(next);
+				nav.updateStats();
+				revalidate();
+				repaint();
+			}
+		});
+		
+		//This is the draw button. It will draw a new card from the deck.
+		draw = new JButton("Draw");
 		draw.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				getCard();
-				//remove(draw); //This will get rid of the button so that the next phase can begin.
+				remove(draw); //This will get rid of the button so that the next phase can begin.
+				stats.nextStage();
+				add(fight);
+				nav.updateStats();
 				revalidate();
 				repaint();
 				

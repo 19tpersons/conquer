@@ -9,7 +9,8 @@ import javax.swing.*;
 
 public class BackDropModal extends Modal {
 	private static int width = 800; 
-	private static int height = 300;
+	private static int height = 350;
+	private JPanel content;
 	
 	/**
 	 * This is the default constructor.
@@ -21,7 +22,7 @@ public class BackDropModal extends Modal {
 		setBackground(new Color(0,0,0,0));
 		setLayout(null);
 		
-		JPanel content = new JPanel();
+		content = new JPanel();
 		int x = U.width / 2 - width / 2;
 		int y = U.height / 2 - height / 2;
 		content.setBounds(x, y, width, height);
@@ -32,5 +33,13 @@ public class BackDropModal extends Modal {
 		content.add(set);
 
 		add(content);
+	}
+	
+	/**
+	 * This will return the modal's content panel.
+	 * @return content panel.
+	 */
+	public JPanel getContent() {
+		return this.content;
 	}
 }

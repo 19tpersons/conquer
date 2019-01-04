@@ -42,7 +42,7 @@ public class CardSideNav extends JPanel {
 		disp.add(stage);
 		
 		//The current player's population
-		popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()));
+		popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()) + "M");
 		popCount.setFont(new Font("Arial", Font.BOLD, 22));
 		popCount.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
 		disp.add(popCount);
@@ -74,7 +74,7 @@ public class CardSideNav extends JPanel {
 	
 	public void updateStats() {
 		stage.setText("Stage" + stats.getStage()); 
-		popCount.setText("Population: " + stats.getPopulation()); 
+		popCount.setText("Population: " + stats.getPopulation() + "M"); 
 		armySize.setText("Army Size: " + stats.getArmySize()); 
 		resourceCount.setText("Resources: " + stats.getResource());
 	}

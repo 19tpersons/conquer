@@ -17,10 +17,12 @@ public class User extends JPanel {
 	private GamePane pane;
 	private Modal modal;
 	private JLayeredPane layered = new JLayeredPane();
+	private RootGameControl root;
 
-	public User(int width, int height, Color playerColor) {
+	public User(int width, int height, Color playerColor, RootGameControl root) {
 		this.width = width;
 		this.height = height;
+		this.root = root;
 		
 		layered.setPreferredSize(new Dimension(width, height));
 		layered.setLayout(null);
@@ -32,6 +34,8 @@ public class User extends JPanel {
 		pane.setBounds(0,0, width, height);
 		
 		add(layered);
+		
+	
 	}
 	
 	
@@ -86,12 +90,28 @@ public class User extends JPanel {
 		repaint();
 	}
 	
+	
+	
 	/**
 	 * This will return this user's game panel
 	 * @return the game panel
 	 */
 	public GamePane getPane() {
 		return this.pane;
+	}
+	
+	/**
+	 * This will start a player's turn.
+	 */
+	public void startTurn() {
+		stats.nextStage();
+	}
+	
+	/**
+	 * This will finish the player's turn.
+	 */
+	public void endTurn() {
+		root.nextTurn();
 	}
 
 }

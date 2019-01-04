@@ -24,7 +24,6 @@ public class Start extends JPanel {
 		window.setVisible(true);
 	}
 	
-	public int width,height;
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
@@ -44,9 +43,16 @@ public class Start extends JPanel {
 		flow.setVgap(-5);
 		setLayout(flow);
 		
+		Color[] colors = {new Color(0, 0, 204), Color.RED};
+		RootGameControl root = new RootGameControl(2, colors);
+		root.startGame();
+		add(root);
+		
+		/*
 		User one = new User(width, height, new Color(0, 0, 204));
 		one.showPane();
 		add(one);
+		*/
 		
 	}
 	
