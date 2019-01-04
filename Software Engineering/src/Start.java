@@ -43,7 +43,7 @@ public class Start extends JPanel {
 		flow.setVgap(-5);
 		setLayout(flow);
 		
-		Color[] colors = {new Color(0, 0, 204), Color.RED};
+		Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 0)};
 		RootGameControl root = new RootGameControl(2, colors);
 		root.startGame();
 		add(root);

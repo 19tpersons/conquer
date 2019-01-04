@@ -15,7 +15,7 @@ public class CardButtonPanel extends JPanel {
 	private JButton soldiersBtn, fightBtn;
 
 	public CardButtonPanel(int width, int height, PlayerStats stats, Card card) {
-		this.setBackground(new Color(0,0,0,0));
+		this.setBackground(Color.ORANGE);
 		
 		//This sets up the panel
 		generalPanel.setBackground(new Color(255,255,255,50));
