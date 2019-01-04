@@ -2,7 +2,7 @@ import java.awt.Color;
 
 /**
  * This is a utility class. It holds data that is essential for the program to function.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 public class U {

@@ -122,7 +122,7 @@ public class StartForGame extends JPanel implements ActionListener
       else if (command.equals("Credits")) {
          //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
-             "The Master Plan\nCreated by:\nTyler Persons\nAlex Gergen\nDakota Edens");
+             "The Master Plan\nCreated by:\nDAT Software Engineering\nAlex Gergen\nDakota Edens");
          //message.setText("You closed the message dialog.");
       }
       else if (command.equals("Quit")) {

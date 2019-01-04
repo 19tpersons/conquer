@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  * This is the current way to start a game.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 public class Start extends JPanel {

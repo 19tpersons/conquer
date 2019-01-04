@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  * This is the bottom half of the screen. It is what the player interacts with the most as they play the game.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 

@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * This class is the actual picture on any given card. It is separate from the card class, because
  *   there was a need to give it a special listener to display more options that can be taken on the card.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  *
  */

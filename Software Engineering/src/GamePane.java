@@ -3,7 +3,7 @@ import java.awt.*;
 
 /**
  * This is the class that holds all other classes that display components of a players turn.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  *
  */

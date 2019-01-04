@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * This is used to display the star systems each player owns.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 public class Backdrop extends JPanel {

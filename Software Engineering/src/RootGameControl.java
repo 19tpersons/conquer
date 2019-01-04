@@ -3,7 +3,7 @@ import javax.swing.*;
 
 /**
  * This is the root of the entire game. It controls the interactions between the two users, the music, logging, etc.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 public class RootGameControl extends JPanel {

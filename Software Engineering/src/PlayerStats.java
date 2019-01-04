@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * This class holds all of the data for a user.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.31.18
  *
  */

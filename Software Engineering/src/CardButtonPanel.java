@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  * This is the series of buttons that appear when a user hovers over the icon of a planet card.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.28.18
  */
 public class CardButtonPanel extends JPanel {

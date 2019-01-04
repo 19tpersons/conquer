@@ -10,7 +10,7 @@ import javax.swing.*;
 
 /**
  * This class is used to display the card sets a player has.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  *
  */

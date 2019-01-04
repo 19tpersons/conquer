@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  * This is the abstraction of all of the actions any user can take. It holds their individual statistics and game interface.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 public class User extends JPanel {

@@ -10,7 +10,7 @@ import javax.swing.*;
 
 /**
  * This class is the parent class of all modals in the game.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  *
  */

@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 /**
  * This is the abstraction of planet and solar system cards. It holds all of the data for any given planet, and allows
  * the system to manipulate the data.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.31.18
  *
  */

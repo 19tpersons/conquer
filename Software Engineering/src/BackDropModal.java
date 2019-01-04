@@ -3,7 +3,7 @@ import javax.swing.*;
 
 /**
  * This is the modal that will be used to display a SmartStar's cards.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  *
  */
 

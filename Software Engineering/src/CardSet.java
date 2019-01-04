@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * This is the abstraction of a solar system. It will hold all of the cards in a solar system 
  * 	and will also hold the card that is shown to the user to be the solar system.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.28.18
  *
  */

@@ -9,7 +9,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * This will allow a player to add troops to their army.
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.31.18
  *
  */

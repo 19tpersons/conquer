@@ -12,7 +12,7 @@ import javax.swing.*;
  * The CSV file is in the following order:
  * 	idx, type, sub_type, title, description, population, defacto, range, image_location
  * 
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  */
 

@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 
 /**
  * This is the panel at the far right of the GamePane. It displays the user's statistics
- * @author Tyler Persons
+ * @author DAT Software Engineering
  * @date 12.27.18
  *
  */
