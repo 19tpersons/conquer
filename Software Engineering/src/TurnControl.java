@@ -110,6 +110,10 @@ public class TurnControl extends JPanel{
 				this.addSet(CardDB.getSolarCard());
 				break;
 		}
+		
+		//If the population has changed update it
+		stats.getUser().calculatePop();
+		this.nav.updateStats();
 	}
 	
 	/**
@@ -124,9 +128,7 @@ public class TurnControl extends JPanel{
 		card.setButtonPanel(stats);
 		
 		//Updates the players total population and resources
-		stats.addPop(card.getPop());
 		stats.addResources(card.getResources());
-		this.nav.updateStats();
 		
 		//If any of the sets do not have any cards place the planet in that solar system.
 		for (int i = 0; i < sets.size(); i++) {
@@ -150,9 +152,7 @@ public class TurnControl extends JPanel{
 		 this.user.setModal(newSet.getModal());
 		 
 		 //Updates the player's total population and resources
-		 stats.addPop(newSet.getPop());
 		 stats.addResources(newSet.getResources());
-		 this.nav.updateStats();
 		 			
 		try {
 			CardSet tmp = new CardSet(newSet, stats);
@@ -202,11 +202,11 @@ public class TurnControl extends JPanel{
 		 int change = action.getChange();
 		 if (change > 0) {
 			 card.addPop(change);
-			 stats.addPop(change);
+			 stats.getUser().calculatePop();
 		 } else {
 			 change *= -1;
 			 card.removePop(change);
-			 stats.removePop(change);
+			 stats.getUser().calculatePop();
 		 }
 		 this.nav.updateStats();
 

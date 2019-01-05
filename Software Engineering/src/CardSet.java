@@ -21,10 +21,10 @@ public class CardSet extends JPanel {
 	private PlayerStats stats;
 	
 	//Used in junction with the cardDisplay method
-	private JPanel threeCards = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
+	private JPanel currCardDisp = new JPanel(); //This is the panel where all of the set's cards will be displayed upon
 	private int currCount = 0; //Used by cardDisplay() as the index to start displaying cards at
 	private JPanel rightPanel, leftPanel;
-	private String noCardMsg; //This will be used when there are no cards currently in the set
+	private String noCardMsg = "No planets have been found!"; //This will be used when there are no cards currently in the set
 	
 	public CardSet(Card solar, PlayerStats stats) throws IOException {
 		this.bgColor = stats.getColor();
@@ -32,13 +32,22 @@ public class CardSet extends JPanel {
 		this.stats = stats;
 		this.solar.getIcon().addMouseListener(new PaintStartingCards());
 		
-		threeCards.setBackground(bgColor);
+		currCardDisp.setBackground(bgColor);
 		
+		this.initializeCardViewer();
+	}
+	
+	/**
+	 * This method initializes two panes that will be places on either side of the card display. These
+	 * buttons are used to control what cards are currently being displayed
+	 */
+	private void initializeCardViewer() {
 		//This is the panel that is on the far right of the three cards currently being displayed
 		rightPanel = new JPanel();
 		rightPanel.setPreferredSize(new Dimension(50, 220));
 		rightPanel.setBackground(new Color(0,0,0,0));
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+		
 		JPanel backBtn = new JPanel(); //This is the back button that will take the user back to the solar system view.
 		backBtn.setPreferredSize(new Dimension(50, 40));
 		backBtn.setBackground(Color.GREEN);
@@ -48,7 +57,9 @@ public class CardSet extends JPanel {
 			}
 		});
 		rightPanel.add(backBtn);
+		
 		rightPanel.add(Box.createRigidArea(new Dimension(50,5))); //This is used to give 5 pixels of space between the two buttons
+		
 		JPanel moveRight = new JPanel(); //This is the button that will show the next three cards in the set
 		moveRight.setPreferredSize(new Dimension(50, 150));
 		moveRight.setBackground(Color.RED);
@@ -60,13 +71,13 @@ public class CardSet extends JPanel {
 		leftPanel.setPreferredSize(new Dimension(50, 220));
 		leftPanel.setBackground(new Color(0,0,0,0));
 		leftPanel.add(Box.createRigidArea(new Dimension(50, 45))); //This is used to align the left button with the right button
+		
 		JPanel moveLeft = new JPanel(); //This is the button that will show the previous three cards in the set.
 		moveLeft.addMouseListener(new CardMoveLeft());
 		moveLeft.setPreferredSize(new Dimension(50, 150));
 		moveLeft.setBackground(Color.RED);
 		leftPanel.add(moveLeft);
-		//This is the message that will be displayed when there are no cards in the set
-		noCardMsg = "No planets have been found!";
+		
 
 	}
 	
@@ -119,12 +130,12 @@ public class CardSet extends JPanel {
 		}
 		
 		this.clearCards();
-		threeCards.add(leftPanel);
+		currCardDisp.add(leftPanel);
 		for (int i = currCount; i < (currCount + 3) && i < cards.size(); i++) { //Will only print three cards
-			threeCards.add(cards.get(i));
+			currCardDisp.add(cards.get(i));
 		}
-		threeCards.add(rightPanel);
-		add(threeCards);
+		currCardDisp.add(rightPanel);
+		add(currCardDisp);
 
 		revalidate();
 		repaint();
@@ -135,12 +146,12 @@ public class CardSet extends JPanel {
 	 * This method will clear the screen of the cards in the set
 	 */
 	public void clearCards() {
-		remove(threeCards);
+		remove(currCardDisp);
 		for (int i = 0; i < cards.size(); i++) {
-			threeCards.remove(cards.get(i));
+			currCardDisp.remove(cards.get(i));
 		}
-		threeCards.remove(leftPanel);
-		threeCards.remove(rightPanel);
+		currCardDisp.remove(leftPanel);
+		currCardDisp.remove(rightPanel);
 		revalidate();
 	}
 	
@@ -218,5 +229,35 @@ public class CardSet extends JPanel {
 	 */
 	public ArrayList<Card> getCards() {
 		return this.cards;
+	}
+	
+	/**
+	 * This will calculate the total population of people in this solar system.
+	 * @return the total population of the solar system
+	 */
+	public int calculatePop() {
+		int total = 0;
+
+		if (solar.getPop() > 0) {
+			total += solar.getPop();
+		}
+		
+		for (int i = 0; i < cards.size(); i++) {
+			total += cards.get(i).getPop();
+		}
+		return total;
+	}
+	
+	/**
+	 * This will calculate the total number of troops that are from this solar system
+	 * @return the total population of troops in the solar system.
+	 */
+	public int calculateTroops() {
+		int total = 0;
+		
+		for (int i = 0; i < cards.size(); i++) {
+			total += cards.get(i).getTroopContribution();
+		}
+		return total;
 	}
 }

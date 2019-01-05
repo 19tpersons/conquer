@@ -67,25 +67,6 @@ public class PlayerStats {
 		return resourceCount;
 	}
 	
-	/**
-	 * This will add more people to a players population
-	 * @param additive The number of people to be added
-	 * @return the new population
-	 */
-	public int addPop(int additive) {
-		totalPop += additive;
-		return totalPop;
-	}
-	
-	/**
-	 * This will remove population from a player
-	 * @param sub The number of people to remove
-	 * @return The new population
-	 */
-	public int removePop(int sub) {
-		totalPop -= sub;
-		return totalPop;
-	}
 	
 	/**
 	 * This will return the total population of the player's civilization
@@ -96,23 +77,11 @@ public class PlayerStats {
 	}
 	
 	/**
-	 * This will add soliders to the army
-	 * @param additive The number of soliders to be added
-	 * @return The new army size
+	 * This will set the player's population
+	 * @param newPop the new population
 	 */
-	public int addSoliders(int additive) {
-		armySize += additive;
-		return armySize;
-	}
-	
-	/**
-	 * This will subtract soliders to the army
-	 * @param sub The number of soliders to be added
-	 * @return The new army size
-	 */
-	public int removeSoliders(int sub) {
-		armySize -= sub;
-		return armySize;
+	public void setPopulation(int newPop) {
+		totalPop = newPop;
 	}
 	
 	/**
@@ -123,6 +92,13 @@ public class PlayerStats {
 		return armySize;
 	}
 	
+	/**
+	 * This will set the army size for the player
+	 * @param newSize the new size
+	 */
+	public void setArmySize(int newSize) {
+		armySize = newSize;
+	}
 	/**
 	 * Get the player's color
 	 */

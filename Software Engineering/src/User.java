@@ -114,5 +114,20 @@ public class User extends JPanel {
 	public void endTurn() {
 		root.nextTurn();
 	}
-
+	
+	/**
+	 * This will calculate the player's total population.
+	 * @return the players population.
+	 */
+	public void calculatePop() {
+		stats.setPopulation(this.getPane().getHud().getCardDisplay().calculatePop());
+	}
+	
+	/**
+	 * This will calculate the player's total troop population.
+	 * @return the player's total troop population.
+	 */
+	public void calculateTroops() {
+		stats.setArmySize(this.getPane().getHud().getCardDisplay().calculateTroops());
+	}
 }

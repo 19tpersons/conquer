@@ -85,8 +85,33 @@ public class CardDisplay extends JPanel {
 		}
 	}
 	
+	/**
+	 * This will calculate the population in each of the sets and return their sum.
+	 * @return the player's total population
+	 */
+	public int calculatePop() {
+		int total = 0;
+		for (int i = 0; i < sets.size(); i++) {
+			total += sets.get(i).calculatePop();
+		}
+		return total;
+	}
 	
+	/**
+	 * This will calculate the population troops in each solar system and return their sum
+	 * @return the player's total troop population
+	 */
+	public int calculateTroops() {
+		int total = 0;
+		for (int i = 0; i < sets.size(); i++) {
+			total += sets.get(i).calculateTroops();
+		}
+		return total;
+	}
 	
+	/**
+	 * Used to keep the background the color of the player.
+	 */
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		
