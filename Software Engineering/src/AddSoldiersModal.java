@@ -50,7 +50,12 @@ public class AddSoldiersModal extends Modal {
 		
 		
 		//This is the label that will show the current cost of adding troops to the army.
-		JLabel costLabel = new JLabel("Cost will be 0");
+		JLabel costLabel = new JLabel("Cost will be 0\n");
+		costLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		
+		//This displays the number of troops that will be contributed to the army
+		JLabel troopsToContribute = new JLabel("Troops to Contribute: \n" + card.getTroopContribution());
+		troopsToContribute.setFont(new Font("Arial", Font.BOLD, 18));
 		
 		//Sets up the slider for the troop contributions
 		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
@@ -62,17 +67,14 @@ public class AddSoldiersModal extends Modal {
 		    	  int change = slider.getValue();
 		    	  int cost = (change / 10) * U.soldierContributionCost; //The cost of adding troops to the army
 		    	  
-		    	  costLabel.setText("Cost will be " + cost);
+		    	  costLabel.setText("Cost will be " + cost + "\n");
+		    	  troopsToContribute.setText("Troops to Contribute: \n" + change);
 		      }
 		});
 		content.add(slider);
 		
-		//This displays the current contribution of troops for this planet
-		JLabel currentContribution = new JLabel("Current Troop Contributions: \n" + card.getTroopContribution());
-		currentContribution.setFont(new Font("Arial", Font.BOLD, 18));
-		content.add(currentContribution);
-		
-		//Adding the cost label
+		//Adding the cost label and the troopsToContribute label
+		content.add(troopsToContribute);
 		content.add(costLabel);
 		
 		//This will submit the value selected on the slider
