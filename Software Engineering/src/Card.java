@@ -319,14 +319,6 @@ public class Card extends JPanel implements Cloneable {
 	}
 	
 	/**
-	 * This will subtract resources from the total of the card
-	 * @param sub The amount to subtract
-	 */
-	public void subResources(int sub) {
-		this.resources -= sub;
-	}
-	
-	/**
 	 * This will return the current amount of resources in the card.
 	 * @return the amount of resources
 	 */

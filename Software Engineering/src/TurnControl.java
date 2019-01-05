@@ -35,8 +35,8 @@ public class TurnControl extends JPanel{
 		next.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				stats.nextStage();
-				remove(next);
-				add(draw);
+				remove(next); //Remove the current button
+				add(draw); //Continue onto the next stage
 				nav.updateStats();
 				stats.getUser().endTurn();
 				revalidate();
@@ -49,8 +49,8 @@ public class TurnControl extends JPanel{
 		fight.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				stats.nextStage();
-				remove(fight);
-				add(next);
+				remove(fight); //Remove the current button
+				add(next); //Continue onto the next stage
 				nav.updateStats();
 				revalidate();
 				repaint();
@@ -68,7 +68,7 @@ public class TurnControl extends JPanel{
 
 				remove(draw); //This will get rid of the button so that the next phase can begin.
 				stats.nextStage();
-				add(fight);
+				add(fight); //Continue onto the next stage
 				nav.updateStats();
 				revalidate();
 				repaint();
@@ -123,8 +123,9 @@ public class TurnControl extends JPanel{
 		//Since this is a planet, we need to give it a button panel.
 		card.setButtonPanel(stats);
 		
-		//Updates the players total population
+		//Updates the players total population and resources
 		stats.addPop(card.getPop());
+		stats.addResources(card.getResources());
 		this.nav.updateStats();
 		
 		//If any of the sets do not have any cards place the planet in that solar system.
@@ -148,8 +149,9 @@ public class TurnControl extends JPanel{
 		 //Show info modal
 		 this.user.setModal(newSet.getModal());
 		 
-		 //Updates the player's total population
+		 //Updates the player's total population and resources
 		 stats.addPop(newSet.getPop());
+		 stats.addResources(newSet.getResources());
 		 this.nav.updateStats();
 		 			
 		try {
