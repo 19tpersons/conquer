@@ -20,6 +20,10 @@ public class Modal extends JPanel {
 	private int modalHeight = 225;
 	private JPanel content;
 	
+	public Modal() {
+		
+	}
+	
 	public Modal(int modalWidth, int modalHeight) {
 		this.modalWidth = modalWidth;
 		this.modalHeight = modalHeight;

@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 /**
  * This class is used to display information about a new card that has been drawn.
  * @author DAT Software Engineering
- * @date 12.27.18
  */
 public class CardInfoModal extends Modal {
 	private Image icon;

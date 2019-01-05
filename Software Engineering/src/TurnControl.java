@@ -37,7 +37,6 @@ public class TurnControl extends JPanel{
 				stats.nextStage();
 				remove(next); //Remove the current button
 				add(draw); //Continue onto the next stage
-				nav.updateStats();
 				stats.getUser().endTurn();
 				revalidate();
 				repaint();
@@ -51,7 +50,6 @@ public class TurnControl extends JPanel{
 				stats.nextStage();
 				remove(fight); //Remove the current button
 				add(next); //Continue onto the next stage
-				nav.updateStats();
 				revalidate();
 				repaint();
 			}
@@ -69,7 +67,6 @@ public class TurnControl extends JPanel{
 				remove(draw); //This will get rid of the button so that the next phase can begin.
 				stats.nextStage();
 				add(fight); //Continue onto the next stage
-				nav.updateStats();
 				revalidate();
 				repaint();
 				
@@ -166,7 +163,6 @@ public class TurnControl extends JPanel{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
-		 this.sets = stats.sets;
 	 }
 	 
 	 /**
@@ -202,12 +198,11 @@ public class TurnControl extends JPanel{
 		 int change = action.getChange();
 		 if (change > 0) {
 			 card.addPop(change);
-			 stats.getUser().calculatePop();
 		 } else {
 			 change *= -1;
 			 card.removePop(change);
-			 stats.getUser().calculatePop();
 		 }
+		 stats.getUser().calculatePop();
 		 this.nav.updateStats();
 
 	}

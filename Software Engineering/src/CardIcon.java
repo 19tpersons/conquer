@@ -42,10 +42,13 @@ public class CardIcon extends JPanel{
 				public void mouseEntered(MouseEvent evt) {
 						if(!isComponentInPanel(buttonPanel)) { //Is the mouse even in the panel?
 							icon = null;
-							if (stats.getStage() == -1) {
+							int enemyStage = RootGameControl.getCurUser().getStats().getStage();
+							if (stats.getStage() == -1 && enemyStage == 3) {
 								buttonPanel.showFightPhase();
-							} else {
+							} else if (stats.getStage() == 2){
 								buttonPanel.showGeneral();
+							} else {
+								return;
 							}
 							add(buttonPanel);
 							revalidate();

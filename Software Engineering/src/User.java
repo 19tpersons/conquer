@@ -130,4 +130,12 @@ public class User extends JPanel {
 	public void calculateTroops() {
 		stats.setArmySize(this.getPane().getHud().getCardDisplay().calculateTroops());
 	}
+	
+	/**
+	 * This will return a player's stats class
+	 * @return the stats
+	 */
+	public PlayerStats getStats() {
+		return this.stats;
+	}
 }

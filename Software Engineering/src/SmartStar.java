@@ -19,11 +19,15 @@ public class SmartStar extends JPanel{
 		
 		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				User enemy = RootGameControl.getCurUser();
 				if (set.getCardNumber() == 0) {
+					enemy.setModal(new Modal("Display Error", "There are no known planets in this system."));
+					return;
+				} else if (set.calculateTroops() == 0 && enemy.getStats().getStage() == 3) {
+					enemy.setModal(new Modal("Fight Error", "We can't fight a planet with no enemy troop!"));
 					return;
 				} else {
-					User user = RootGameControl.getCurUser();
-					user.setModal(new BackDropModal(set, stats.getColor().brighter()));
+					enemy.setModal(new BackDropModal(set, stats.getColor().brighter()));
 				}
 			}
 		});

@@ -25,18 +25,6 @@ public class AddSoldiersModal extends Modal {
 		setLayout(null);
 		
 		
-		//These are quick checks to make sure the user can add troops in the first place.
-		if (stats.getArmySize() > stats.getMaxArmySize()) { //A player has a maximum allowed army size.
-			stats.getUser().hideModal();
-			String issue = "Your army is either bigger than the maximum allowed size for your population.";
-			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
-			return;
-		} else if ((card.getPop() - card.getTroopContribution()) < U.planetMinPop) { //A planet must have a certain amount of population not in the army.
-			String issue = "You cannot add more people from this planet to the army.";
-			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
-			return;
-		}
-		
 		//This is the panel that holds all of the Modal's content.
 		content = new JPanel();
 		int x = U.width / 2 - width / 2; //Center the modal horz.
@@ -56,9 +44,11 @@ public class AddSoldiersModal extends Modal {
 		
 		//Sets up the slider for the troop contributions
 		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
-		slider.setMajorTickSpacing(10);
+		slider.setMajorTickSpacing(100);
+		slider.setMinorTickSpacing(50);
 		slider.setPreferredSize(new Dimension(width - 30, 60));
 		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
 		slider.addChangeListener(new ChangeListener() {
 		      public void stateChanged(ChangeEvent event) {
 		    	  int change = slider.getValue();
@@ -104,12 +94,22 @@ public class AddSoldiersModal extends Modal {
 		    	stats.removeResources(cost); //Removes resources from player
 				
 				stats.getUser().getPane().getHud().getSideNav().updateStats(); //Update the statistics panel.
-				stats.getUser().hideModal(); //Once processed remove the modal from the screen.
 			}
 		});
 		content.add(submit);
 		
-		add(content);
+		//These are quick checks to make sure the user can add troops in the first place.
+		if (stats.getArmySize() > stats.getMaxArmySize()) { //A player has a maximum allowed army size.
+			stats.getUser().hideModal();
+			String issue = "Your army is either bigger than the maximum allowed size for your population.";
+			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
+		} else if ((card.getPop() - card.getTroopContribution()) < U.planetMinPop) { //A planet must have a certain amount of population not in the army.
+			stats.getUser().hideModal();
+			String issue = "You cannot add more people from this planet to the army.";
+			stats.getUser().setModal(new Modal("Recruitment Issue", issue));
+		} else {
+			add(content);
+		}
 	}
 	
 	/**
