@@ -36,7 +36,7 @@ public class CardSideNav extends JPanel {
 		this.stats = stats;
 
 		//The current stage of the player's turn
-		stage = new JLabel("Phase " + Integer.toString(stats.getStage()));
+		stage = new JLabel("Turn Phase: " + stats.getStage(true));
 		stage.setFont(new Font("Arial", Font.BOLD, 22));
 		stage.setBorder(new EmptyBorder(20,15,0,0));//top,left,bottom,right
 		disp.add(stage);
@@ -73,7 +73,7 @@ public class CardSideNav extends JPanel {
 	}
 	
 	public void updateStats() {
-		stage.setText("Stage" + stats.getStage()); 
+		stage.setText("Turn Phase: " + stats.getStage(true)); 
 		popCount.setText("Population: " + stats.getPopulation() + "M"); 
 		armySize.setText("Army Size: " + stats.getArmySize()); 
 		resourceCount.setText("Resources: " + stats.getResource());

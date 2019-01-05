@@ -114,6 +114,19 @@ public class PlayerStats {
 		return turnStage;
 	}
 	
+	public String getStage(boolean niceNames) {
+		switch (turnStage) {
+			case 1:
+				return "Draw";
+			case 2:
+				return "Build";
+			case 3:
+				return "Fight";
+			default:
+				return "Not your Turn";
+		}
+	}
+	
 	/**
 	 * Sets the turn to the next phase. -1 => 1, 1 => 2, 2 => 3, 3 => -1
 	 * Phase 1: Draw

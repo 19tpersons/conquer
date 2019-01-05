@@ -104,8 +104,12 @@ public class User extends JPanel {
 	 * This will start a player's turn.
 	 */
 	public void startTurn() {
-		this.getPane().getBackDrop().refreshSmartStars(); //Refresh the backdrop:)
-		stats.nextStage();
+		//Several things may have happened between the last time this player had a turn, so we need to update some things.
+		this.getPane().getBackDrop().refreshSmartStars(); //The map may have changed
+		this.calculatePop(); //There may have been a war
+		this.calculateTroops();
+		stats.nextStage(); //Right now the game thinks it's not the player's turn.
+		this.updateSideNav(); //The stats need to be updated to reflec these changes.
 	}
 	
 	/**
@@ -137,5 +141,9 @@ public class User extends JPanel {
 	 */
 	public PlayerStats getStats() {
 		return this.stats;
+	}
+	
+	public void updateSideNav() {
+		this.getPane().getHud().getSideNav().updateStats();
 	}
 }

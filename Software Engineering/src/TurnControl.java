@@ -38,6 +38,7 @@ public class TurnControl extends JPanel{
 				remove(next); //Remove the current button
 				add(draw); //Continue onto the next stage
 				stats.getUser().endTurn();
+				stats.getUser().updateSideNav();
 				revalidate();
 				repaint();
 			}
@@ -50,6 +51,7 @@ public class TurnControl extends JPanel{
 				stats.nextStage();
 				remove(fight); //Remove the current button
 				add(next); //Continue onto the next stage
+				stats.getUser().updateSideNav();
 				revalidate();
 				repaint();
 			}
@@ -67,6 +69,7 @@ public class TurnControl extends JPanel{
 				remove(draw); //This will get rid of the button so that the next phase can begin.
 				stats.nextStage();
 				add(fight); //Continue onto the next stage
+				stats.getUser().updateSideNav();
 				revalidate();
 				repaint();
 				
