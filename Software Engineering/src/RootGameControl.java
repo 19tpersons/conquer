@@ -19,6 +19,11 @@ public class RootGameControl extends JPanel {
 	 * @param playerColors An array of colors that will be used for each user.
 	 */
 	public RootGameControl(int numPlayers, Color[] playerColors) {
+    	//This moves the JPanel up fix pixels to remove any white space
+		FlowLayout flow = new FlowLayout();
+		flow.setVgap(-5);
+		setLayout(flow);
+		
 		this.numPlayers = numPlayers;
 		this.users = new User[numPlayers]; //This will create an array of Users'
 		
@@ -51,6 +56,11 @@ public class RootGameControl extends JPanel {
 	 * This will move the game onto the next player's turn.
 	 */
 	public void nextTurn() {
+		//If the player has 30,000 million (30 billion), then they have won!
+		if (users[userCount].getStats().getPopulation() >= 30000) {
+			System.exit(0);
+		}
+		
 		remove(users[userCount]); //Removes the current user from the display
 		
 		//Changes the player's turn

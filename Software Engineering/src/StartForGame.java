@@ -1,12 +1,13 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+
 import javax.swing.*;
 /**
- * Write a description of class StartForGame here.
+ * This is the start of our game. It is the first thing the user will see.
  *
- * @author (Alex Gergen)
- * @version (11-18-18)
+ * @author DAT Software Engineering
  */
 public class StartForGame extends JPanel implements ActionListener
 {
@@ -14,78 +15,95 @@ public class StartForGame extends JPanel implements ActionListener
      * A main routine allows this class to be run as an application.
      */
     public static void main(String[] args) {
-        JFrame window = new JFrame("The Master Plan");
-        StartForGame content = new StartForGame();
-        window.setContentPane(content);
+        JFrame window = new JFrame("Conquer!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //window.setLocation(250,200);
+        window.setSize(U.width, U.height);
+		window.setResizable(false);
         
-        //window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-        //window.setUndecorated(true);
-        
+		StartForGame start = new StartForGame();
+		window.setContentPane(start);
         window.pack();
-        window.setResizable(true);
         window.setVisible(true);
     }
-    //Color selectedColor = Color.GRAY;
     
     public StartForGame()  {
-       //setBackground(Color.BLUE);
-       setLayout(new BorderLayout());
-       JLabel background=new JLabel(new ImageIcon("test3.jpg"));
-       add(background);
-       setPreferredSize(new Dimension(1500, 800));
-       //background.setLayout(new GridLayout(10,1,3,3));
-       background.setLayout(new FlowLayout(FlowLayout.CENTER));
-              
-       JPanel buttonBar;
-       JButton button;
+    	//This moves the JPanel up fix pixels to remove any white space
+		FlowLayout flow = new FlowLayout();
+		flow.setVgap(-5);
+		flow.setHgap(0);
+		setLayout(flow);
+		
+    	JLayeredPane layered = new JLayeredPane();
+    	
+
+ 
        
-       
-       
-       buttonBar = new JPanel();
-       //buttonBar.setBackground(Color.GRAY);
-       background.add(buttonBar);
-       
-       
-       button = new JButton("New Game");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
-       //button.setAlignmentY(Component.CENTER_ALIGNMENT);
-       //button.setPreferredSize(new Dimension(20, 5)); 
-       button.addActionListener(this);
+   		//This is the background image
+      	JLabel content = new JLabel(new ImageIcon("images/start_background.png"));
+      	content.setLayout(new FlowLayout(FlowLayout.CENTER));
+      	
+      	//This holds all of the buttons on the start up screen.
+      	JPanel buttonBar = new JPanel();
+       	
+       //This will start a new game.
+       JButton button = new JButton("New Game");
+       button.addMouseListener(new MouseAdapter() {
+    	   public void mousePressed(MouseEvent evt) {
+    			//This sets up the cards that will be used for the rest of the game.
+    			try {
+    				CardDB cardDB = new CardDB();
+    			} catch (FileNotFoundException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    			
+    			//These are the colors that each player will have
+    			Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 0)};
+    			
+    			//This will start the game.
+    			RootGameControl root = new RootGameControl(2, colors);
+    			root.startGame();
+    			
+    			//Display the game.
+    			remove(content);
+    			add(root);
+    			repaint();
+    			revalidate();
+    	   }
+       });
        buttonBar.add(button);
        
+       //This will load a previous game
        button = new JButton("Load Game");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
        buttonBar.add(button);
        
+       //This will load a setting modal
        button = new JButton("Settings");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
        buttonBar.add(button);
        
+       //This will show the instructions for the game
        button = new JButton("Instructions");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
        buttonBar.add(button);
        
+       //This will credit the producers
        button = new JButton("Credits");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
        buttonBar.add(button);
        
+       //This will exit the game.
        button = new JButton("Quit");
-       //button.setAlignmentX(Component.CENTER_ALIGNMENT);
        button.addActionListener(this);
        buttonBar.add(button);
        
-       setSize(1099,399);
-       setSize(1500,800);
-       
-       //buttonBar.setLocation(100,30);
-       
-       //setBorder(BorderFactory.createLineBorder(Color.GRAY,3));
+       //setSize(1099,399);
+       //setSize(1500,800);
+      
+
+    	content.add(buttonBar);
+      	add(content);
     }
     
     /**
@@ -96,34 +114,24 @@ public class StartForGame extends JPanel implements ActionListener
 
       String command = evt.getActionCommand();
       if (command.equals("New Game")) {
-         //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
              "This is the button that will start the game.");
-         //message.setText("You closed the message dialog.");
       }
       else if (command.equals("Load Game")) {
-         //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
              "This is the button that will load the game.");
-         //message.setText("You closed the message dialog.");
       }
       else if (command.equals("Settings")) {
-         //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
              "This is the button that will show the settings.");
-         //message.setText("You closed the message dialog.");
       }
       else if (command.equals("Instructions")) {
-         //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
              "This is the button that will show the instructions.");
-         //message.setText("You closed the message dialog.");
       }
       else if (command.equals("Credits")) {
-         //message.setText("Displaying message dialog.");
          JOptionPane.showMessageDialog(this,
-             "The Master Plan\nCreated by:\nDAT Software Engineering\nAlex Gergen\nDakota Edens");
-         //message.setText("You closed the message dialog.");
+             "The Master Plan\nCreated by:\nDAT Software Engineering\nDakota Edens\nAlex Gergen\nTyler Persons");
       }
       else if (command.equals("Quit")) {
           int response = JOptionPane.showConfirmDialog(this,
@@ -145,7 +153,6 @@ public class StartForGame extends JPanel implements ActionListener
                 //default action or exception
                 break;
          }
-          //System.exit(0);
         
         
       }

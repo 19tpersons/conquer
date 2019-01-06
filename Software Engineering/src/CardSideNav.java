@@ -38,25 +38,25 @@ public class CardSideNav extends JPanel {
 		//The current stage of the player's turn
 		stage = new JLabel("Turn Phase: " + stats.getStage(true));
 		stage.setFont(new Font("Arial", Font.BOLD, 22));
-		stage.setBorder(new EmptyBorder(20,15,0,0));//top,left,bottom,right
+		stage.setBorder(new EmptyBorder(20,0,0,0));//top,left,bottom,right
 		disp.add(stage);
 		
 		//The current player's population
 		popCount = new JLabel("Population: " + Integer.toString(stats.getPopulation()) + "M");
 		popCount.setFont(new Font("Arial", Font.BOLD, 22));
-		popCount.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
+		popCount.setBorder(new EmptyBorder(5,0,0,0));//top,left,bottom,right
 		disp.add(popCount);
 		
 		//The current player's army size
 		armySize = new JLabel("Army Size: " + Integer.toString(stats.getPopulation()));
 		armySize.setFont(new Font("Arial", Font.BOLD, 22));
-		armySize.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
+		armySize.setBorder(new EmptyBorder(5,0,0,0));//top,left,bottom,right
 		disp.add(armySize);
 		
 		//The current player's resource count
 		resourceCount = new JLabel("Resource Count: " + Integer.toString(stats.getResource()));
 		resourceCount.setFont(new Font("Arial", Font.BOLD, 22));
-		resourceCount.setBorder(new EmptyBorder(5,15,0,0));//top,left,bottom,right
+		resourceCount.setBorder(new EmptyBorder(5,0,0,0));//top,left,bottom,right
 		disp.add(resourceCount);
 		
 		TurnControl tControl = new TurnControl(stats, cardDisp, this);
