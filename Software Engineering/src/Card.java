@@ -4,9 +4,7 @@ import java.util.Random;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 /**
  * This is the abstraction of planet and solar system cards. It holds all of the data for any given planet, and allows
@@ -17,6 +15,10 @@ import javax.swing.border.EmptyBorder;
  */
 
 public class Card extends JPanel implements Cloneable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5668396702701758076L;
 	//General Stats about card
 	private String title = ""; //The card title
 	private String type = ""; //The type of card
@@ -27,6 +29,7 @@ public class Card extends JPanel implements Cloneable {
 	private String sub_type = "";
 	private double subTypeRate = 0.0;
 	private int troopsInArmy = 0; //The current amount of troops this planet has contributed to the army.
+	private double defensiveBonus = 0;
 	
 	//Initializes variables that are going to be used in the display of the card
 	private CardIcon icon;
@@ -356,5 +359,13 @@ public class Card extends JPanel implements Cloneable {
 	 */
 	public void subTroops(int sub) {
 		this.troopsInArmy -= sub;
+	}
+	
+	/**
+	 * This will return this card's defensive bonus
+	 * @return the card's defensive bonus
+	 */
+	public double getDefensiveBonus() {
+		return this.defensiveBonus;
 	}
 }

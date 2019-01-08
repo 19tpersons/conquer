@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.net.URL;
 
 /**
  * This is a utility class. It holds data that is essential for the program to function.
@@ -40,6 +40,16 @@ public class U {
 		return size - (int) (size * percent);		
 		
 	}
+	
+	/**
+	 * If this program is to be compiled as a jar it needs to be loaded in a special way.
+	 * @param name
+	 * @return
+	 */
+	public static URL getFile(String name) {
+		return U.class.getResource(name);
+	}
+
 	
 
 }

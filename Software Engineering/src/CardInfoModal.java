@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.io.*;
 
 import javax.imageio.ImageIO;
@@ -11,6 +10,10 @@ import javax.swing.border.EmptyBorder;
  * @author DAT Software Engineering
  */
 public class CardInfoModal extends Modal {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1708127562896975292L;
 	private Image icon;
 	private static int height = 250;
 	private static int width = 500;
@@ -38,6 +41,11 @@ public class CardInfoModal extends Modal {
 		Image scaledImg = newImg.getScaledInstance(U.cardWidth, height, Image.SCALE_AREA_AVERAGING);
 		icon = scaledImg;
 		JPanel iconPanel = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -5518085808977482800L;
+
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.drawImage(icon, 0, 0, this); //Card Image

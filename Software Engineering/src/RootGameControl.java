@@ -7,6 +7,10 @@ import javax.swing.*;
  *
  */
 public class RootGameControl extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5474852373896862743L;
 	private int width = U.width; //This is the window's width.
 	private int height = U.height; //This is the window's height.
 	private static User[] users;

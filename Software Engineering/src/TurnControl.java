@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.HashMap;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,6 +14,10 @@ import javax.swing.*;
  */
 
 public class TurnControl extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 665241124794208057L;
 	private PlayerStats stats;
 	private ArrayList<CardSet> sets;
 	private Random rand = new Random();

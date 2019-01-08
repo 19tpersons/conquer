@@ -8,6 +8,10 @@ import java.awt.*;
  *
  */
 public class GamePane extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4037643805107771243L;
 	private int width = U.width;
 	private int height = U.height;
 	private Backdrop drop;

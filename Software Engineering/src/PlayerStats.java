@@ -99,6 +99,26 @@ public class PlayerStats {
 	public void setArmySize(int newSize) {
 		armySize = newSize;
 	}
+	
+	/**
+	 * This will subtract troops from the army.
+	 * @param sub Troops to take away.
+	 */
+	public void subTroops(int sub) {
+		this.armySize -= sub;
+		
+		//We need to subtract troops from the planets of the universe.
+		while (sub > 0) {
+			Card tmp = this.getUser().getRandomCard();
+			double troops = tmp.getTroopContribution();
+			int deadTroops = (int) (troops * 0.2);
+			if (deadTroops > sub) { //If the number of dead troops is bigger than the number we need to get
+				deadTroops = sub; //Make the dead troops equal to sub
+				sub = 0; //Make sub equal to zero.
+			}
+			tmp.subTroops(deadTroops);
+		}
+	}
 	/**
 	 * Get the player's color
 	 */

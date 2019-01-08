@@ -12,9 +12,15 @@ import javax.swing.*;
 public class StartForGame extends JPanel implements ActionListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6399817788052577299L;
+
+	/**
      * A main routine allows this class to be run as an application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {   
+    	
         JFrame window = new JFrame("Conquer!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(U.width, U.height);
@@ -22,8 +28,9 @@ public class StartForGame extends JPanel implements ActionListener
         
 		StartForGame start = new StartForGame();
 		window.setContentPane(start);
-        window.pack();
+        //window.pack();
         window.setVisible(true);
+        
     }
     
     public StartForGame()  {
@@ -34,12 +41,10 @@ public class StartForGame extends JPanel implements ActionListener
 		setLayout(flow);
 		
     	JLayeredPane layered = new JLayeredPane();
-    	
-
- 
        
    		//This is the background image
-      	JLabel content = new JLabel(new ImageIcon("images/start_background.png"));
+      	JLabel content = new JLabel(new ImageIcon(U.getFile("start_background.png")));
+    	//JLabel content = new JLabel(StartForGame.class.getResourceAsStream("images/start_background.png"));
       	content.setLayout(new FlowLayout(FlowLayout.CENTER));
       	
       	//This holds all of the buttons on the start up screen.
@@ -97,10 +102,6 @@ public class StartForGame extends JPanel implements ActionListener
        button = new JButton("Quit");
        button.addActionListener(this);
        buttonBar.add(button);
-       
-       //setSize(1099,399);
-       //setSize(1500,800);
-      
 
     	content.add(buttonBar);
       	add(content);
@@ -113,11 +114,7 @@ public class StartForGame extends JPanel implements ActionListener
    public void actionPerformed(ActionEvent evt) {
 
       String command = evt.getActionCommand();
-      if (command.equals("New Game")) {
-         JOptionPane.showMessageDialog(this,
-             "This is the button that will start the game.");
-      }
-      else if (command.equals("Load Game")) {
+      if (command.equals("Load Game")) {
          JOptionPane.showMessageDialog(this,
              "This is the button that will load the game.");
       }

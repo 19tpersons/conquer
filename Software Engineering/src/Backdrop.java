@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Random; 
 
@@ -10,6 +9,10 @@ import java.util.Random;
  *
  */
 public class Backdrop extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4483812088595058593L;
 	private int width, height;
 	private static ArrayList<SmartStar> smartStars = new ArrayList<SmartStar>();
 	
@@ -38,6 +41,11 @@ public class Backdrop extends JPanel {
 	 */
 	private void printStar(int x, int y) {
 		JPanel dumbStar = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -3750863589154188517L;
+
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
 								

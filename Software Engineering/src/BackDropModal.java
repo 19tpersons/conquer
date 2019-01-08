@@ -8,6 +8,10 @@ import javax.swing.*;
  */
 
 public class BackDropModal extends Modal {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3524731473752041038L;
 	private static int width = 800; 
 	private static int height = 350;
 	private JPanel content;

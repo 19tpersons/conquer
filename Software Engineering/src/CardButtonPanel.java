@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 import javax.swing.*;
 
 /**
@@ -11,6 +9,10 @@ import javax.swing.*;
  * @date 12.28.18
  */
 public class CardButtonPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6811991901213107819L;
 	private JPanel generalPanel = new JPanel(), fightPhasePanel = new JPanel();
 	private JButton soldiersBtn, fightBtn;
 

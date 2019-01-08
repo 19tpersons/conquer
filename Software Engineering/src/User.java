@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
 /**
  * This is the abstraction of all of the actions any user can take. It holds their individual statistics and game interface.
@@ -12,6 +9,9 @@ import java.io.File;
  *
  */
 public class User extends JPanel {
+	/**
+	 * 
+	 */
 	private int width, height;
 	private PlayerStats stats;
 	private GamePane pane;
@@ -61,15 +61,6 @@ public class User extends JPanel {
 		modal.setBounds(0,0, width, height);
 		layered.add(modal, 0);
 		repaint();
-	}
-	
-	/**
-	 * Used to see if the mouse is inside the component.
-	 * @param component
-	 * @return
-	 */
-	private boolean isComponentInPanel(Component component) {
-		return java.util.Arrays.asList(this.getComponents()).contains(component);
 	}
 	
 	/**
@@ -143,7 +134,18 @@ public class User extends JPanel {
 		return this.stats;
 	}
 	
+	/**
+	 * This will update the CardSideNav
+	 */
 	public void updateSideNav() {
 		this.getPane().getHud().getSideNav().updateStats();
+	}
+	
+	/**
+	 * This will return a random card from the player's deck
+	 * @return a random card.
+	 */
+	public Card getRandomCard() {
+		return this.getPane().getHud().getCardDisplay().getRandomCard();
 	}
 }

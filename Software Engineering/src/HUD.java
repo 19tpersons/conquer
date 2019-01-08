@@ -1,7 +1,4 @@
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.*;
 import java.awt.geom.*;
 import java.io.IOException;
@@ -13,6 +10,10 @@ import java.io.IOException;
  */
 
 public class HUD extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 169185092847398269L;
 	//private Color playerColor = new Color(0, 0, 204);
 	//private Color playerColor = new Color(255, 151, 53);
 	private Color playerColor;

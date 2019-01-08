@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,6 +15,10 @@ import javax.swing.*;
  *
  */
 public class CardIcon extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -439565388970483974L;
 	private Image icon;
 	private Image history;
 	private int width, height;

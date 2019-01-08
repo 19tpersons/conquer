@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -14,6 +12,10 @@ import javax.swing.event.ChangeListener;
  */
 
 public class AddSoldiersModal extends Modal {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5936424201225481384L;
 	private static int width = 300;
 	private static int height = 200;
 	private JPanel content;

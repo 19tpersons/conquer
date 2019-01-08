@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -10,6 +13,10 @@ import javax.swing.event.ChangeListener;
  */
 
 public class FightModal extends Modal {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1910040771383050677L;
 	private int width = 400;
 	private int height = 350;
 	private JPanel content;
@@ -63,6 +70,15 @@ public class FightModal extends Modal {
 		JButton fight = new JButton("FIGHT!");
 		fight.setFont(new Font("Arial", Font.BOLD, 18));
 		fight.setAlignmentX(Component.CENTER_ALIGNMENT);
+		fight.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				int enemyTroops = slider.getValue();
+				Battle battle = new Battle(card.getTroopContribution(), card.getDefensiveBonus(), enemyTroops);
+				card.subTroops(battle.getDefenseResult());
+				enemyStats.subTroops(enemyTroops - battle.getOffenseResult());
+			}
+		});
+		
 		
 		//This will holder everything under the slider
 		JPanel holder = new JPanel();

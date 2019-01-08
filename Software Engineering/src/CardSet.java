@@ -3,8 +3,8 @@ import java.awt.geom.Rectangle2D;
 import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -15,6 +15,10 @@ import java.util.concurrent.TimeUnit;
  *
  */
 public class CardSet extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4401846528038004220L;
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Card solar; //The solar system!
 	private Color bgColor;
@@ -193,6 +197,11 @@ public class CardSet extends JPanel {
 	 */
 	public void fillerCard() {
 		JPanel filler = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -6513140442002396919L;
+
 			protected void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(bgColor);
@@ -259,5 +268,15 @@ public class CardSet extends JPanel {
 			total += cards.get(i).getTroopContribution();
 		}
 		return total;
+	}
+	
+	/**
+	 * This method will return a random method from this set.
+	 * @return A random card.
+	 */
+	public Card getRandomCard() {
+		Random rand = new Random();
+		int cardIdx = rand.nextInt(cards.size());
+		return cards.get(cardIdx);
 	}
 }

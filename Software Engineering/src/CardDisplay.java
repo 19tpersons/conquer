@@ -2,9 +2,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -120,5 +120,15 @@ public class CardDisplay extends JPanel {
 		Rectangle2D rect = new Rectangle2D.Double(0, 0, width, height);
 		g2.setColor(playerColor);
 		g2.fill(rect);
+	}
+	
+	/**
+	 * This will get a random card from one of the sets.
+	 * @return A random card
+	 */
+	public Card getRandomCard() {
+		Random rand = new Random();
+		int setIdx = rand.nextInt(sets.size());
+		return sets.get(setIdx).getRandomCard();
 	}
 }

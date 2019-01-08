@@ -1,9 +1,7 @@
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 
-import javax.swing.*;
 /**
  * This is a class that parses a CSV file containing the planets, solar systems, and actions. The class
  * will make the appropriate objects for each type of card, but will not do any calculations on its own

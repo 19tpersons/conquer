@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Rectangle2D;
 
 /**
  * This class is what the user clicks on if they would like to see the other player's planets or if they would like to fight them.
@@ -11,6 +10,10 @@ import java.awt.geom.Rectangle2D;
  */
 
 public class SmartStar extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4201891860156672889L;
 	private Color color = new Color(255, 102, 0);
 	
 	public SmartStar(CardSet set, PlayerStats stats) {
