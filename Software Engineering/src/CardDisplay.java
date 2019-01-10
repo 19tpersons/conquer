@@ -129,6 +129,11 @@ public class CardDisplay extends JPanel {
 	public Card getRandomCard() {
 		Random rand = new Random();
 		int setIdx = rand.nextInt(sets.size());
-		return sets.get(setIdx).getRandomCard();
+		CardSet set = sets.get(setIdx);
+		if (set.getCardNumber() == 0) {
+			return this.getRandomCard();
+		} else {
+			return sets.get(setIdx).getRandomCard();
+		}
 	}
 }

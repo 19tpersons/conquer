@@ -14,10 +14,6 @@ import javax.swing.*;
  */
 
 public class TurnControl extends JPanel{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 665241124794208057L;
 	private PlayerStats stats;
 	private ArrayList<CardSet> sets;
 	private Random rand = new Random();
@@ -32,6 +28,7 @@ public class TurnControl extends JPanel{
 		this.disp = disp;
 		this.nav = nav;
 		this.user = stats.getUser();
+		stats.setTurnContro(this);
 		
 		// This will finish the turn and allow the other player to take their turnStage
 		next = new JButton("Next Turn");
@@ -85,7 +82,7 @@ public class TurnControl extends JPanel{
 	/**
 	 * This will draw a new card from the stack, and add it to the right set.
 	 */
-	private void getCard() {
+	public void getCard() {
 		int cardTypeInt; //This will be used to figure out what type of card to draw for the user. 0 => planet, 1 => action, 2 => solar
 		if (sets.size() < U.cardSetLimit) {
 			cardTypeInt = 3;

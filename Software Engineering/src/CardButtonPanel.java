@@ -49,7 +49,7 @@ public class CardButtonPanel extends JPanel {
 		fightBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				PlayerStats enemyStats = RootGameControl.getCurUser().getStats();
-				FightModal modal = new FightModal(enemyStats, card);
+				FightModal modal = new FightModal(enemyStats, stats, card);
 				enemyStats.getUser().setModal(modal); //We need to put the modal on the enemy's screen.
 			}
 		});

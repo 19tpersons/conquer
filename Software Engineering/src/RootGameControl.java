@@ -7,10 +7,6 @@ import javax.swing.*;
  *
  */
 public class RootGameControl extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5474852373896862743L;
 	private int width = U.width; //This is the window's width.
 	private int height = U.height; //This is the window's height.
 	private static User[] users;
@@ -34,6 +30,8 @@ public class RootGameControl extends JPanel {
 		for (int i = 0; i < numPlayers; i++) {
 			this.users[i] = new User(width, height, playerColors[i], this); //Creates a new User.
 			this.users[i].showPane();
+			this.users[i].getStats().getTurnControl().getCard(); //Give the player an inital solar system
+			this.users[i].getStats().getTurnControl().getCard(); //Give the player an inital planet
 		}
 		
 	}
@@ -61,9 +59,9 @@ public class RootGameControl extends JPanel {
 	 */
 	public void nextTurn() {
 		//If the player has 30,000 million (30 billion), then they have won!
-		if (users[userCount].getStats().getPopulation() >= 30000) {
+		/*if (users[userCount].getStats().getPopulation() >= 30000) {
 			System.exit(0);
-		}
+		}*/
 		
 		remove(users[userCount]); //Removes the current user from the display
 		

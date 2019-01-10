@@ -21,6 +21,7 @@ public class Battle {
         
         this.fight(defense, offense); //This will fight.
     
+        
     }
 
     /**
@@ -81,8 +82,13 @@ public class Battle {
        int offenseRegimentsLost = (offense / 10) - offenseRegiments;
        
        //This will update the army sizes
-       this.offense -= regimentSize * defenseRegimentsLost;
-       this.defense -= regimentSize * offenseRegimentsLost;
+       this.offense -= regimentSize * offenseRegimentsLost;
+       this.defense -= regimentSize * defenseRegimentsLost;
+       
+       //Since double's are used something needs to fix any rounding issues
+       if (this.defense <= regimentSize) {
+    	   this.defense = 0;
+       }
        
     }
     
@@ -90,7 +96,7 @@ public class Battle {
      * This will return the defense army size after the fight
      * @return the new defense army size
      */
-    public int getDefenseResult() {
+    public int getDefenseSurvivors() {
         return defense;
     }
     
@@ -98,7 +104,7 @@ public class Battle {
      * This will return the offense army size after the fight
      * @return the new offense army size.
      */
-    public int getOffenseResult() {
+    public int getOffenseSurvivors() {
         return offense;
     }
 }

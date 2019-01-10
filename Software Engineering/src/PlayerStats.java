@@ -17,6 +17,7 @@ public class PlayerStats {
 	private Color playerColor;
 	private User user;
 	public ArrayList<CardSet> sets = new ArrayList<CardSet>();
+	private TurnControl turnControl;
 	
 	/**
 	 * This is the default constructor
@@ -106,17 +107,18 @@ public class PlayerStats {
 	 */
 	public void subTroops(int sub) {
 		this.armySize -= sub;
-		
+
 		//We need to subtract troops from the planets of the universe.
 		while (sub > 0) {
 			Card tmp = this.getUser().getRandomCard();
 			double troops = tmp.getTroopContribution();
-			int deadTroops = (int) (troops * 0.2);
+			int deadTroops = (int) (troops * 0.1);
 			if (deadTroops > sub) { //If the number of dead troops is bigger than the number we need to get
 				deadTroops = sub; //Make the dead troops equal to sub
 				sub = 0; //Make sub equal to zero.
 			}
 			tmp.subTroops(deadTroops);
+			sub -= deadTroops;
 		}
 	}
 	/**
@@ -193,5 +195,21 @@ public class PlayerStats {
 	 */
 	public int getMaxArmySize() {
 		return this.maxArmySize;
+	}
+	
+	/**
+	 * This will get the user's turn control
+	 * @return the turn control object
+	 */
+	public TurnControl getTurnControl() {
+		return this.turnControl;
+	}
+	
+	/**
+	 * This will set the user's turn control object
+	 * @param control
+	 */
+	public void setTurnContro(TurnControl control) {
+		this.turnControl = control;
 	}
 }

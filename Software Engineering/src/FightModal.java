@@ -22,7 +22,7 @@ public class FightModal extends Modal {
 	private JPanel content;
 	private Color modalColor = new Color(230, 0, 0);
 	
-	public FightModal(PlayerStats enemyStats, Card card) {
+	public FightModal(PlayerStats enemyStats, PlayerStats stats, Card card) {
 		//Sets up jpanel
 		super(400, 350);
 		setBackground(new Color(0,0,0,0));
@@ -72,10 +72,31 @@ public class FightModal extends Modal {
 		fight.setAlignmentX(Component.CENTER_ALIGNMENT);
 		fight.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				stats.getUser().hideModal();
 				int enemyTroops = slider.getValue();
 				Battle battle = new Battle(card.getTroopContribution(), card.getDefensiveBonus(), enemyTroops);
-				card.subTroops(battle.getDefenseResult());
-				enemyStats.subTroops(enemyTroops - battle.getOffenseResult());
+				
+				//Subtract dead troops from the card's troop contributions
+				card.subTroops(card.getTroopContribution() - battle.getDefenseSurvivors());
+				
+				//This is the number of dead enemy troops
+				int deadTroops = enemyTroops - battle.getOffenseSurvivors();
+				enemyStats.subTroops(deadTroops);
+				
+				//If the enemy wins we give them an award.
+				if (battle.getDefenseSurvivors() == 0) {
+					int cardResources = stats.getResource();
+					int removedResources = (int) (cardResources * 0.05);
+					card.setResources(cardResources - removedResources);
+					enemyStats.addResources(removedResources);
+				}
+				
+				//Update stats
+				stats.getUser().updateSideNav();
+				enemyStats.getUser().updateSideNav();
+				
+				enemyStats.getUser().hideModal();
+				
 			}
 		});
 		
