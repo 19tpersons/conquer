@@ -28,10 +28,13 @@ public class RootGameControl extends JPanel {
 		this.users = new User[numPlayers]; //This will create an array of Users'
 		
 		for (int i = 0; i < numPlayers; i++) {
-			this.users[i] = new User(width, height, playerColors[i], this); //Creates a new User.
-			this.users[i].showPane();
-			this.users[i].getStats().getTurnControl().getCard(); //Give the player an inital solar system
-			this.users[i].getStats().getTurnControl().getCard(); //Give the player an inital planet
+			User user = new User(width, height, playerColors[i], this);
+			this.users[i] =  user;//Creates a new User.
+			user.showPane();
+			user.getStats().getTurnControl().getCard(); //Give the player an inital solar system
+			user.hideModal();
+			user.getStats().getTurnControl().getCard(); //Give the player an inital planet
+			user.hideModal();
 		}
 		
 	}
