@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * 	idx, type, sub_type, title, description, population, defacto, range, image_location
  * 
  * @author DAT Software Engineering
- * @date 12.27.18
  */
 
 
 public class CardDB {
 	private String file = "cardDB.csv";
+	
 	private ArrayList<ArrayList<String>> rows = new ArrayList<ArrayList<String>>(); //This an array list of the individual rows in the table
 	
 	//These three arraylists are the three types of rows within the database
@@ -41,7 +41,7 @@ public class CardDB {
 	 */
 	private void parseDB() {
 		//This section reads data from the file and stores it in an arrayList
-		try (BufferedReader br = new BufferedReader(new FileReader(file))){
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(CardDB.class.getResourceAsStream(file)))){
 			String topLine = br.readLine();
 			
 			while (br.ready()) {
@@ -104,7 +104,7 @@ public class CardDB {
 		String description = row.get(4); //The description of the action
 		double popChange = Double.parseDouble(row.get(5)); //The positive or negative amount to change any given population by.
 		double popChangeRate = Double.parseDouble((row.get(7))); //This adds randomness to the popChange number.
-		File image_location = new File(row.get(8));
+		String image_location = row.get(8);
 		
 		ActionCard newCard = new ActionCard(sub_type, popChange, popChangeRate);
 		newCard.makeModal(title, description, image_location);
@@ -118,7 +118,7 @@ public class CardDB {
 	public void makeCard(ArrayList<String> row) {
 		String title = row.get(3); //Title of the card
 		String description = row.get(4); //Description of the card
-		File image_location = new File(row.get(8)); //The image of the card.
+		String image_location = row.get(8); //The image of the card.
 		
 		String type = row.get(1); //Is it card a planet or solar system
 		String sub_type = row.get(2); //Cards with a sub_type are linked to certain actions cards and have a higher percent chance of those actions happening to them.

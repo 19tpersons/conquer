@@ -20,7 +20,7 @@ public class CardIcon extends JPanel{
 	private int width, height;
 	
 			
-	public CardIcon(File imageLoc, int width, int height) throws IOException {
+	public CardIcon(String imageLoc, int width, int height) throws IOException {
 		//This section sets up the card
 		this.setPreferredSize(new Dimension(width, height)); //Sets size of icon
 		this.height = height; //height of icon
@@ -86,8 +86,8 @@ public class CardIcon extends JPanel{
 	 * Gives the card a new Icon
 	 * @param image The new image that is going to be the cards icon
 	 */
-	public void setIcon(File imageLoc) throws IOException {
-		Image newImg = ImageIO.read(imageLoc);
+	public void setIcon(String imageLoc) throws IOException {
+		Image newImg = ImageIO.read(U.getFile(imageLoc));
 		Image scaledImg = newImg.getScaledInstance(this.width, this.height, Image.SCALE_AREA_AVERAGING);
 		icon = scaledImg;
 	}

@@ -25,7 +25,7 @@ public class Card extends JPanel implements Cloneable {
 	private String description = ""; //The description
 	private int population = 0; //Population of card
 	private int resources = 0; //A planet or solar system can have natural resources
-	private File imageLoc;
+	private String imageLoc;
 	private String sub_type = "";
 	private double subTypeRate = 0.0;
 	private int troopsInArmy = 0; //The current amount of troops this planet has contributed to the army.
@@ -38,7 +38,7 @@ public class Card extends JPanel implements Cloneable {
 	private JPanel bottomInfo = new JPanel();//This is the bottom of the card
 	
 	//This sets up the general data for the card.
-	public Card(String title, String description, File imageLoc, String type) throws IOException {
+	public Card(String title, String description, String imageLoc, String type) throws IOException {
 		//Sets up card
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.title = title;
@@ -173,7 +173,7 @@ public class Card extends JPanel implements Cloneable {
 	 * Gives the card a new Icon
 	 * @param image The new image that is going to be the cards icon
 	 */
-	public void setIcon(File imageLoc) throws IOException {
+	public void setIcon(String imageLoc) throws IOException {
 		icon = new CardIcon(imageLoc, 200, 250);
 	}
 	

@@ -28,7 +28,6 @@ public class StartForGame extends JPanel implements ActionListener
         
 		StartForGame start = new StartForGame();
 		window.setContentPane(start);
-        //window.pack();
         window.setVisible(true);
         
     }

@@ -19,7 +19,7 @@ public class CardInfoModal extends Modal {
 	private static int width = 500;
 	private JPanel content;
 	
-	public CardInfoModal(String title, String description, int population, int resources, File image_location) {
+	public CardInfoModal(String title, String description, int population, int resources, String image_location) {
 		super(width, height);
 		
 		this.setBackground(new Color(0,0,0, 90));
@@ -34,7 +34,7 @@ public class CardInfoModal extends Modal {
 		//This is the picture for the modal
 		Image newImg = null;
 		try {
-			newImg = ImageIO.read(image_location);
+			newImg = ImageIO.read(U.getFile(image_location));
 		} catch (IOException e) {
 			return;
 		}

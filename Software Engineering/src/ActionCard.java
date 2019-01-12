@@ -16,7 +16,7 @@ public class ActionCard extends JPanel {
 	private String sub_type, title, description;
 	private int popChange; //This is the positive or negative number of population the action will cause
 	private double actionPercentChange;
-	private File image_location;
+	private String image_location;
 	private CardInfoModal modal;
 	
 	/**
@@ -62,7 +62,7 @@ public class ActionCard extends JPanel {
 	 * @param description The description of the action
 	 * @param image_location The image for the action
 	 */
-	public void makeModal(String title, String description, File image_location) {
+	public void makeModal(String title, String description, String image_location) {
 		this.title = title;
 		this.description = description;
 		this.image_location = image_location;
