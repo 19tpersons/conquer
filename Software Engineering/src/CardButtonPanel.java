@@ -22,6 +22,7 @@ public class CardButtonPanel extends JPanel {
 		
 		//This will allow users' to add soldiers to their armies
 		soldiersBtn = new JButton("Add Soldiers");
+		soldiersBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		soldiersBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				Modal modal = new AddSoldiersModal(stats, card);
@@ -42,6 +43,7 @@ public class CardButtonPanel extends JPanel {
 		
 		//This will allow users' to fight each other.
 		fightBtn = new JButton("Fight");
+		fightBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		fightBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				PlayerStats enemyStats = RootGameControl.getCurUser().getStats();

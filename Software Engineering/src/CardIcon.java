@@ -42,7 +42,8 @@ public class CardIcon extends JPanel{
 						if(!isComponentInPanel(buttonPanel)) { //Is the mouse even in the panel?
 							icon = null;
 							int enemyStage = RootGameControl.getCurUser().getStats().getStage();
-							if (stats.getStage() == -1 && enemyStage == 3) {
+							//Cannot be this card's owner's turn, Must be the fight stage, and there must be soliders
+							if (stats.getStage() == -1 && enemyStage == 3 && card.getTroopContribution() > 0) {
 								buttonPanel.showFightPhase();
 							} else if (stats.getStage() == 2){
 								buttonPanel.showGeneral();

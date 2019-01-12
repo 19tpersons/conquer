@@ -97,7 +97,7 @@ public class User extends JPanel {
 		this.calculatePop(); //There may have been a war
 		this.calculateTroops();
 		stats.nextStage(); //Right now the game thinks it's not the player's turn.
-		this.updateSideNav(); //The stats need to be updated to reflec these changes.
+		this.updateSideNav(); //The stats need to be updated to reflect these changes.
 	}
 	
 	/**

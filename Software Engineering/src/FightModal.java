@@ -15,6 +15,7 @@ import javax.swing.event.ChangeListener;
 public class FightModal extends Modal {
 	private int width = 400;
 	private int height = 350;
+	private int offenseDead, defenseDead, offenseSurvivors, defenseSurvivors;
 	private JPanel content;
 	private Color modalColor = new Color(230, 0, 0);
 	
@@ -79,14 +80,17 @@ public class FightModal extends Modal {
 					Battle battle = new Battle(card.getTroopContribution(), card.getDefensiveBonus(), enemyTroops);
 					
 					//Subtract dead troops from the card's troop contributions
-					card.subTroops(card.getTroopContribution() - battle.getDefenseSurvivors());
+					defenseSurvivors = battle.getDefenseSurvivors();
+					defenseDead = card.getTroopContribution() - defenseSurvivors;
+					card.subTroops(defenseDead);
 				
 					//This is the number of dead enemy troops
-					int deadTroops = enemyTroops - battle.getOffenseSurvivors();
-					enemyStats.subTroops(deadTroops);
+					offenseSurvivors = battle.getOffenseSurvivors();
+					offenseDead = enemyTroops - offenseSurvivors;
+					enemyStats.subTroops(offenseDead);
 				
 					//If the enemy wins we give them an award.
-					if (battle.getDefenseSurvivors() == 0) {
+					if (defenseSurvivors == 0) {
 						int cardResources = stats.getResource();
 						int removedResources = (int) (cardResources * 0.05);
 						card.setResources(cardResources - removedResources);
@@ -99,6 +103,8 @@ public class FightModal extends Modal {
 				
 					hideFightSetup();
 				
+					//Shows the results
+					showResults();
 				}
 			});
 		
@@ -115,8 +121,74 @@ public class FightModal extends Modal {
 			content.add(holder);
 	}
 	
+	/**
+	 * This will remove the fight setup content from the panel
+	 */
 	public void hideFightSetup() {
+		content.removeAll();
+		revalidate();
+		repaint();
+	}
+	
+	
+	public void showResults() {
+		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 		
+		JLabel title = new JLabel("Results");
+		title.setFont(new Font("Arial", Font.BOLD, 18));
+		title.setAlignmentX(Component.CENTER_ALIGNMENT);
+		content.add(title);
+		
+		JLabel result = new JLabel();
+		result.setFont(new Font("Arial", Font.BOLD, 22));
+		result.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		JPanel stats = new JPanel();
+		stats.setLayout(new BoxLayout(stats, BoxLayout.Y_AXIS));
+		stats.setBackground(modalColor);
+		
+		if (defenseSurvivors == 0) { //Offense won
+			content.setBackground(new Color(0, 204, 0)); //Change the backdrop to green
+			
+			result.setText("You Won!");
+			
+			JLabel troops = new JLabel("\n\nTroops Alive: " + offenseSurvivors);
+			troops.setFont(new Font("Arial", Font.BOLD, 18));
+			troops.setAlignmentX(Component.CENTER_ALIGNMENT);
+			stats.add(troops);
+			
+			JLabel enemy = new JLabel("\nEnemy Dead: " + defenseDead);
+			enemy.setFont(new Font("Arial", Font.BOLD, 22));
+			enemy.setAlignmentX(Component.CENTER_ALIGNMENT);
+			stats.add(enemy);
+			
+			JLabel resources = new JLabel("\nResources Gained: ");
+			resources.setFont(new Font("Arial", Font.BOLD, 22));
+			resources.setAlignmentX(Component.CENTER_ALIGNMENT);
+			stats.add(resources);
+			
+			JLabel population = new JLabel("\nPopulation Gained: ");
+			population.setAlignmentX(Component.CENTER_ALIGNMENT);
+			population.setFont(new Font("Arial", Font.BOLD, 22));
+			
+			stats.setBackground(new Color(0, 204, 0));
+		} else {
+			result.setText("You Lost!");
+			
+			JLabel troops = new JLabel("\n\nTroops Alive: " + offenseSurvivors);
+			troops.setAlignmentX(Component.CENTER_ALIGNMENT);
+			troops.setFont(new Font("Arial", Font.BOLD, 22));
+			stats.add(troops);
+			
+			JLabel enemy = new JLabel("\nEnemy Dead: " + defenseDead);
+			enemy.setAlignmentX(Component.CENTER_ALIGNMENT);
+			enemy.setFont(new Font("Arial", Font.BOLD, 22));
+			stats.add(enemy);
+		}
+		content.add(result);
+		content.add(stats);
+		
+		//content.setBackground(new Color());
 	}
 	
 	/**

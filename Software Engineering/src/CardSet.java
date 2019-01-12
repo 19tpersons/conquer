@@ -63,6 +63,7 @@ public class CardSet extends JPanel {
 		JPanel moveRight = new JPanel(); //This is the button that will show the next three cards in the set
 		moveRight.setPreferredSize(new Dimension(50, 150));
 		moveRight.setBackground(Color.RED);
+		//moveRight.add(new JLabel(new ImageIcon(U.getFile("right_arrow.png"))));
 		moveRight.addMouseListener(new CardMoveRight());
 		rightPanel.add(moveRight);
 

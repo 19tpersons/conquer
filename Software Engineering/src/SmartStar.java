@@ -23,7 +23,9 @@ public class SmartStar extends JPanel{
 					enemy.setModal(new Modal("Display Error", "There are no known planets in this system."));
 					return;
 				} else if (set.calculateTroops() == 0 && enemy.getStats().getStage() == 3) {
-					enemy.setModal(new Modal("Fight Error", "We can't fight a planet with no enemy troop!"));
+					enemy.setModal(new Modal("Fight Error", "We can't in a solar system with no enemy troop!"));
+					return;
+				} else if (stats == enemy.getStats()) { //If it's this player's turn dont open up!
 					return;
 				} else {
 					enemy.setModal(new BackDropModal(set, stats.getColor().brighter()));

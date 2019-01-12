@@ -31,6 +31,8 @@ public class RootGameControl extends JPanel {
 			User user = new User(width, height, playerColors[i], this);
 			this.users[i] =  user;//Creates a new User.
 			user.showPane();
+			
+			//This will move the game ahead two turns so that each player already has a planet and solar system
 			user.getStats().getTurnControl().getCard(); //Give the player an inital solar system
 			user.hideModal();
 			user.getStats().getTurnControl().getCard(); //Give the player an inital planet
