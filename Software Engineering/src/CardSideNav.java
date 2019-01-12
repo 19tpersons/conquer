@@ -10,10 +10,6 @@ import javax.swing.border.EmptyBorder;
  *
  */
 public class CardSideNav extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2773603889849176996L;
 	private PlayerStats stats;
 	private JPanel disp = new JPanel(); //This is the display for the information
 	

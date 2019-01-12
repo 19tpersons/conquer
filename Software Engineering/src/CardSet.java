@@ -15,10 +15,6 @@ import java.awt.event.*;
  *
  */
 public class CardSet extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4401846528038004220L;
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Card solar; //The solar system!
 	private Color bgColor;

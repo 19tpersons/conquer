@@ -12,10 +12,6 @@ import javax.swing.event.ChangeListener;
  */
 
 public class AddSoldiersModal extends Modal {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5936424201225481384L;
 	private static int width = 300;
 	private static int height = 200;
 	private JPanel content;

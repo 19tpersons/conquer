@@ -10,10 +10,6 @@ import javax.swing.border.EmptyBorder;
  * @author DAT Software Engineering
  */
 public class CardInfoModal extends Modal {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1708127562896975292L;
 	private Image icon;
 	private static int height = 250;
 	private static int width = 500;

@@ -7,10 +7,6 @@ import javax.swing.*;
  *
  */
 public class ModifierModal extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8428718840717721190L;
 
 	public ModifierModal() {
 		

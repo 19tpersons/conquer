@@ -15,10 +15,6 @@ import javax.swing.*;
  */
 
 public class Card extends JPanel implements Cloneable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5668396702701758076L;
 	//General Stats about card
 	private String title = ""; //The card title
 	private String type = ""; //The type of card

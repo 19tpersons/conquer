@@ -9,10 +9,6 @@ import java.util.Random;
  *
  */
 public class Backdrop extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4483812088595058593L;
 	private int width, height;
 	private static ArrayList<SmartStar> smartStars = new ArrayList<SmartStar>();
 	

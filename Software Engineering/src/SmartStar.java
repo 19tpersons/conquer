@@ -10,10 +10,6 @@ import java.awt.event.MouseEvent;
  */
 
 public class SmartStar extends JPanel{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4201891860156672889L;
 	private Color color = new Color(255, 102, 0);
 	
 	public SmartStar(CardSet set, PlayerStats stats) {

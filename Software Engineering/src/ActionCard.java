@@ -9,10 +9,6 @@ import javax.swing.*;
  *
  */
 public class ActionCard extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5990604166151572139L;
 	private String sub_type, title, description;
 	private int popChange; //This is the positive or negative number of population the action will cause
 	private double actionPercentChange;

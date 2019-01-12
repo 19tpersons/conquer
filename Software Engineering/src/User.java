@@ -9,9 +9,6 @@ import java.awt.event.MouseEvent;
  *
  */
 public class User extends JPanel {
-	/**
-	 * 
-	 */
 	private int width, height;
 	private PlayerStats stats;
 	private GamePane pane;

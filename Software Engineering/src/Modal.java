@@ -12,10 +12,6 @@ import javax.swing.*;
  */
 
 public class Modal extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6541109783864718992L;
 	private int modalWidth = 300;
 	private int modalHeight = 225;
 	private JPanel content;

@@ -13,10 +13,6 @@ import javax.swing.event.ChangeListener;
  */
 
 public class FightModal extends Modal {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1910040771383050677L;
 	private int width = 400;
 	private int height = 350;
 	private JPanel content;

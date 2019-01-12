@@ -11,10 +11,7 @@ import javax.swing.*;
  */
 public class StartForGame extends JPanel implements ActionListener
 {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6399817788052577299L;
+
 
 	/**
      * A main routine allows this class to be run as an application.
