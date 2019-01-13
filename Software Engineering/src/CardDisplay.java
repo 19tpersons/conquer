@@ -136,4 +136,13 @@ public class CardDisplay extends JPanel {
 			return sets.get(setIdx).getRandomCard();
 		}
 	}
+	
+	/**
+	 * This will grow each planets population
+	 */
+	public void growPop() {
+		for (int i = 0; i < sets.size(); i++) {
+			sets.get(i).growCardPops();
+		}
+	}
 }

@@ -139,6 +139,7 @@ public class CardDB {
 			}
 			newCard.setPop(population, changeRangeRate); //Set the population
 			newCard.setResources(resourceCount);
+			newCard.setPopChangeRate(U.startPopChangeRate);
 			
 			newCard.defineBack(); //Since, the population changed, we need to update the back of the card.
 			

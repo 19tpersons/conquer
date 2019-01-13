@@ -27,6 +27,10 @@ public class BackDropModal extends Modal {
 		int y = U.height / 2 - height / 2;
 		content.setBounds(x, y, width, height);
 		content.setBackground(playerColor);
+		content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+		FlowLayout flow = new FlowLayout();
+		flow.setVgap(0);
+		content.setLayout(flow); //Gets ride of vertical gap.
 		
 		set.clearSetIcon();
 		set.displayCards();

@@ -57,9 +57,9 @@ public class CardInfoModal extends Modal {
 		words.add(header);
 		
 		
-		JTextArea desc = new JTextArea(title + ":\n\n");
+		JTextArea desc = new JTextArea(title + ":\n");
 		desc.append(description + "\n\n");
-		desc.append("Native Populution: " + population + "M\n\n");
+		desc.append("Native Populution: " + population + "M\n");
 		desc.append("Resouces: " + resources);
 		desc.setEditable(false);
 		desc.setLineWrap(true);

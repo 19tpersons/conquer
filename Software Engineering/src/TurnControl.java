@@ -205,6 +205,14 @@ public class TurnControl extends JPanel{
 			 change *= -1;
 			 card.removePop(change);
 		 }
+		 try {
+			card.defineBack();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		 
+		 //Update the back of the card. 
 		 stats.getUser().calculatePop();
 		 this.nav.updateStats();
 

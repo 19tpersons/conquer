@@ -132,6 +132,7 @@ public class FightModal extends Modal {
 	
 	
 	public void showResults() {
+		repaint();
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 		
 		JLabel title = new JLabel("Results");
@@ -140,50 +141,38 @@ public class FightModal extends Modal {
 		content.add(title);
 		
 		JLabel result = new JLabel();
-		result.setFont(new Font("Arial", Font.BOLD, 22));
+		result.setFont(new Font("Arial", Font.BOLD, 58));
 		result.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JPanel stats = new JPanel();
-		stats.setLayout(new BoxLayout(stats, BoxLayout.Y_AXIS));
+		JTextArea stats = new JTextArea();
+		stats.setFont(new Font("Arial", Font.BOLD, 26));
+		stats.setEditable(false);
+		stats.setWrapStyleWord(true);
+		stats.setLineWrap(true);
 		stats.setBackground(modalColor);
+		stats.setMargin(new Insets(0,20,0,0));
 		
 		if (defenseSurvivors == 0) { //Offense won
 			content.setBackground(new Color(0, 204, 0)); //Change the backdrop to green
 			
 			result.setText("You Won!");
 			
-			JLabel troops = new JLabel("\n\nTroops Alive: " + offenseSurvivors);
-			troops.setFont(new Font("Arial", Font.BOLD, 18));
-			troops.setAlignmentX(Component.CENTER_ALIGNMENT);
-			stats.add(troops);
+			stats.append("\n\nTroops Alive: " + offenseSurvivors);
 			
-			JLabel enemy = new JLabel("\nEnemy Dead: " + defenseDead);
-			enemy.setFont(new Font("Arial", Font.BOLD, 22));
-			enemy.setAlignmentX(Component.CENTER_ALIGNMENT);
-			stats.add(enemy);
+			stats.append("\nEnemy Dead: " + defenseDead);
 			
-			JLabel resources = new JLabel("\nResources Gained: ");
-			resources.setFont(new Font("Arial", Font.BOLD, 22));
-			resources.setAlignmentX(Component.CENTER_ALIGNMENT);
-			stats.add(resources);
+			stats.append("\nResources Gained: ");
 			
-			JLabel population = new JLabel("\nPopulation Gained: ");
-			population.setAlignmentX(Component.CENTER_ALIGNMENT);
-			population.setFont(new Font("Arial", Font.BOLD, 22));
+			stats.append("\nPopulation Gained: ");
 			
 			stats.setBackground(new Color(0, 204, 0));
 		} else {
 			result.setText("You Lost!");
 			
-			JLabel troops = new JLabel("\n\nTroops Alive: " + offenseSurvivors);
-			troops.setAlignmentX(Component.CENTER_ALIGNMENT);
-			troops.setFont(new Font("Arial", Font.BOLD, 22));
-			stats.add(troops);
-			
-			JLabel enemy = new JLabel("\nEnemy Dead: " + defenseDead);
-			enemy.setAlignmentX(Component.CENTER_ALIGNMENT);
-			enemy.setFont(new Font("Arial", Font.BOLD, 22));
-			stats.add(enemy);
+			stats.append("\n\nTroops Alive: " + offenseSurvivors);
+		
+			stats.append("\nEnemy Dead: " + defenseDead);
+
 		}
 		content.add(result);
 		content.add(stats);

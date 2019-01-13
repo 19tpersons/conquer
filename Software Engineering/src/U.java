@@ -16,7 +16,8 @@ public class U {
 	
 	//These statistics are used in the balancing of the game.
 	public static final int planetMinPop = 50; //This is the minimum amount of population a planet needs.
-	public static final int soldierContributionCost = 1; //It cost x resources per 10 million added troops.
+	public static final int soldierContributionCost = 10; //It cost x resources per 10 million added troops.
+	public static final double startPopChangeRate = 0.003;
 	
 	/**
 	 * This method will calculate the dynamic size for any element when given the window's width/height and the percent

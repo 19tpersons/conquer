@@ -276,4 +276,22 @@ public class CardSet extends JPanel {
 		int cardIdx = rand.nextInt(cards.size());
 		return cards.get(cardIdx);
 	}
+	
+	/**
+	 * This will loop through each card and add population to the card
+	 */
+	public void growCardPops() {
+		for (int i = 0; i < cards.size(); i++) {
+			Card temp = cards.get(i);
+			int growth = (int) (temp.getPopChangeRate() * temp.getPop()); //Calculates the growth for this turn
+			temp.addPop(growth); //Adds that growth
+			
+			try {
+				temp.defineBack();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} //Update the back of the card
+		}
+	}
 }

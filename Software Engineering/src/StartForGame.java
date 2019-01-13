@@ -59,7 +59,7 @@ public class StartForGame extends JPanel implements ActionListener
     			}
     			
     			//These are the colors that each player will have
-    			Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 0)};
+    			Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 51)};
     			
     			//This will start the game.
     			RootGameControl root = new RootGameControl(2, colors);

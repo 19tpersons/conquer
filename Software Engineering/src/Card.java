@@ -24,6 +24,7 @@ public class Card extends JPanel implements Cloneable {
 	private String imageLoc;
 	private String sub_type = "";
 	private double subTypeRate = 0.0;
+	private double popChangeRate = 0.0; //This is the rate at which the population for a planet will change every turn
 	private int troopsInArmy = 0; //The current amount of troops this planet has contributed to the army.
 	private double defensiveBonus = 0;
 	
@@ -75,6 +76,13 @@ public class Card extends JPanel implements Cloneable {
 	 * @throws IOException 
 	 */
 	public void defineBack() throws IOException{
+		//If the card has already defined this
+		if (bottomInfo != null) {
+			remove(bottomInfo);
+			revalidate();
+			repaint();
+		}
+		
 		bottomInfo = new JPanel();
 		
 		//This section defines the contents for the back of the card
@@ -276,7 +284,13 @@ public class Card extends JPanel implements Cloneable {
 		this.population = (int) newPop;
 		//This section is used to calculate the population change.
 		Random rand = new Random();
-		int popChange = rand.nextInt((int) (this.population * changeRangeRate)); //This is the number that will be either added or subtracted from the default population of the planet/solar system.
+		int popChangeMax = (int) (this.population * changeRangeRate);
+		int popChange; //The amount the population of a given card will change for this game.
+		if (popChangeMax == 0) {
+			popChange = 0;
+		} else {
+			popChange = rand.nextInt((int) (popChangeMax)); //This is the number that will be either added or subtracted from the default population of the planet/solar system.
+		}
 		int operator = rand.nextInt(2); //zero is plus, one is negative
 		if (operator == 0) {
 			this.population += popChange;
@@ -363,5 +377,21 @@ public class Card extends JPanel implements Cloneable {
 	 */
 	public double getDefensiveBonus() {
 		return this.defensiveBonus;
+	}
+	
+	/**
+	 * This will return the planet's population growth rate
+	 * @return the growth rate
+	 */
+	public double getPopChangeRate() {
+		return this.popChangeRate;
+	}
+	
+	/**
+	 * This will set the planet's population growth rate
+	 * @param rate the new rate
+	 */
+	public void setPopChangeRate(double rate) {
+		this.popChangeRate = rate;
 	}
 }

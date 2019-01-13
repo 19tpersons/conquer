@@ -94,6 +94,7 @@ public class User extends JPanel {
 	public void startTurn() {
 		//Several things may have happened between the last time this player had a turn, so we need to update some things.
 		this.getPane().getBackDrop().refreshSmartStars(); //The map may have changed
+		this.growPop(); //Each turn the population for each planet will grow.
 		this.calculatePop(); //There may have been a war
 		this.calculateTroops();
 		stats.nextStage(); //Right now the game thinks it's not the player's turn.
@@ -144,5 +145,12 @@ public class User extends JPanel {
 	 */
 	public Card getRandomCard() {
 		return this.getPane().getHud().getCardDisplay().getRandomCard();
+	}
+	
+	/**
+	 * Every turn the population for each planet will grow.
+	 */
+	public void growPop() {
+		this.getPane().getHud().getCardDisplay().growPop();
 	}
 }
