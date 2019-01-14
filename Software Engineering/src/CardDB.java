@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * This is a class that parses a CSV file containing the planets, solar systems, and actions. The class
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 public class CardDB {
 	private String file = "cardDB.csv";
+	private Random rand = new Random(); //Used in the program to help randomize the deck.
 	
 	private ArrayList<ArrayList<String>> rows = new ArrayList<ArrayList<String>>(); //This an array list of the individual rows in the table
 	
@@ -108,7 +110,14 @@ public class CardDB {
 		
 		ActionCard newCard = new ActionCard(sub_type, popChange, popChangeRate);
 		newCard.makeModal(title, description, image_location);
-		actions.add(newCard); //adds the news created action to an array
+		
+		//We want to randomize the order
+		if (actions.size() > 0) {
+			int position = rand.nextInt(actions.size());
+			actions.add(position, newCard);
+		} else {
+			actions.add(newCard); //adds the news created action to an array
+		}
 	}
 
 	/**
@@ -150,9 +159,19 @@ public class CardDB {
 		
 		//This section finishes up the method by adding the new Card to its arrayList
 		if (type.equals("planet")) {
-			planets.add(newCard); //adds the news created planet to an array
+			if (planets.size() > 0) { //Puts the card in a random position.
+				int position = rand.nextInt(planets.size());
+				planets.add(position, newCard);
+			} else {
+				planets.add(newCard); //adds the news created planet to an array
+			}
 		}else { //Must be a solar system
-			solarSystems.add(newCard);
+			if (solarSystems.size() > 0) { //Puts the card in a random position.
+				int position = rand.nextInt(solarSystems.size());
+				solarSystems.add(position, newCard);
+			} else {
+				solarSystems.add(newCard);
+			}
 		}
 	}
 	
