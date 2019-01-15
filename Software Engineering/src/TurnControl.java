@@ -28,7 +28,7 @@ public class TurnControl extends JPanel{
 		this.disp = disp;
 		this.nav = nav;
 		this.user = stats.getUser();
-		stats.setTurnContro(this);
+		stats.setTurnControl(this);
 		
 		// This will finish the turn and allow the other player to take their turnStage
 		next = new JButton("Next Turn");
@@ -134,6 +134,7 @@ public class TurnControl extends JPanel{
 		for (int i = 0; i < sets.size(); i++) {
 			if (sets.get(i).getCardNumber() == 0) {
 				sets.get(i).addCard(card);
+				stats.setPrevPlanet(card);
 				return;
 			}
 		}
@@ -159,6 +160,7 @@ public class TurnControl extends JPanel{
 			tmp.setBackground(stats.getColor());
 			
 			stats.addCardSet(tmp);
+			stats.setPrevSolar(tmp);
 			disp.addClearIconList(stats.sets.size() - 1); //This will add the listener to the newest solar system card
 			disp.refreshSets();
 			

@@ -37,6 +37,8 @@ public class RootGameControl extends JPanel {
 			user.hideModal();
 			user.getStats().getTurnControl().getCard(); //Give the player an inital planet
 			user.hideModal();
+			
+			user.setModal(new StartModal(user.getStats()));
 		}
 		
 	}

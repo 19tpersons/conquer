@@ -4,7 +4,6 @@ import java.util.ArrayList;
 /**
  * This class holds all of the data for a user.
  * @author DAT Software Engineering
- * @date 12.31.18
  *
  */
 
@@ -15,9 +14,11 @@ public class PlayerStats {
 	private int resourceCount = 0;
 	private int turnStage = -1;
 	private Color playerColor;
-	private User user;
-	public ArrayList<CardSet> sets = new ArrayList<CardSet>();
-	private TurnControl turnControl;
+	private User user; //The current user.
+	public ArrayList<CardSet> sets = new ArrayList<CardSet>(); //The solar systems.
+	private TurnControl turnControl; //The class that controls a turn
+	private CardSet prevSolar; //These are the last cards' to be added to the deck.
+	private Card prevPlanet; 
 	
 	/**
 	 * This is the default constructor
@@ -136,6 +137,11 @@ public class PlayerStats {
 		return turnStage;
 	}
 	
+	/**
+	 * This will return the actual names of the stages not just their number
+	 * @param niceNames Should it return the names
+	 * @return A name of a stage.
+	 */
 	public String getStage(boolean niceNames) {
 		switch (turnStage) {
 			case 1:
@@ -167,7 +173,7 @@ public class PlayerStats {
 	}
 	
 	/**
-	 * This will add another card set to the arraylist
+	 * This will add another CardSet (i.e. solar system) to the arraylist
 	 * @param set the new set to be added
 	 */
 	public void addCardSet(CardSet set) {
@@ -209,7 +215,39 @@ public class PlayerStats {
 	 * This will set the user's turn control object
 	 * @param control
 	 */
-	public void setTurnContro(TurnControl control) {
+	public void setTurnControl(TurnControl control) {
 		this.turnControl = control;
+	}
+	
+	/**
+	 * This will return the last planet to be added to the player's deck.
+	 * @return A planet card.
+	 */
+	public Card getPrevPlanet() {
+		return this.prevPlanet;
+	}
+	
+	/**
+	 * This will make the last card to have been added to the player's deck this card.
+	 * @param planet The new card
+	 */
+	public void setPrevPlanet(Card planet) {
+		this.prevPlanet = planet;
+	}
+	
+	/**
+	 * This will return the last solar system to be added to the player's deck.
+	 * @return A solar system card.
+	 */
+	public CardSet getPrevSolar() {
+		return this.prevSolar;
+	}
+	
+	/**
+	 * This will set the last solar system to be added to the player's deck.
+	 * @param solar The new set.
+	 */
+	public void setPrevSolar(CardSet solar) {
+		this.prevSolar = solar;
 	}
 }

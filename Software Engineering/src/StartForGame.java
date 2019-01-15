@@ -74,11 +74,6 @@ public class StartForGame extends JPanel implements ActionListener
        });
        buttonBar.add(button);
        
-       //This will load a previous game
-       button = new JButton("Load Game");
-       button.addActionListener(this);
-       buttonBar.add(button);
-       
        //This will load a setting modal
        button = new JButton("Settings");
        button.addActionListener(this);
@@ -110,11 +105,7 @@ public class StartForGame extends JPanel implements ActionListener
    public void actionPerformed(ActionEvent evt) {
 
       String command = evt.getActionCommand();
-      if (command.equals("Load Game")) {
-         JOptionPane.showMessageDialog(this,
-             "This is the button that will load the game.");
-      }
-      else if (command.equals("Settings")) {
+      if (command.equals("Settings")) {
          JOptionPane.showMessageDialog(this,
              "This is the button that will show the settings.");
       }
