@@ -87,9 +87,9 @@ public class ActionCard extends JPanel {
 	 * @return the cloned action card
 	 */
 	public ActionCard clone() {
-		ActionCard temp = new ActionCard(this.sub_type, this.popChange, this.actionPercentChange);
-		temp.makeModal(title, description, image_location);
-		return temp;
+		ActionCard card = new ActionCard(this.sub_type, this.popChange, this.actionPercentChange);
+		card.makeModal(title, description, image_location);
+		return card;
 	}
 	
 }

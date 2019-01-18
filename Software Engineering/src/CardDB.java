@@ -165,7 +165,7 @@ public class CardDB {
 			} else {
 				planets.add(newCard); //adds the news created planet to an array
 			}
-		}else { //Must be a solar system
+		} else { //Must be a solar system
 			if (solarSystems.size() > 0) { //Puts the card in a random position.
 				int position = rand.nextInt(solarSystems.size());
 				solarSystems.add(position, newCard);
@@ -181,17 +181,17 @@ public class CardDB {
 	 */
 	public static ActionCard getAction() {
 		if (actions.size() == 0) { //If there are no un-drawn action cards, re-draw some.
-			ActionCard temp = usedActions.get(aCount).clone();
+			ActionCard card = usedActions.get(aCount).clone();
 			aCount++;
 			if (aCount >= usedActions.size()) {
 				aCount = 0;
 			}
-			return temp;
+			return card;
 		} else {
-			ActionCard temp = actions.get(0);
-			usedActions.add(temp);
+			ActionCard card = actions.get(0);
+			usedActions.add(card);
 			actions.remove(0);
-			return temp; 
+			return card; 
 		}
 	}
 	
@@ -201,18 +201,18 @@ public class CardDB {
 	 */
 	public static Card getPlanetCard() {
 		if (planets.size() == 0) { //If all of the planet cards have already been played 
-			Card temp = usedPlanets.get(pCount).clone(); //get the used card
+			Card card = usedPlanets.get(pCount).clone(); //get the used card
 
 			pCount++;
 			if (pCount >= usedPlanets.size()) {
 				pCount = 0;
 			}
-			return temp;
+			return card;
 		} else { //If there are un-drawn cards, use those.
-			Card temp = planets.get(0);
-			usedPlanets.add(temp);
+			Card card = planets.get(0).clone();
+			usedPlanets.add(card);
 			planets.remove(0);
-			return temp;
+			return card;
 		}
 	}
 

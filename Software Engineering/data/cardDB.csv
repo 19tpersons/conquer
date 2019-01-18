@@ -5,24 +5,24 @@ idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_c
 4,solar,null,Leafor System,Life is the most precious thing around here,5,null,0.03,Leafor System.png,500
 5,solar,null,Garval System,Everything you do is for the homeworld,5,null,0.03,Garval System.png,500
 6,solar,null,Bargeme System,Everyone should have government issued land,5,null,0.03,Bargeme System.png,500
-7,action,null,Black Hole,At least something takes care of the garbage in the universe,-500,null,0.03,Black Hole.png,null
-8,action,null,Core Drilling Explosion,I guess you mined a little too much,-500,null,0.03,Core Drilling Explosion.png,null
-9,action,null,Dead Planet,Life just disappeared,-500,null,0.03,Dead Planet.png,null
-10,action,null,Fire Storm,Save the trees,-500,null,0.03,Fire Storm.png,null
-11,action,null,gas hurricane,As long as you are not near this thing you will be fine,-500,null,0.03,gas hurricane.png,null
-12,action,null,Hard Baked,Try not to waste too much water,-500,null,0.03,Hard Baked.png,null
-13,action,null,Ice Age,Everyone there are cold hearted,-500,null,0.03,Ice Age.png,null
-14,action,null,Lighting Storm,Magnetic storms can get nasty,-500,null,0.03,Lighting Storm.png,null
-15,action,null,Nucular Explosion,Nucular power is the best way to get energy,-500,null,0.03,Nucular Explosion.png,null
-16,action,null,Nucular Fission,Your planet became a star now there's energy,-500,null,0.03,Nucular Fission.png,null
-17,action,null,Over Exposure,One to many trips close to the star,-500,null,0.03,Over Exposure.png,null
-18,action,null,Plasma Fire,Have fun trying to put this one out,-500,null,0.03,Plasma Fire.png,null
-19,action,null,Super Iodine Explosion,Iodide explosives gone wrong,-500,null,0.03,Super Iodine Explosion.png,null
-20,action,null,Super Nova,Lots and lots of energy,-500,null,0.03,Super Nova.png,null
-21,action,null,Super Novo,Am I drunk of is the air on fire?,-500,null,0.03,Super Novo.png,null
-22,action,null,Time Explosion,How strange that explosion seemed to have happened in the future...,-500,null,0.03,Time Explosion.png,null
-23,action,null,Total Core Meltdown,Too much lava not enough rock,600,null,0.03,Total Core Meltdown.png,null
-24,planet,null,Planet Gergen,Known for its high amount of gasses,500,null,0.03,Planet Gregren.png,300
-25,planet,null,Planet Lightner,Perfect place for a colony,600,null,0.03,Planet Lightner.png,300
-26,planet,null,Planet Narges,A bit cold but has a great light show,500,null,0.03,Planet Narges.png,300
-27,planet,null,Planet Sistene,Named for its heavenly look,600,null,0.03,Planet Sistene.png,300
+7,action,null,Black Hole,At least something takes care of the garbage in the universe,-1300,null,0.03,Black Hole.png,null
+8,action,null,Core Drilling Explosion,I guess you mined a little too much,-1300,null,0.03,Core Drilling Explosion.png,null
+9,action,null,Dead Planet,Life just disappeared,-1300,null,0.03,Dead Planet.png,null
+10,action,null,Fire Storm,Save the trees,-1300,null,0.03,Fire Storm.png,null
+11,action,null,gas hurricane,As long as you are not near this thing you will be fine,-1300,null,0.03,gas hurricane.png,null
+12,action,null,Hard Baked,Try not to waste too much water,-1300,null,0.03,Hard Baked.png,null
+13,action,null,Ice Age,Everyone there are cold hearted,-1300,null,0.03,Ice Age.png,null
+14,action,null,Lighting Storm,Magnetic storms can get nasty,-1300,null,0.03,Lighting Storm.png,null
+15,action,null,Nucular Explosion,Nucular power is the best way to get energy,-1300,null,0.03,Nucular Explosion.png,null
+16,action,null,Nucular Fission,Your planet became a star now there's energy,-900,null,0.03,Nucular Fission.png,null
+17,action,null,Over Exposure,One to many trips close to the star,-900,null,0.03,Over Exposure.png,null
+18,action,null,Plasma Fire,Have fun trying to put this one out,-900,null,0.03,Plasma Fire.png,null
+19,action,null,Super Iodine Explosion,Iodide explosives gone wrong,-900,null,0.03,Super Iodine Explosion.png,null
+20,action,null,Super Nova,Lots and lots of energy,-900,null,0.03,Super Nova.png,null
+21,action,null,Super Novo,Am I drunk or is the air on fire?,-900,null,0.03,Super Novo.png,null
+22,action,null,Time Explosion,How strange that explosion seemed to have happened in the future...,-900,null,0.03,Time Explosion.png,null
+23,action,null,Total Core Meltdown,Too much lava not enough rock,6000,null,0.03,Total Core Meltdown.png,null
+24,planet,null,Planet Gergen,Known for its high amount of gasses,5000,null,0.03,Planet Gregren.png,300
+25,planet,null,Planet Lightner,Perfect place for a colony,7000,null,0.03,Planet Lightner.png,300
+26,planet,null,Planet Narges,A bit cold but has a great light show,3000,null,0.03,Planet Narges.png,300
+27,planet,null,Planet Sistene,Named for its heavenly look,6000,null,0.03,Planet Sistene.png,300

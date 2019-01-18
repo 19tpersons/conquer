@@ -179,23 +179,21 @@ public class TurnControl extends JPanel{
 		 this.user.setModal(action.getModal());
 		 
 		 //Choose a system
-		 //This section is used to catalog the probabilities of the action happening to any given CardSet
-		 ArrayList<Card> cardSetTmp = new ArrayList<Card>(); //This is sent into the getSubTypeCard method
-		 HashMap<Card, CardSet> map = new HashMap<Card, CardSet>(); //This is used to map the returned value
+		 HashMap<Card, CardSet> map = new HashMap<Card, CardSet>(); //This is used to map a solar card back to its respective CardSet
+		 ArrayList<Card> solarCards = new ArrayList<Card>(); //Make an array of solar cars
 		 for (int i = 0; i < sets.size(); i++) {
-			 if (sets.get(i).getCardNumber() > 0) {
-				 Card solar = sets.get(i).getSolar();
-				 cardSetTmp.add(solar);
-				 map.put(solar, sets.get(i));
+			 if (sets.get(i).getCardNumber() > 0) { //Used to ensure only solar systems with cards can be chosen
+				 Card solarCard = sets.get(i).getSolar();
+			 	solarCards.add(solarCard);
+			 	map.put(solarCard, sets.get(i));
 			 }
-		 }
-		 
-
-		 Card index = this.getSubTypeCard(cardSetTmp, action.getSubType());
-		 CardSet cardSet = map.get(index);
+			 
+		 } 
+		 Card chosenSystemIdx = this.getSubTypeCard(solarCards, action.getSubType()); //This will act as an index to find the correct solar system
+		 CardSet chosenSystem = map.get(chosenSystemIdx); //This is the system the action will effect.
 		 
 		 //Choose a card from the system
-		 ArrayList<Card> a = cardSet.getCards();
+		 ArrayList<Card> a = chosenSystem.getCards();
 		 String b = action.getSubType();
 		 Card card = this.getSubTypeCard(a, b);
 		 
@@ -222,29 +220,36 @@ public class TurnControl extends JPanel{
 	 
 	/**
 	 * This is used by the system to get a random card with each card having a weighted probability
-	 * @param cards This is an arraylist of the type Card
+	 * @param cards This is an array of the type Card
 	 * @param sub_type This is the sub_type to compare each card to. It is used to check if the card has an added probability
 	 * @return The chosen card
 	 */
-	private Card getSubTypeCard(ArrayList<Card> cards, String sub_type) {
+	private Card getSubTypeCard(ArrayList<Card> cards, String sub_type) {		
 		 double[] cardProbs = new double[cards.size()]; //This will act as an account of each cardSet's probabilities
-		 double sum = 0;
+		 double endBoundary = 0;
 		 for (int i = 0; i < cards.size(); i++) {
 			 //The sets sub_type
 			 Card card = cards.get(i);
 			 String subType = card.getSubType();
-			 if (subType.equals(sub_type)) {
-				 cardProbs[i] = 1 + card.getSubTypeRate();
+			 double previousBoundary;
+			 if (i == 0) { //This will get the previous cards ending boudary
+				 previousBoundary = 0; 
 			 } else {
-				 cardProbs[i] = 1; //Probability defaults to 1
+				 previousBoundary = cardProbs[i - 1];
 			 }
 			 
-			 sum += cardProbs[i];
+			 if (subType.equals(sub_type)) {
+				 cardProbs[i] = previousBoundary + 1 + card.getSubTypeRate();
+			 } else {
+				 cardProbs[i] = previousBoundary + 1; //Probability defaults to 1
+			 }
+			 
+			 endBoundary = cardProbs[i];
 		}
 		 
-		double choiceDouble = rand.nextDouble() * sum;
+		double choiceDouble = rand.nextDouble() * endBoundary;
 		for (int i = 0; i < cardProbs.length; i++) {
-			 if (i < choiceDouble && cardProbs[i] >= choiceDouble) {
+			 if (choiceDouble <= cardProbs[i]) {
 				 return cards.get(i);
 			 }
 		}

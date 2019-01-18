@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  */
 
-public class Card extends JPanel implements Cloneable {
+public class Card extends JPanel {
 	//General Stats about card
 	private String title = ""; //The card title
 	private String type = ""; //The type of card
@@ -127,7 +127,16 @@ public class Card extends JPanel implements Cloneable {
 	 */
 	public Card clone() { 
 	   try {
-		return new Card(this.title, this.description, this.imageLoc, this.type);
+		   Card card = new Card(title, description, imageLoc, type); //Initial card
+		   card.setPop(this.population);
+		   card.setResources(this.resources);
+		   card.setPopChangeRate(this.popChangeRate);
+		   if (!(this.sub_type.equals("") && this.subTypeRate != 0)) {
+			   card.setSubType(sub_type, subTypeRate);
+		   }
+		   card.defineBack(); //The back of the card needs to update its description.
+		   card.setPreferredSize(new Dimension(200,320));
+		   return card;
 	   } catch (IOException e) {
 		   e.printStackTrace();
 	   }
