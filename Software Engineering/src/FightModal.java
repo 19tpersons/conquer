@@ -22,7 +22,7 @@ public class FightModal extends Modal {
 	public FightModal(PlayerStats enemyStats, PlayerStats stats, Card card) {
 		//Sets up jpanel
 		super(400, 350);
-		setBackground(new Color(0,0,0,0));
+		setBackground(new Color(0,0,0,40));
 		setLayout(null);
 		
 		content = new JPanel();
@@ -45,7 +45,6 @@ public class FightModal extends Modal {
 			title.setFont(new Font("Arial", Font.BOLD, 18));
 			content.add(title);
 		
-		
 			//Initialize label
 			JLabel troopsToCommit = new JLabel();
 			troopsToCommit.setFont(new Font("Arial", Font.BOLD, 18));
@@ -53,8 +52,8 @@ public class FightModal extends Modal {
 		
 			JSlider slider = new JSlider(0, enemyStats.getArmySize(), 0); //From 0 to the population minus the minimum population that cannot be in the army.
 			slider.setPreferredSize(new Dimension(width - 30, 90));
-			slider.setMajorTickSpacing(100);
-			slider.setMinorTickSpacing(50);
+			slider.setMajorTickSpacing(250);
+			slider.setMinorTickSpacing(100);
 			slider.setPaintLabels(true);
 			slider.setPaintTicks(true);
 			slider.addChangeListener(new ChangeListener() {
@@ -69,7 +68,6 @@ public class FightModal extends Modal {
 			JLabel enemyTroops = new JLabel("Enemy Troops: " + card.getTroopContribution());
 			enemyTroops.setFont(new Font("Arial", Font.BOLD, 18));
 			enemyTroops.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
 		
 			JButton fight = new JButton("FIGHT!");
 			fight.setFont(new Font("Arial", Font.BOLD, 18));
@@ -100,9 +98,9 @@ public class FightModal extends Modal {
 					//Update stats
 					stats.getUser().updateSideNav();
 					enemyStats.getUser().updateSideNav();
-				
+		
 					hideFightSetup();
-				
+		
 					//Shows the results
 					showResults();
 				}
@@ -125,14 +123,20 @@ public class FightModal extends Modal {
 	 * This will remove the fight setup content from the panel
 	 */
 	public void hideFightSetup() {
-		content.removeAll();
+		remove(content);
 		revalidate();
 		repaint();
 	}
 	
 	
 	public void showResults() {
-		repaint();
+		content = new JPanel();
+		int x = U.width / 2 - width / 2; //Center the modal horz.
+		int y = U.height / 2 - height / 2; //Center the modal vert.
+		content.setBounds(x, y, width, height);
+		content.setBackground(modalColor);
+		content.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+		
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 		
 		JLabel title = new JLabel("Results");
@@ -177,6 +181,7 @@ public class FightModal extends Modal {
 		content.add(result);
 		content.add(stats);
 		
+		add(content);
 		//content.setBackground(new Color());
 	}
 	

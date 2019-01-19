@@ -25,6 +25,7 @@ public class StartForGame extends JPanel implements ActionListener
         
 		StartForGame start = new StartForGame();
 		window.setContentPane(start);
+		window.pack();
         window.setVisible(true);
         
     }
@@ -56,7 +57,7 @@ public class StartForGame extends JPanel implements ActionListener
     			} catch (FileNotFoundException e) {
     				// TODO Auto-generated catch block
     				e.printStackTrace();
-    			}
+    			} 
     			
     			//These are the colors that each player will have
     			Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 51)};

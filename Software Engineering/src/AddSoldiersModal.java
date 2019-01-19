@@ -19,7 +19,7 @@ public class AddSoldiersModal extends Modal {
 	public AddSoldiersModal(PlayerStats stats, Card card) {
 		//This sets up the modal
 		super(width, height);
-		setBackground(new Color(0,0,0,0));
+		setBackground(new Color(0,0,0,40));
 		setLayout(null);
 		
 		
@@ -41,9 +41,13 @@ public class AddSoldiersModal extends Modal {
 
 		
 		//Sets up the slider for the troop contributions
-		JSlider slider = new JSlider(0, card.getPop() - U.planetMinPop, 0); //From 0 to the population minus the minimum population that cannot be in the army.
-		slider.setMajorTickSpacing(100);
-		slider.setMinorTickSpacing(50);
+		int sliderMax = stats.getMaxArmySize() - stats.getArmySize();
+		if ((sliderMax * (U.soldierContributionCost / U.popUnitAmt)) > stats.getResource()) { //Make it so that the user cannot add more troops than they can afford
+			sliderMax = stats.getResource() / (U.soldierContributionCost / U.popUnitAmt);
+		}
+		JSlider slider = new JSlider(0, sliderMax, 0); //From 0 to the population minus the minimum population that cannot be in the army.
+		slider.setMajorTickSpacing(250);
+		slider.setMinorTickSpacing(100);
 		slider.setPreferredSize(new Dimension(width - 30, 60));
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
@@ -82,6 +86,9 @@ public class AddSoldiersModal extends Modal {
 		submit.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				int change = slider.getValue();
+		    	if ((change + stats.getArmySize()) > stats.getMaxArmySize()) { //If the user clicks the button multiple times in an attemp to add more soliders
+		    		return;
+		    	}
 				
 				//Adds soldiers
 				card.addTroops(change); //The amount of troops this planet is currently contributing to the army is now increased.	

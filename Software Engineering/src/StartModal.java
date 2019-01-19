@@ -72,7 +72,7 @@ public class StartModal extends Modal {
 		title.setFont(new Font("Arial", Font.BOLD, 22));
 		titlePanel.setBackground(new Color(255,153,0));
 		titlePanel.add(title);
-		JTextArea welcome = new JTextArea(60, 20);
+		JTextArea welcome = new JTextArea(12, 20);
 		welcome.setEditable(false);
 		welcome.setWrapStyleWord(true);
 		welcome.setLineWrap(true);

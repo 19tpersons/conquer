@@ -23,7 +23,7 @@ public class User extends JPanel {
 		
 		layered.setPreferredSize(new Dimension(width, height));
 		layered.setLayout(null);
-		layered.setBackground(Color.blue);
+		layered.setBackground(playerColor);
 		
 		this.stats = new PlayerStats(playerColor);
 		stats.setUser(this);

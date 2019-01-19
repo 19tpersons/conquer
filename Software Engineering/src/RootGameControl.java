@@ -66,9 +66,9 @@ public class RootGameControl extends JPanel {
 	 */
 	public void nextTurn() {
 		//If the player has 30,000 million (30 billion), then they have won!
-		/*if (users[userCount].getStats().getPopulation() >= 30000) {
+		if (users[userCount].getStats().getPopulation() >= 30000) {
 			System.exit(0);
-		}*/
+		}
 		
 		remove(users[userCount]); //Removes the current user from the display
 		

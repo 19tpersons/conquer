@@ -28,9 +28,10 @@ public class CardSideNav extends JPanel {
 		tmp.setHgap(0);
 		tmp.setVgap(0);
 		this.setLayout(tmp);
-		this.setBackground(new Color(0,0,0,0)); //Background clear
+		this.setBackground(stats.getColor()); //Background clear
 		this.setPreferredSize(new Dimension(width, height));
-		this.setBorder(BorderFactory.createEmptyBorder(height - 350, 0, 0, 0));
+		//this.setBorder(BorderFactory.createEmptyBorder(height - 350, 0, 0, 0));
+		this.add(Box.createRigidArea(new Dimension(width, height - 350)));
 		this.stats = stats;
 
 		//The current stage of the player's turn
