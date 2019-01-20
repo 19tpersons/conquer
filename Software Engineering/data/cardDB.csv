@@ -21,27 +21,27 @@ idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_c
 20,action,null,Super Nova,Lots and lots of energy,-500,null,0.03,Super Nova.png,null
 21,action,null,Super Novo,Am I drunk or is the air on fire?,-500,null,0.03,Super Novo.png,null
 22,action,null,Time Explosion,How strange that explosion seemed to have happened in the future...,-500,null,0.03,Time Explosion.png,null
-23,action,null,Total Core Meltdown,Too much lava not enough rock,-600,null,0.03,Total Core Meltdown.png,null
-24,planet,null,Planet Gergen,Known for its high amount of gasses,3500,null,0.03,Planet Gregren.png,250
-25,planet,null,Planet Lightner,Perfect place for a colony,3500,null,0.03,Planet Lightner.png,250
-26,planet,null,Planet Narges,A bit cold but has a great light show,3500,null,0.03,Planet Narges.png,250
-27,planet,null,Planet Sistene,Named for its heavenly look,3500,null,0.03,Planet Sistene.png,250
-28,planet,null,Planet Acere,I looks pink from space but on the surface it is all red,3500,null,0.03,Planet Acere.png,250
-29,planet,null,Planet Carbonic,Look at all the carbon in the atmosphere,3500,null,0.03,Planet Carbonic.png,250
-30,planet,null,Planet East Eggor,I hope there is water somewhere on the surface,3500,null,0.03,Planet East Eggor.png,250
-31,planet,null,Planet Eden,The perfect place to add to the empire's trophies,3500,null,0.03,Planet Eden.png,250
-32,planet,null,Planet Fetlink,Mostly covered in lava. Just be careful,3500,null,0.03,Planet Fetlink.png,250
-33,planet,null,Planet Garbonic,There is snow all over this planet,3500,null,0.03,Planet Garbonic.png,250
-34,planet,null,Planet Hearon,Hearon this planet is life.,3500,null,0.03,Planet Hearon.png,250
-35,planet,null,Planet Hogsworth,A very old planet but it will do the job,5000,null,0.03,Planet Hogsworth.png,250
-36,planet,null,Planet Ikeness,Named for its ink like look,5000,null,0.03,Planet Ikeness.png,250
-37,planet,null,Planet Mitter,Comes with a built in belt,5000,null,0.03,Planet Mitter.png,250
-38,planet,null,Planet Napaul,Has excess of oxygen everywhere,5000,null,0.03,Planet Napaul.png,250
-39,planet,null,Planet Networth,Has a built in planetary defence system,5000,null,0.03,Planet Networth.png,250
-40,planet,null,Planet Pluton,Rumored to have Plutonium at its core,5000,null,0.03,Planet Pluton.png,250
-41,planet,null,Planet Satiron,Semi-transparent planet,5000,null,0.03,Planet Satiron.png,250
-42,planet,null,Planet Scysm,It has its own moon have fun,5000,null,0.03,Planet Scysm.png,250
-43,planet,null,Planet Starstir,Glows from space. Hopefully it is  gold,7000,null,0.03,Planet Starstir.png,250
-44,planet,null,Planet Telepan,A few gas storms but nothing our shields can't handle,7000,null,0.03,Planet Telepan.png,250
-45,planet,null,Planet Zastron,Just a big rock. Hopefully the core is usable,1500,null,0.03,Planet Zastron.png,250
-46,planet,null,Planet Zerox,A very nice planet,1500,null,0.03,Planet Zerox.png,250
+23,action,null,Total Core Meltdown,Too much lava not enough rock,600,null,0.03,Total Core Meltdown.png,null
+24,planet,null,Planet Gergen,Known for its high amount of gasses,1400,null,0.05,Planet Gregren.png,450
+25,planet,null,Planet Lightner,Perfect place for a colony,1800,null,0.05,Planet Lightner.png,300
+26,planet,null,Planet Narges,A bit cold but has a great light show,1500,null,0.05,Planet Narges.png,300
+27,planet,null,Planet Sistene,Named for its heavenly look,1600,null,0.05,Planet Sistene.png,450
+28,planet,null,Planet Acere,I looks pink from space but on the surface it is all red,1300,null,0.05,Planet Acere.png,300
+29,planet,null,Planet Carbonic,Look at all the carbon in the atmosphere,1400,null,0.05,Planet Carbonic.png,300
+30,planet,null,Planet East Eggor,I hope there is water somewhere on the surface,1400,null,0.05,Planet East Eggor.png,300
+31,planet,null,Planet Eden,The perfect place to add to the empire's trophies,1600,null,0.05,Planet Eden.png,300
+32,planet,null,Planet Fetlink,Mostly covered in lava. Just be careful,1400,null,0.05,Planet Fetlink.png,300
+33,planet,null,Planet Garbonic,There is snow all over this planet,1450,null,0.05,Planet Garbonic.png,300
+34,planet,null,Planet Hearon,Hearon this planet is life.,1800,null,0.05,Planet Hearon.png,300
+35,planet,null,Planet Hogsworth,A very old planet but it will do the job,1600,null,0.05,Planet Hogsworth.png,300
+36,planet,null,Planet Ikeness,Named for its ink like look,1500,null,0.05,Planet Ikeness.png,300
+37,planet,null,Planet Mitter,Comes with a built in belt,1600,null,0.05,Planet Mitter.png,300
+38,planet,null,Planet Napaul,Has excess of oxygen everywhere,1600,null,0.05,Planet Napaul.png,300
+39,planet,null,Planet Networth,Has a built in planetary defence system,1750,null,0.05,Planet Networth.png,300
+40,planet,null,Planet Pluton,Rumored to have Plutonium at its core,1650,null,0.05,Planet Pluton.png,350
+41,planet,null,Planet Satiron,Semi-transparent planet,1600,null,0.05,Planet Satiron.png,300
+42,planet,null,Planet Scysm,It has its own moon have fun,1600,null,0.05,Planet Scysm.png,300
+43,planet,null,Planet Starstir,Glows from space. Hopefully it is gold,1600,null,0.05,Planet Starstir.png,300
+44,planet,null,Planet Telepan,A few gas storms but nothing our shields can't handle,1600,null,0.05,Planet Telepan.png,300
+45,planet,null,Planet Zastron,Just a big rock. Hopefully the core is usable,1200,null,0.05,Planet Zastron.png,650
+46,planet,null,Planet Zerox,A very nice planet,1600,null,0.05,Planet Zerox.png,300

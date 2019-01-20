@@ -52,6 +52,8 @@ public class CardButtonPanel extends JPanel {
 				if (stats.getResource() >= cost) {
 					stats.removeResources(cost);
 					card.setPopChangeRate(nextPopGrowthRateDouble);
+					card.addPop((int) (card.getPop() * nextPopGrowthRateDouble));
+					stats.getUser().calculatePop();
 					stats.getUser().updateSideNav();
 					popGrowthBtn.setText("Pop. Growth " + (PopulationGrowth.getNextRate(card.getPopChangeRate()) * 100) + "%");
 					nextPopGrowthPrice.setText("Price: " + PopulationGrowth.getGrowthPrice(card.getPop()));
