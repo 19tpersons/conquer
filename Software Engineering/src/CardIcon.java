@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -31,15 +33,85 @@ public class CardIcon extends JPanel{
 		//Gets rid of vertical gap
 		FlowLayout layout = new FlowLayout();
 		layout.setVgap(0);
+		layout.setHgap(0);
 		this.setLayout(layout);
 	}
 
 	public void planetSetUp(PlayerStats stats, Card card) {
 			CardButtonPanel buttonPanel = new CardButtonPanel(width, height, stats, card);
 		
+			buttonPanel.soldiersModal.addMouseListener(new MouseAdapter() {
+				public void mousePressed(MouseEvent evt) {
+					icon = history;
+					remove(buttonPanel);
+					revalidate();
+					repaint();
+				}
+			});
+			buttonPanel.getGeneral().addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent evt) {
+					if(!isComponentInPanel(buttonPanel)) { //Is the mouse even in the panel?
+						icon = null;
+						int enemyStage = RootGameControl.getCurUser().getStats().getStage();
+						//Cannot be this card's owner's turn, Must be the fight stage, and there must be soliders
+						if (stats.getStage() == -1 && enemyStage == 3 && card.getTroopContribution() > 0) {
+							buttonPanel.showFightPhase();
+						} else if (stats.getStage() == 2){
+							buttonPanel.showGeneral();
+						} else {
+							return;
+						}
+						add(buttonPanel);
+						revalidate();
+						repaint();
+					}
+				}
+				
+					public void mouseExited(MouseEvent evt) {
+						Point p = new Point(evt.getLocationOnScreen());
+						SwingUtilities.convertPointFromScreen(p, evt.getComponent());
+						if (evt.getComponent().contains(p)) { //Is the point inside of the panel still? This was added because I was having trouble with the parent calling this listener every time the mouse went from a child panel to the parent.
+							return;
+						} else {
+							buttonPanel.showGeneral();
+							buttonPanel.showFightPhase();
+							icon = history;
+							remove(buttonPanel);
+							repaint();
+							revalidate();
+						}
+					}
+			
+			});
+			
+			buttonPanel.getFightPhasePanel().addMouseListener(new MouseAdapter() {
+				public void mouseEntered(MouseEvent evt) {
+					int enemyStage = RootGameControl.getCurUser().getStats().getStage();
+
+					if (stats.getStage() == -1 && enemyStage == 3 && card.getTroopContribution() > 0) {
+						buttonPanel.showFightPhase();
+					}
+				}
+				
+				public void mouseExited(MouseEvent evt) {
+					Point p = new Point(evt.getLocationOnScreen());
+					SwingUtilities.convertPointFromScreen(p, evt.getComponent());
+					if (evt.getComponent().contains(p)) { //Is the point inside of the panel still? This was added because I was having trouble with the parent calling this listener every time the mouse went from a child panel to the parent.
+						return;
+					} else {
+						buttonPanel.showGeneral();
+						buttonPanel.showFightPhase();
+						icon = history;
+						remove(buttonPanel);
+						repaint();
+						revalidate();
+					}
+				}
+			});
+			
 			this.addMouseListener(new MouseAdapter() {
 				public void mouseEntered(MouseEvent evt) {
-						if(!isComponentInPanel(buttonPanel)) { //Is the mouse even in the panel?
+						if(!isComponentInPanel(CardIcon.this)) { //Is the mouse even in the panel?
 							icon = null;
 							int enemyStage = RootGameControl.getCurUser().getStats().getStage();
 							//Cannot be this card's owner's turn, Must be the fight stage, and there must be soliders
@@ -67,8 +139,10 @@ public class CardIcon extends JPanel{
 						repaint();
 						revalidate();
 					}
-			}
+				}
+				
 		});
+			
 	}
 	
 	protected void paintComponent(Graphics g) {

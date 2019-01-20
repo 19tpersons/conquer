@@ -18,7 +18,7 @@ public class U {
 	public static final int planetMinPop = 50; //This is the minimum amount of population a planet needs.
 	public static final int soldierContributionCost = 20; //It cost x resources per 10 million added troops.
 	public static final int popUnitAmt = 10; //This is the unit of measurement population for the game is in
-	public static final double startPopChangeRate = 0.05;
+	public static final double startPopChangeRate = 0.01;
 	
 	/**
 	 * This method will calculate the dynamic size for any element when given the window's width/height and the percent

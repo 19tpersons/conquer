@@ -1,7 +1,10 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
 import javax.swing.*;
 /**
@@ -28,6 +31,14 @@ public class StartForGame extends JPanel implements ActionListener
 		window.pack();
         window.setVisible(true);
         
+        //Change the standard output so that all errors will be printed to a file.
+        try {
+			System.setErr(new PrintStream(new File("error.log")));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
     
     public StartForGame()  {
@@ -36,9 +47,7 @@ public class StartForGame extends JPanel implements ActionListener
 		flow.setVgap(-5);
 		flow.setHgap(0);
 		setLayout(flow);
-		
-    	JLayeredPane layered = new JLayeredPane();
-       
+		       
    		//This is the background image
       	JLabel content = new JLabel(new ImageIcon(U.getFile("start_background.png")));
     	//JLabel content = new JLabel(StartForGame.class.getResourceAsStream("images/start_background.png"));
@@ -46,9 +55,10 @@ public class StartForGame extends JPanel implements ActionListener
       	
       	//This holds all of the buttons on the start up screen.
       	JPanel buttonBar = new JPanel();
+      	buttonBar.setBackground(Color.BLACK);
        	
        //This will start a new game.
-       JButton button = new JButton("New Game");
+       Button button = new Button("New Game");
        button.addMouseListener(new MouseAdapter() {
     	   public void mousePressed(MouseEvent evt) {
     			//This sets up the cards that will be used for the rest of the game.
@@ -76,22 +86,40 @@ public class StartForGame extends JPanel implements ActionListener
        buttonBar.add(button);
        
        //This will load a setting modal
-       button = new JButton("Settings");
+       button = new Button("Settings");
        button.addActionListener(this);
        buttonBar.add(button);
        
        //This will show the instructions for the game
-       button = new JButton("Instructions");
-       button.addActionListener(this);
+       button = new Button("Instructions");
+       button.addMouseListener(new MouseAdapter() { //This will add the Instructions to the sreen
+    	   public void mousePressed(MouseEvent evt) {
+    		   InstructionsModal modal = new InstructionsModal();
+    		   modal.setPreferredSize(new Dimension(U.width, U.height));
+    		   modal.addMouseListener(new MouseAdapter() { //If someone clicks on the gray area the modal will close
+    			   public void mousePressed(MouseEvent evt) {
+    				   StartForGame.this.remove(modal);
+    				   StartForGame.this.add(content);
+    				   StartForGame.this.revalidate();
+    				   StartForGame.this.repaint();
+    			   }
+    		   });
+    		   
+    		   remove(content);
+    		   add(modal);
+    		   repaint();
+    		   revalidate();
+    	   }
+       });
        buttonBar.add(button);
        
        //This will credit the producers
-       button = new JButton("Credits");
+       button = new Button("Credits");
        button.addActionListener(this);
        buttonBar.add(button);
        
        //This will exit the game.
-       button = new JButton("Quit");
+       button = new Button("Quit");
        button.addActionListener(this);
        buttonBar.add(button);
 

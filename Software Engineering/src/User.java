@@ -31,7 +31,6 @@ public class User extends JPanel {
 		pane.setBounds(0,0, width, height);
 		
 		add(layered);
-		
 	
 	}
 	
@@ -53,11 +52,13 @@ public class User extends JPanel {
 					revalidate();
 					repaint();
 					getPane().getHud().getCardDisplay().refreshSets();
-				}			}
+				}
+			}
 		});
-		modal.setBounds(0,0, width, height);
-		layered.add(modal, 0);
-		repaint();
+		modal.setBounds(1,0, width, height);
+		layered.add(modal, 0, 0);
+		layered.revalidate();
+		layered.repaint();
 	}
 	
 	/**

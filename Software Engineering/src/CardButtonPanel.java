@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
@@ -10,32 +12,59 @@ import javax.swing.*;
  */
 public class CardButtonPanel extends JPanel {
 	private JPanel generalPanel = new JPanel(), fightPhasePanel = new JPanel();
-	private JButton soldiersBtn, fightBtn;
+	private JButton fightBtn;
+	private Button popGrowthBtn, soldiersBtn;
+	private JLabel nextPopGrowthPrice, nextPopGrowthRate;
+	public AddSoldiersModal soldiersModal = new AddSoldiersModal();
 
 	public CardButtonPanel(int width, int height, PlayerStats stats, Card card) {
 		this.setBackground(Color.ORANGE);
+		setPreferredSize(new Dimension(width, height));
 		
 		//This sets up the panel
 		generalPanel.setBackground(new Color(255,255,255,50));
 		generalPanel.setPreferredSize(new Dimension(width, height));
-		
+
 		
 		//This will allow users' to add soldiers to their armies
-		soldiersBtn = new JButton("Add Soldiers");
+		soldiersBtn = new Button("Add Soldiers");
 		soldiersBtn.setFont(new Font("Arial", Font.BOLD, 18));
-		soldiersBtn.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent evt) {
-				Modal modal = new AddSoldiersModal(stats, card);
-				stats.getUser().setModal(modal);
+		soldiersBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				 //soldiersModal = new AddSoldiersModal(stats, card);
+				soldiersModal.setUpModal(stats, card);
+				stats.getUser().setModal(soldiersModal);
+				generalPanel.setVisible(false);
 			}
+
 		});
 		generalPanel.add(soldiersBtn);
 		
 		
 		//This will allow users' to modify a planet
+		popGrowthBtn = new Button("Pop. Growth " + (PopulationGrowth.getNextRate(card.getPopChangeRate()) * 100) + "%");
+		popGrowthBtn.setFont(new Font("Arial", Font.BOLD, 18));
+		popGrowthBtn.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent evt) {
+				double nextPopGrowthRateDouble = PopulationGrowth.getNextRate(card.getPopChangeRate());
+				int cost = PopulationGrowth.getGrowthPrice(card.getPop());
+				
+				if (stats.getResource() >= cost) {
+					stats.removeResources(cost);
+					card.setPopChangeRate(nextPopGrowthRateDouble);
+					stats.getUser().updateSideNav();
+					popGrowthBtn.setText("Pop. Growth " + (PopulationGrowth.getNextRate(card.getPopChangeRate()) * 100) + "%");
+					nextPopGrowthPrice.setText("Price: " + PopulationGrowth.getGrowthPrice(card.getPop()));
+					nextPopGrowthRate.setText("Cur. Rate: " + (card.getPopChangeRate() * 100) + "%");
+				}
+			}
+		});
+		generalPanel.add(popGrowthBtn);
 		
-		
-		
+		nextPopGrowthPrice = new JLabel("Price: " + PopulationGrowth.getGrowthPrice(card.getPop()));
+		generalPanel.add(nextPopGrowthPrice);
+		nextPopGrowthRate = new JLabel("Cur. Rate: " + (card.getPopChangeRate() * 100) + "%");
+		generalPanel.add(nextPopGrowthRate);
 		
 		//This sets up the panel
 		fightPhasePanel.setBackground(new Color(255,255,255,50));
@@ -49,11 +78,10 @@ public class CardButtonPanel extends JPanel {
 				PlayerStats enemyStats = RootGameControl.getCurUser().getStats();
 				FightModal modal = new FightModal(enemyStats, stats, card);
 				enemyStats.getUser().setModal(modal); //We need to put the modal on the enemy's screen.
+				fightPhasePanel.setVisible(false);
 			}
 		});
 		fightPhasePanel.add(fightBtn);
-	
-
 	}
 	
 	/**
@@ -62,6 +90,7 @@ public class CardButtonPanel extends JPanel {
 	public void showFightPhase() {
 		remove(generalPanel);
 		add(fightPhasePanel);
+		fightPhasePanel.setVisible(true);
 		revalidate();
 		repaint();
 	} 
@@ -71,8 +100,17 @@ public class CardButtonPanel extends JPanel {
 	 */
 	public void showGeneral() {
 		remove(fightPhasePanel);
+		generalPanel.setVisible(true);
 		add(generalPanel);
 		revalidate();
 		repaint();
+	}
+	
+	public JPanel getGeneral() {
+		return this.generalPanel;
+	}
+	
+	public JPanel getFightPhasePanel() {
+		return this.fightPhasePanel;
 	}
 }

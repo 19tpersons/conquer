@@ -16,13 +16,20 @@ public class AddSoldiersModal extends Modal {
 	private static int height = 200;
 	private JPanel content;
 	
+	public AddSoldiersModal() {
+		super(width, height);
+		setBackground(new Color(0,0,0,40));
+		setLayout(null);
+	}
+	
 	public AddSoldiersModal(PlayerStats stats, Card card) {
 		//This sets up the modal
 		super(width, height);
 		setBackground(new Color(0,0,0,40));
 		setLayout(null);
-		
-		
+	}
+	
+	public void setUpModal(PlayerStats stats, Card card) {
 		//This is the panel that holds all of the Modal's content.
 		content = new JPanel();
 		int x = U.width / 2 - width / 2; //Center the modal horz.
