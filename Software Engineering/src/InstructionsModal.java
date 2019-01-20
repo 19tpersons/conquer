@@ -4,6 +4,13 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+/**
+ * This class is the modal that displays the game's instructions on the starting screen.
+ * 
+ * @author DAT Software Engineering
+ *
+ */
+
 public class InstructionsModal extends Modal {
 	private static int width = 900;
 	private static int height = 700;
@@ -23,12 +30,6 @@ public class InstructionsModal extends Modal {
 		
 		add(content);
 		
-		try {
-			throw new Exception("ERROR: HERE");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**

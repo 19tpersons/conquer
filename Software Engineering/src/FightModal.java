@@ -74,6 +74,8 @@ public class FightModal extends Modal {
 			fight.setAlignmentX(Component.CENTER_ALIGNMENT);
 			fight.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent evt) {
+					System.out.println("Starting fight on " + card.getName());
+					
 					int enemyTroops = slider.getValue();
 					Battle battle = new Battle(card.getTroopContribution(), card.getDefensiveBonus(), enemyTroops);
 					
@@ -81,14 +83,14 @@ public class FightModal extends Modal {
 					defenseSurvivors = battle.getDefenseSurvivors();
 					defenseDead = card.getTroopContribution() - defenseSurvivors;
 					System.out.println("Defense Dead: " + defenseDead);
-					System.out.println("Desense Alive: " + defenseSurvivors);
+					System.out.println("Defense Alive: " + defenseSurvivors);
 					card.subTroops(defenseDead);
 				
 					//This is the number of dead enemy troops
 					offenseSurvivors = battle.getOffenseSurvivors();
 					offenseDead = enemyTroops - offenseSurvivors;
-					System.out.println("Enemy Alive: " + offenseSurvivors);
-					System.out.println("Enemy Dead: " + offenseDead);
+					System.out.println("Offense Alive: " + offenseSurvivors);
+					System.out.println("Offense Dead: " + offenseDead);
 					enemyStats.subTroops(offenseDead);
 					
 					//If the enemy wins we give them an award.

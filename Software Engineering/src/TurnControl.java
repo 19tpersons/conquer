@@ -34,6 +34,8 @@ public class TurnControl extends JPanel{
 		next = new JButton("Next Turn");
 		next.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				System.out.println("End Turn");
+				
 				stats.nextStage();
 				remove(next); //Remove the current button
 				add(draw); //Continue onto the next stage
@@ -48,6 +50,8 @@ public class TurnControl extends JPanel{
 		fight = new JButton("Fight");
 		fight.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				System.out.println("Fight Phase");
+				
 				stats.nextStage();
 				remove(fight); //Remove the current button
 				add(next); //Continue onto the next stage
@@ -61,6 +65,8 @@ public class TurnControl extends JPanel{
 		draw = new JButton("Draw");
 		draw.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				System.out.println("Draw Phase: Drawing the card");
+				
 				getCard();
 				
 				//Updates the backdrop
@@ -73,6 +79,7 @@ public class TurnControl extends JPanel{
 				revalidate();
 				repaint();
 				
+				System.out.println("Build Phase");
 			}
 		});
 		add(draw);

@@ -27,6 +27,7 @@ public class RootGameControl extends JPanel {
 		this.numPlayers = numPlayers;
 		this.users = new User[numPlayers]; //This will create an array of Users'
 		
+		System.out.println("Creating the users");
 		for (int i = 0; i < numPlayers; i++) {
 			User user = new User(width, height, playerColors[i], this);
 			this.users[i] =  user;//Creates a new User.
@@ -67,8 +68,11 @@ public class RootGameControl extends JPanel {
 	public void nextTurn() {
 		//If the player has 30,000 million (30 billion), then they have won!
 		if (users[userCount].getStats().getPopulation() >= 30000) {
+			System.out.println("Player " + userCount + " wins!");
 			System.exit(0);
 		}
+		System.out.println("\nStarting the next turn. Player " + userCount);
+		
 		
 		remove(users[userCount]); //Removes the current user from the display
 		

@@ -46,6 +46,8 @@ public class CardButtonPanel extends JPanel {
 		popGrowthBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		popGrowthBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
+				System.out.println("Increasing " + card.getName() + "'s population growth rate.");
+				
 				double nextPopGrowthRateDouble = PopulationGrowth.getNextRate(card.getPopChangeRate());
 				int cost = PopulationGrowth.getGrowthPrice(card.getPop());
 				
@@ -55,9 +57,17 @@ public class CardButtonPanel extends JPanel {
 					card.addPop((int) (card.getPop() * nextPopGrowthRateDouble));
 					stats.getUser().calculatePop();
 					stats.getUser().updateSideNav();
-					popGrowthBtn.setText("Pop. Growth " + (PopulationGrowth.getNextRate(card.getPopChangeRate()) * 100) + "%");
-					nextPopGrowthPrice.setText("Price: " + PopulationGrowth.getGrowthPrice(card.getPop()));
-					nextPopGrowthRate.setText("Cur. Rate: " + (card.getPopChangeRate() * 100) + "%");
+					
+					String popGrowth = "Pop. Growth " + (PopulationGrowth.getNextRate(card.getPopChangeRate()) * 100) + "%";
+					popGrowthBtn.setText(popGrowth);
+					
+					String price = "Price: " + PopulationGrowth.getGrowthPrice(card.getPop());
+					nextPopGrowthPrice.setText(price);
+					String rate = "Cur. Rate: " + (card.getPopChangeRate() * 100) + "%"
+					nextPopGrowthRate.setText(rate);
+					
+					System.out.println("Increasing " + card.getName() + "'s population growth rate.");
+					System.out.println(popGrowth + "\n" + price + "\n" + rate);
 				}
 			}
 		});

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 
 import javax.swing.*;
 /**
@@ -31,8 +32,16 @@ public class StartForGame extends JPanel implements ActionListener
 		window.pack();
         window.setVisible(true);
         
-        //Change the standard output so that all errors will be printed to a file.
+        //Change the standard output so that all errors and game analytics will be printed to a file.
         try {
+        	//Clear the gameAnalytics file so that we can put new statistics in for this game.
+        	File gameAnalytics = new File("gameAnalytics.log");
+        	PrintWriter writer = new PrintWriter(gameAnalytics);
+        	writer.print("");
+        	writer.close();
+        	
+			System.setOut(new PrintStream(gameAnalytics));
+			
 			System.setErr(new PrintStream(new File("error.log")));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -61,6 +70,8 @@ public class StartForGame extends JPanel implements ActionListener
        Button button = new Button("New Game");
        button.addMouseListener(new MouseAdapter() {
     	   public void mousePressed(MouseEvent evt) {
+    		   System.out.println("Starting the game");
+    		   
     			//This sets up the cards that will be used for the rest of the game.
     			try {
     				CardDB cardDB = new CardDB();
@@ -92,9 +103,9 @@ public class StartForGame extends JPanel implements ActionListener
        
        //This will show the instructions for the game
        button = new Button("Instructions");
-       button.addMouseListener(new MouseAdapter() { //This will add the Instructions to the sreen
+       button.addMouseListener(new MouseAdapter() { //This will add the Instructions to the screen
     	   public void mousePressed(MouseEvent evt) {
-    		   InstructionsModal modal = new InstructionsModal();
+    		   InstructionsModal modal = new InstructionsModal(); //This holds the game's instructions
     		   modal.setPreferredSize(new Dimension(U.width, U.height));
     		   modal.addMouseListener(new MouseAdapter() { //If someone clicks on the gray area the modal will close
     			   public void mousePressed(MouseEvent evt) {
