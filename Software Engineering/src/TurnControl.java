@@ -229,20 +229,20 @@ public class TurnControl extends JPanel{
 	 */
 	private Card getSubTypeCard(ArrayList<Card> cards, String sub_type) {		
 		 double[] cardProbs = new double[cards.size()]; //This will act as an account of each cardSet's probabilities
-		 double endBoundary = 0;
+		 double endBoundary = 0; //This will be the largest number that the system can possibly choose
 		 for (int i = 0; i < cards.size(); i++) {
 			 //The sets sub_type
 			 Card card = cards.get(i);
 			 String subType = card.getSubType();
 			 double previousBoundary;
-			 if (i == 0) { //This will get the previous cards ending boudary
+			 if (i == 0) { //This will get the previous cards ending boundary
 				 previousBoundary = 0; 
 			 } else {
-				 previousBoundary = cardProbs[i - 1];
+				 previousBoundary = cardProbs[i - 1]; //The last card's probability boundary
 			 }
 			 
 			 if (subType.equals(sub_type)) {
-				 cardProbs[i] = previousBoundary + 1 + card.getSubTypeRate();
+				 cardProbs[i] = previousBoundary + 1 + card.getSubTypeRate(); //Adding an additional probability because of a matching sub type
 			 } else {
 				 cardProbs[i] = previousBoundary + 1; //Probability defaults to 1
 			 }
@@ -250,9 +250,9 @@ public class TurnControl extends JPanel{
 			 endBoundary = cardProbs[i];
 		}
 		 
-		double choiceDouble = rand.nextDouble() * endBoundary;
+		double choiceDouble = rand.nextDouble() * endBoundary; //A random number from 0 to the end boundary
 		for (int i = 0; i < cardProbs.length; i++) {
-			 if (choiceDouble <= cardProbs[i]) {
+			 if (choiceDouble <= cardProbs[i]) { //On a loop that looks to see if the choosen number is with in the boundary for every card.
 				 return cards.get(i);
 			 }
 		}

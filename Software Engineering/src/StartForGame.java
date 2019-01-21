@@ -137,8 +137,8 @@ public class StartForGame extends JPanel implements ActionListener
        button.addActionListener(this);
        buttonBar.add(button);
 
-    	content.add(buttonBar);
-      	add(content);
+       content.add(buttonBar);
+       add(content);
     }
     
     /**
