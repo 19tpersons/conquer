@@ -19,7 +19,7 @@ public class Button extends JButton {
 		setOpaque(true);
 		
 		setText(buttonText);
-		setFont(new Font("Arial", Font.BOLD, 18));
+		setFont(new Font("Arial", Font.BOLD, 20));
 		addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent evt) {
 				setBackground(new Color(217, 217, 217));

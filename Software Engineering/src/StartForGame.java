@@ -8,6 +8,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 /**
  * This is the start of our game. It is the first thing the user will see.
  *
@@ -58,9 +59,10 @@ public class StartForGame extends JPanel implements ActionListener
 		setLayout(flow);
 		       
    		//This is the background image
-      	JLabel content = new JLabel(new ImageIcon(U.getFile("start_background.png")));
-    	//JLabel content = new JLabel(StartForGame.class.getResourceAsStream("images/start_background.png"));
-      	content.setLayout(new FlowLayout(FlowLayout.CENTER));
+      	JLabel content = new JLabel(new ImageIcon(U.getFile("Background picture #9.png")));
+      	content.setPreferredSize(new Dimension(U.width, U.height));
+      	//content.setLayout(new FlowLayout(FlowLayout.CENTER));
+      	content.setLayout(new GridBagLayout());
       	
       	//This holds all of the buttons on the start up screen.
       	JPanel buttonBar = new JPanel();

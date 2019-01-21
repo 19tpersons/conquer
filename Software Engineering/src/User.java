@@ -59,6 +59,8 @@ public class User extends JPanel {
 		layered.add(modal, 0, 0);
 		layered.revalidate();
 		layered.repaint();
+		repaint();
+		revalidate();
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class User extends JPanel {
 	 * This will show the user's game pane.
 	 */
 	public void showPane() {
-		layered.add(pane, 1);
+		layered.add(pane, 2);
 		revalidate();
 		repaint();
 	}

@@ -101,7 +101,7 @@ public class InstructionsModal extends Modal {
 	 * multiple times.
 	 * @param text The new text to be added to the document.
 	 */
-	public void addText(String text) {
+	private void addText(String text) {
 		SimpleAttributeSet attrs = new SimpleAttributeSet();
         StyleConstants.setFontSize(attrs, 18);
         
