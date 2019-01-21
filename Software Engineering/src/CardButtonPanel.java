@@ -8,7 +8,6 @@ import javax.swing.*;
 /**
  * This is the series of buttons that appear when a user hovers over the icon of a planet card.
  * @author DAT Software Engineering
- * @date 12.28.18
  */
 public class CardButtonPanel extends JPanel {
 	private JPanel generalPanel = new JPanel(), fightPhasePanel = new JPanel();
@@ -63,7 +62,7 @@ public class CardButtonPanel extends JPanel {
 					
 					String price = "Price: " + PopulationGrowth.getGrowthPrice(card.getPop());
 					nextPopGrowthPrice.setText(price);
-					String rate = "Cur. Rate: " + (card.getPopChangeRate() * 100) + "%"
+					String rate = "Cur. Rate: " + (card.getPopChangeRate() * 100) + "%";
 					nextPopGrowthRate.setText(rate);
 					
 					System.out.println("Increasing " + card.getName() + "'s population growth rate.");

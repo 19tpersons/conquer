@@ -44,7 +44,7 @@ public class StartForGame extends JPanel implements ActionListener
 			
 			System.setErr(new PrintStream(new File("error.log")));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			//The premissions for the game are probably off?
 			e.printStackTrace();
 		}
         
@@ -73,12 +73,7 @@ public class StartForGame extends JPanel implements ActionListener
     		   System.out.println("Starting the game");
     		   
     			//This sets up the cards that will be used for the rest of the game.
-    			try {
-    				CardDB cardDB = new CardDB();
-    			} catch (FileNotFoundException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			} 
+    			CardDB cardDB = new CardDB();
     			
     			//These are the colors that each player will have
     			Color[] colors = {new Color(0, 0, 204), new Color(0, 153, 51)};

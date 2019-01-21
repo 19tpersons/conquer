@@ -10,7 +10,6 @@ import javax.swing.*;
  * This is the abstraction of planet and solar system cards. It holds all of the data for any given planet, and allows
  * the system to manipulate the data.
  * @author DAT Software Engineering
- * @date 12.31.18
  *
  */
 
@@ -138,6 +137,7 @@ public class Card extends JPanel {
 		   card.setPreferredSize(new Dimension(200,320));
 		   return card;
 	   } catch (IOException e) {
+		   //Something happend when we were trying to clone the card
 		   e.printStackTrace();
 	   }
 	   return null; //There will always be something returned. 

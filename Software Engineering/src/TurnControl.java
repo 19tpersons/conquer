@@ -9,8 +9,7 @@ import javax.swing.*;
 /**
  * This class controls where cards will go. It also keeps track of where the cards are so that it can
  * update their respective populations everytime a fight/action occurs in the game.
- * @author DAT Software Engineering
- * @date 12.28.18 
+ * @author DAT Software Engineering 
  */
 
 public class TurnControl extends JPanel{
@@ -162,7 +161,6 @@ public class TurnControl extends JPanel{
 		 //Updates the player's total population and resources
 		 stats.addResources(newSet.getResources());
 		 			
-		try {
 			CardSet tmp = new CardSet(newSet, stats);
 			tmp.setBackground(stats.getColor());
 			
@@ -172,9 +170,6 @@ public class TurnControl extends JPanel{
 			disp.refreshSets();
 			
 			stats.getUser().getPane().getBackDrop().addSmartStar(tmp, stats);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-		}
 	 }
 	 
 	 /**
@@ -212,10 +207,11 @@ public class TurnControl extends JPanel{
 			 change *= -1;
 			 card.removePop(change);
 		 }
-		 try {
+		 
+		try {
 			card.defineBack();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			//Something happend when the back of the card was getting redefined.
 			e.printStackTrace();
 		} 
 		 

@@ -5,7 +5,6 @@ import javax.swing.*;
 /**
  * This class is the "Action" type of card. It is used to represent the actions any "action" can have.
  * @author DAT Software Engineering
- * @date 12.27.18
  *
  */
 public class ActionCard extends JPanel {

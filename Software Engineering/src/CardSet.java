@@ -11,7 +11,6 @@ import java.awt.event.*;
  * This is the abstraction of a solar system. It will hold all of the cards in a solar system 
  * 	and will also hold the card that is shown to the user to be the solar system.
  * @author DAT Software Engineering
- * @date 12.28.18
  *
  */
 public class CardSet extends JPanel {
@@ -26,7 +25,7 @@ public class CardSet extends JPanel {
 	private JPanel rightPanel, leftPanel;
 	private String noCardMsg = "No planets have been found!"; //This will be used when there are no cards currently in the set
 	
-	public CardSet(Card solar, PlayerStats stats) throws IOException {
+	public CardSet(Card solar, PlayerStats stats) {
 		this.bgColor = stats.getColor();
 		this.solar = solar;
 		this.stats = stats;
@@ -289,7 +288,7 @@ public class CardSet extends JPanel {
 			try {
 				temp.defineBack();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				//Something happened when the back of the card was being redefined?
 				e.printStackTrace();
 			} //Update the back of the card
 		}

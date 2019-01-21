@@ -11,7 +11,6 @@ import javax.swing.*;
 /**
  * This class is used to display the card sets a player has.
  * @author DAT Software Engineering
- * @date 12.27.18
  *
  */
 public class CardDisplay extends JPanel {
@@ -19,12 +18,10 @@ public class CardDisplay extends JPanel {
 	private PlayerStats stats;
 	private Color playerColor;
 	
-	public CardDisplay(int width, int height, PlayerStats stats) throws IOException {
+	public CardDisplay(int width, int height, PlayerStats stats)  {
 		this.playerColor = stats.getColor();
 		this.sets = stats.sets;
 		this.stats = stats;
-
-		
 	}
 	
 	/**

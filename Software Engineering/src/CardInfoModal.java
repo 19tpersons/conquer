@@ -32,7 +32,8 @@ public class CardInfoModal extends Modal {
 		try {
 			newImg = ImageIO.read(U.getFile(image_location));
 		} catch (IOException e) {
-			return;
+			//The Image couldn't be read?
+			e.printStackTrace();
 		}
 		Image scaledImg = newImg.getScaledInstance(U.cardWidth, height, Image.SCALE_AREA_AVERAGING);
 		icon = scaledImg;

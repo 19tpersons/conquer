@@ -22,16 +22,12 @@ public class HUD extends JPanel {
 		setPreferredSize(new Dimension(width, height));
 		this.playerColor = stats.getColor();
 		
-		try {
-			disp = new CardDisplay(width - 275, height, stats);
-			disp.setPreferredSize(new Dimension(width - 275, height));
-			disp.setBackground(new Color(0,0,0,0));
-			add(BorderLayout.CENTER, disp);
+		//Make the card display. It is the class that holds the cardSets (i.e. the solar systems)
+		disp = new CardDisplay(width - 275, height, stats);
+		disp.setPreferredSize(new Dimension(width - 275, height));
+		disp.setBackground(new Color(0,0,0,0));
+		add(BorderLayout.CENTER, disp);
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		sideNav = new CardSideNav(275, height, stats, disp);
 		add(BorderLayout.LINE_END, sideNav);

@@ -32,7 +32,7 @@ public class CardDB {
 	private static ArrayList<Card> usedSolarSystems = new ArrayList<Card>();
 	private static ArrayList<ActionCard> usedActions = new ArrayList<ActionCard>();
 	
-	public CardDB() throws FileNotFoundException {
+	public CardDB(){
 		this.parseDB();
 
 		this.sortCards();
@@ -76,7 +76,7 @@ public class CardDB {
 				rows.add(row);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			//Something happend when we were trying to open and read the flat database file.
 			e.printStackTrace();
 		}
 	}
@@ -138,8 +138,8 @@ public class CardDB {
 
 		int resourceCount = Integer.parseInt(row.get(9));
 		
-		//This will try to make a new card and if it can't will just return the method
-		Card newCard;
+		//This will try to make a new card
+		Card newCard = null;
 		try {
 			
 			newCard = new Card(title, description, image_location, type);
@@ -153,7 +153,8 @@ public class CardDB {
 			newCard.defineBack(); //Since, the population changed, we need to update the back of the card.
 			
 		} catch (IOException e) {
-			return;
+			//Something happened when trying to make a card.
+			e.printStackTrace();
 		}
 		newCard.setPreferredSize(new Dimension(200,320));
 		
