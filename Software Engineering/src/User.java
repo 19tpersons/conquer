@@ -33,8 +33,6 @@ public class User extends JPanel {
 		add(layered);
 	
 	}
-	
-	
 
 	/**
 	 * If there is a modal that the game wants to display they just use this.

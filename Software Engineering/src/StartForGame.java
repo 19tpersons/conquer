@@ -59,8 +59,12 @@ public class StartForGame extends JPanel implements ActionListener
 		setLayout(flow);
 		       
    		//This is the background image
+		JLayeredPane layered = new JLayeredPane();
+		layered.setPreferredSize(new Dimension(U.width, U.height));
+		layered.setLayout(null);
+		
       	JLabel content = new JLabel(new ImageIcon(U.getFile("Background picture #9.png")));
-      	content.setPreferredSize(new Dimension(U.width, U.height));
+      	content.setBounds(0,0, U.width, U.height);
       	//content.setLayout(new FlowLayout(FlowLayout.CENTER));
       	content.setLayout(new GridBagLayout());
       	
@@ -82,11 +86,12 @@ public class StartForGame extends JPanel implements ActionListener
     			
     			//This will start the game.
     			RootGameControl root = new RootGameControl(2, colors);
+    			root.setBounds(0,0, U.width, U.height);
     			root.startGame();
     			
     			//Display the game.
-    			remove(content);
-    			add(root);
+    			layered.remove(content);
+    			layered.add(root, 0, 0);
     			repaint();
     			revalidate();
     	   }
@@ -103,7 +108,7 @@ public class StartForGame extends JPanel implements ActionListener
        button.addMouseListener(new MouseAdapter() { //This will add the Instructions to the screen
     	   public void mousePressed(MouseEvent evt) {
     		   InstructionsModal modal = new InstructionsModal(); //This holds the game's instructions
-    		   modal.setPreferredSize(new Dimension(U.width, U.height));
+    		   modal.setBounds(0,0, U.width, U.height);
     		   modal.addMouseListener(new MouseAdapter() { //If someone clicks on the gray area the modal will close
     			   public void mousePressed(MouseEvent evt) {
     				   Point p = new Point(evt.getLocationOnScreen());
@@ -111,16 +116,14 @@ public class StartForGame extends JPanel implements ActionListener
     				   SwingUtilities.convertPointFromScreen(p, modal.getContent());
     				   
     				   if (!modal.getContent().contains(p)) {
-    				   StartForGame.this.remove(modal);
-    				   StartForGame.this.add(content);
-    				   StartForGame.this.revalidate();
-    				   StartForGame.this.repaint();
+	    					  layered.remove(modal);
+	    					  layered.revalidate();
+	    					  layered.repaint();
     				   }
     			   }
     		   });
     		   
-    		   remove(content);
-    		   add(modal);
+    		   layered.add(modal, 0);
     		   repaint();
     		   revalidate();
     	   }
@@ -138,7 +141,8 @@ public class StartForGame extends JPanel implements ActionListener
        buttonBar.add(button);
 
        content.add(buttonBar);
-       add(content);
+       layered.add(content, 2);
+       add(layered);
     }
     
     /**
