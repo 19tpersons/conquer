@@ -23,9 +23,16 @@ public class Backdrop extends JPanel {
 		Random rand = new Random();
 		for (int i = 0; i < 180; i++) {
 			int x = rand.nextInt(width);
-			int y = rand.nextInt(height);
+			int y = rand.nextInt(height);			
+			printStar(x, y, 5, 5); //Some bigger stars
 			
-			printStar(x, y);
+			x = rand.nextInt(width);
+			y = rand.nextInt(height);
+			printStar(x, y, 3, 3); //Medium sized stars
+			
+			x = rand.nextInt(width);
+			y = rand.nextInt(height);
+			printStar(x, y, 2, 2); //Prints smaller stars
 		}
 
 	}
@@ -35,18 +42,13 @@ public class Backdrop extends JPanel {
 	 * @param x the x-coord
 	 * @param y the y-coord
 	 */
-	private void printStar(int x, int y) {
+	private void printStar(int x, int y, int width, int height) {
 		JPanel dumbStar = new JPanel() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -3750863589154188517L;
-
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
 								
 				g2.setColor(Color.yellow);
-				g2.fillRect(0, 0, 5, 5);
+				g2.fillRect(0, 0, width, height);
 			}
 		};
 		
@@ -71,7 +73,7 @@ public class Backdrop extends JPanel {
 			y += 50;
 		
 		SmartStar star = new SmartStar(set, stats);
-		star.setBounds(x, y, 15, 15);
+		star.setBounds(x, y, 25, 25);
 		
 		this.smartStars.add(star); //So it can be accessed later.
 	}

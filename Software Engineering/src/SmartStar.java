@@ -14,7 +14,7 @@ public class SmartStar extends JPanel{
 	
 	public SmartStar(CardSet set, PlayerStats stats) {
 		this.color = stats.getColor();
-		this.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0), 2));
+		this.setBorder(BorderFactory.createLineBorder(new Color(255, 102, 0), 3));
 		
 		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
@@ -38,7 +38,7 @@ public class SmartStar extends JPanel{
 		Graphics2D g2 = (Graphics2D) g;
 		
 		g2.setColor(color);
-		g2.fillRect(2, 2, 11, 11);
+		g2.fillRect(3, 3, 21, 21); //Draws a box that doesn't intrude with the borders but shows the player's color.
 	}
 
 }

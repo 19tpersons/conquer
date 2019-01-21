@@ -104,10 +104,16 @@ public class StartForGame extends JPanel implements ActionListener
     		   modal.setPreferredSize(new Dimension(U.width, U.height));
     		   modal.addMouseListener(new MouseAdapter() { //If someone clicks on the gray area the modal will close
     			   public void mousePressed(MouseEvent evt) {
+    				   Point p = new Point(evt.getLocationOnScreen());
+    				   Modal modal = (Modal) evt.getComponent();
+    				   SwingUtilities.convertPointFromScreen(p, modal.getContent());
+    				   
+    				   if (!modal.getContent().contains(p)) {
     				   StartForGame.this.remove(modal);
     				   StartForGame.this.add(content);
     				   StartForGame.this.revalidate();
     				   StartForGame.this.repaint();
+    				   }
     			   }
     		   });
     		   
