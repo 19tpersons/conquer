@@ -49,7 +49,8 @@ public class CardSet extends JPanel {
 		
 		JPanel backBtn = new JPanel(); //This is the back button that will take the user back to the solar system view.
 		backBtn.setPreferredSize(new Dimension(50, 40));
-		backBtn.setBackground(Color.GREEN);
+		//backBtn.setBackground(Color.GREEN);
+		backBtn.add(new JLabel(new ImageIcon(U.getFile("Back Button.png"))));
 		backBtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent evt) {
 				stats.getUser().getPane().getHud().getCardDisplay().refreshSets();
@@ -62,7 +63,7 @@ public class CardSet extends JPanel {
 		JPanel moveRight = new JPanel(); //This is the button that will show the next three cards in the set
 		moveRight.setPreferredSize(new Dimension(50, 150));
 		moveRight.setBackground(Color.RED);
-		//moveRight.add(new JLabel(new ImageIcon(U.getFile("right_arrow.png"))));
+		moveRight.add(new JLabel(new ImageIcon(U.getFile("Right Button.png"))));
 		moveRight.addMouseListener(new CardMoveRight());
 		rightPanel.add(moveRight);
 
@@ -74,6 +75,7 @@ public class CardSet extends JPanel {
 		
 		JPanel moveLeft = new JPanel(); //This is the button that will show the previous three cards in the set.
 		moveLeft.addMouseListener(new CardMoveLeft());
+		moveLeft.add(new JLabel(new ImageIcon(U.getFile("Left Button.png"))));
 		moveLeft.setPreferredSize(new Dimension(50, 150));
 		moveLeft.setBackground(Color.RED);
 		leftPanel.add(moveLeft);
