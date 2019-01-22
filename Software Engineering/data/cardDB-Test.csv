@@ -1,7 +1,0 @@
-idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_change_rate,image_location*,rource_count
-1,action,weather,Snowmagdon,Let is snow!,-100,null,0.3,snow.jpg,0
-2,solar,weather,Ice System 1,We like ice in our solar system:),300,0.25,0.3,ice_system.jpg,50
-3,solar,null,Ocotpi,We are an allien race of octopi!,500,null,0.2,octopus.png,50
-4,planet,null,Earth,We are human.,600,null,0.03,earth.jpg,150
-5,planet,null,Mars,We will conquer the entire galaxy!!!,999,null,0.04,mars.jpg,150
-6,planet,null,Norman,MOOOOO!,100000,null,0.5,norman.jpg,150
