@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
  */
 public class StartForGame extends JPanel implements ActionListener
 {
-
+	private int volume = 50;
 
 	/**
      * A main routine allows this class to be run as an application.
@@ -49,6 +49,7 @@ public class StartForGame extends JPanel implements ActionListener
 			e.printStackTrace();
 		}
         
+        BackgroundMusic music = new BackgroundMusic();
     }
     
     public StartForGame()  {
@@ -61,10 +62,10 @@ public class StartForGame extends JPanel implements ActionListener
    		//This is the background image
 		JLayeredPane layered = new JLayeredPane();
 		layered.setPreferredSize(new Dimension(U.width, U.height));
-		layered.setLayout(null);
+		layered.setLayout(new FlowLayout());
 		
       	JLabel content = new JLabel(new ImageIcon(U.getFile("Background picture #9.png")));
-      	content.setBounds(0,0, U.width, U.height);
+      	content.setPreferredSize(new Dimension(U.width, U.height));
       	//content.setLayout(new FlowLayout(FlowLayout.CENTER));
       	content.setLayout(new GridBagLayout());
       	
@@ -86,7 +87,7 @@ public class StartForGame extends JPanel implements ActionListener
     			
     			//This will start the game.
     			RootGameControl root = new RootGameControl(2, colors);
-    			root.setBounds(0,0, U.width, U.height);
+    			root.setPreferredSize(new Dimension(U.width, U.height));
     			root.startGame();
     			
     			//Display the game.
@@ -98,17 +99,12 @@ public class StartForGame extends JPanel implements ActionListener
        });
        buttonBar.add(button);
        
-       //This will load a setting modal
-       button = new Button("Settings");
-       button.addActionListener(this);
-       buttonBar.add(button);
-       
        //This will show the instructions for the game
        button = new Button("Instructions");
        button.addMouseListener(new MouseAdapter() { //This will add the Instructions to the screen
     	   public void mousePressed(MouseEvent evt) {
     		   InstructionsModal modal = new InstructionsModal(); //This holds the game's instructions
-    		   modal.setBounds(0,0, U.width, U.height);
+    		   modal.setPreferredSize(new Dimension(U.width, U.height));
     		   modal.addMouseListener(new MouseAdapter() { //If someone clicks on the gray area the modal will close
     			   public void mousePressed(MouseEvent evt) {
     				   Point p = new Point(evt.getLocationOnScreen());
@@ -152,15 +148,7 @@ public class StartForGame extends JPanel implements ActionListener
    public void actionPerformed(ActionEvent evt) {
 
       String command = evt.getActionCommand();
-      if (command.equals("Settings")) {
-         JOptionPane.showMessageDialog(this,
-             "This is the button that will show the settings.");
-      }
-      else if (command.equals("Instructions")) {
-         JOptionPane.showMessageDialog(this,
-             "This is the button that will show the instructions.");
-      }
-      else if (command.equals("Credits")) {
+      if (command.equals("Credits")) {
          JOptionPane.showMessageDialog(this,
              "The Master Plan\nCreated by:\nDAT Software Engineering\nDakota Edens\nAlex Gergen\nTyler Persons");
       }

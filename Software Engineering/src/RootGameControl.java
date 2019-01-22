@@ -69,6 +69,7 @@ public class RootGameControl extends JPanel {
 		//If the player has 30,000 million (30 billion), then they have won!
 		if (users[userCount].getStats().getPopulation() >= 30000) {
 			System.out.println("Player " + userCount + " wins!");
+			
 			System.exit(0);
 		}
 		System.out.println("\nStarting the next turn. Player " + userCount);
