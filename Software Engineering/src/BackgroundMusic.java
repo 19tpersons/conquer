@@ -35,6 +35,9 @@ public class BackgroundMusic {
 	      }
 	}
 	
+	/**
+	 * This is the listener that allows for the songs to replay and for the next one to be played.
+	 */
 	class MusicRepeater implements LineListener {
 		public void update(LineEvent evt) {
 			if (evt.getType() == LineEvent.Type.STOP) {
