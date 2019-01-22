@@ -205,6 +205,11 @@ public class TurnControl extends JPanel{
 			 card.addPop(change);
 		 } else {
 			 change *= -1;
+			 
+			 if (change > card.getPop()) {
+				 change = card.getPop(); //Make sure that the player will never have a negative population.
+			 }
+			 
 			 card.removePop(change);
 		 }
 		 

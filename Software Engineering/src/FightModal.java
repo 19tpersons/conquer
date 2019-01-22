@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
 public class FightModal extends Modal {
 	private int width = 400;
 	private int height = 350;
-	private int offenseDead, defenseDead, offenseSurvivors, defenseSurvivors, removedResources;
+	private int offenseDead, defenseDead, offenseSurvivors, defenseSurvivors, removedResources, removedPop;
 	private JPanel content;
 	private Color modalColor = new Color(230, 0, 0);
 	
@@ -94,11 +94,19 @@ public class FightModal extends Modal {
 					enemyStats.subTroops(offenseDead);
 					
 					//If the enemy wins we give them an award.
-					if (defenseSurvivors == 0) {
+					if (defenseSurvivors == 0) { //A reward of resources
 						int statResources = stats.getResource();
 						removedResources = (int) (statResources * 0.05);
 						stats.removeResources(removedResources);
 						enemyStats.addResources(removedResources);
+						
+						if (card.getPop() > U.planetMinPop) { //A reward of population
+							removedPop = (int) (card.getPop() * 0.15);
+							card.removePop(removedPop);
+							
+							int enemyCurPop = enemyStats.getPopulation();
+							enemyStats.setPopulation(enemyCurPop + removedPop);
+						}
 					}
 					
 					//Update stats
@@ -175,7 +183,7 @@ public class FightModal extends Modal {
 			
 			stats.append("\nResources Gained: " + removedResources);
 			
-			//stats.append("\nPopulation Gained: ");
+			stats.append("\nPopulation Gained: " + removedPop + "M");
 			
 			stats.setBackground(new Color(0, 204, 0));
 		} else {
