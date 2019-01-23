@@ -20,6 +20,8 @@ import javax.swing.text.StyledDocument;
  */
 public class StartForGame extends JPanel implements ActionListener
 {
+	private static JFrame window;
+	private static StartForGame start = null;
 	private int volume = 50;
 
 	/**
@@ -27,12 +29,11 @@ public class StartForGame extends JPanel implements ActionListener
      */
     public static void main(String[] args) {   
     	
-        JFrame window = new JFrame("Conquer!");
+        window = new JFrame("Conquer!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(U.width, U.height);
 		window.setResizable(false);
-        
-		StartForGame start = null;
+
 		try {
 			start = new StartForGame();
 		} catch (InterruptedException e1) {
@@ -157,7 +158,7 @@ public class StartForGame extends JPanel implements ActionListener
        StyledDocument doc = publisherPane.getStyledDocument();
        SimpleAttributeSet center = new SimpleAttributeSet();
        StyleConstants.setFontFamily(center, "Courier"); //Font
-       StyleConstants.setFontSize(center, 175); //Size
+       StyleConstants.setFontSize(center, 125); //Size
        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER); //Center Alignment
        doc.setParagraphAttributes(0, doc.getLength(), center, false);
        //This sets the text

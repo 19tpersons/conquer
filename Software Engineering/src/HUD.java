@@ -23,7 +23,7 @@ public class HUD extends JPanel {
 		this.playerColor = stats.getColor();
 		
 		//Make the card display. It is the class that holds the cardSets (i.e. the solar systems)
-		disp = new CardDisplay(width - 275, height, stats);
+		disp = new CardDisplay(width - 350, height, stats);
 		disp.setPreferredSize(new Dimension(width - 275, height));
 		disp.setBackground(new Color(0,0,0,0));
 		add(BorderLayout.CENTER, disp);

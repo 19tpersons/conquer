@@ -7,8 +7,10 @@ import java.net.URL;
  */
 public class U {
 	//These statistics are basic configurations for the game.
-	public static final int width = 1500;
-	public static final int height = 800;
+	public static int width = 1300;
+	public static int height = 800;
+	public final static int maxWidth = 1500;
+	public final static int minWidth = 1200;
 	public static final int cardWidth = 200;
 	public static final int cardHeight = 250;
 	public static final int cardSetLimit = 3;
