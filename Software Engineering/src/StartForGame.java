@@ -9,6 +9,10 @@ import java.io.PrintWriter;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.Document;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 /**
  * This is the start of our game. It is the first thing the user will see.
  *
@@ -28,7 +32,12 @@ public class StartForGame extends JPanel implements ActionListener
         window.setSize(U.width, U.height);
 		window.setResizable(false);
         
-		StartForGame start = new StartForGame();
+		StartForGame start = null;
+		try {
+			start = new StartForGame();
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		window.setContentPane(start);
 		window.pack();
         window.setVisible(true);
@@ -49,10 +58,10 @@ public class StartForGame extends JPanel implements ActionListener
 			e.printStackTrace();
 		}
         
-        BackgroundMusic music = new BackgroundMusic();
+        BackgroundMusic music = new BackgroundMusic(); //The games music
     }
     
-    public StartForGame()  {
+    public StartForGame() throws InterruptedException {
     	//This moves the JPanel up fix pixels to remove any white space
 		FlowLayout flow = new FlowLayout();
 		flow.setVgap(-5);
@@ -137,8 +146,54 @@ public class StartForGame extends JPanel implements ActionListener
        buttonBar.add(button);
 
        content.add(buttonBar);
+
+       //This is the panel that holds the publisher animation
+       JPanel publisher = new JPanel();
+       publisher.setPreferredSize(new Dimension(U.width, U.height));
+       publisher.setLayout(new BoxLayout(publisher, BoxLayout.Y_AXIS));
+       JTextPane publisherPane = new JTextPane();
+       
+       //This is the game publisher styling
+       StyledDocument doc = publisherPane.getStyledDocument();
+       SimpleAttributeSet center = new SimpleAttributeSet();
+       StyleConstants.setFontFamily(center, "Courier"); //Font
+       StyleConstants.setFontSize(center, 175); //Size
+       StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER); //Center Alignment
+       doc.setParagraphAttributes(0, doc.getLength(), center, false);
+       //This sets the text
+       publisherPane.setEditable(false); 
+       publisherPane.setBackground(Color.BLACK);
+       publisherPane.setForeground(Color.BLACK);
+       publisherPane.setText("Cognitive Thought Media Presents"); //Publisher
+       publisher.add(publisherPane);
+       
+       Timer publisherFadeIn = new Timer(20, new ActionListener() {
+    	   Color fg = new Color(255, 255, 255, 0);
+    	   public void actionPerformed(ActionEvent arg0) {
+    		   if (fg.getAlpha() < 255) {
+    			   fg = new Color(fg.getRed(), fg.getGreen(), fg.getBlue(), fg.getAlpha() + 5); //Fade in white
+    			   publisherPane.setForeground(fg);
+    		   } 
+    	   }
+    	  
+       });
+       publisherFadeIn.start();
+       
+       layered.add(publisher, 0);
+       //After 3 seconds we will get rid of the publisher name
+       Timer timer = new Timer(4000, new ActionListener() {
+    	   public void actionPerformed(ActionEvent arg0) {
+    		   layered.remove(publisher);
+    		   layered.revalidate();
+    		   layered.repaint();	
+    		   publisherFadeIn.stop();
+    	   }
+       });
+       timer.setRepeats(false);
+       timer.start();
+       
        layered.add(content, 2);
-       add(layered);
+       add(layered);       
     }
     
     /**
