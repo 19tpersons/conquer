@@ -64,6 +64,7 @@ public class CardButtonPanel extends JPanel {
 					nextPopGrowthPrice.setText(price);
 					String rate = "Cur. Rate: " + (card.getPopChangeRate() * 100) + "%";
 					nextPopGrowthRate.setText(rate);
+					repaint();
 					
 					System.out.println("Increasing " + card.getName() + "'s population growth rate.");
 					System.out.println(popGrowth + "\n" + price + "\n" + rate);
