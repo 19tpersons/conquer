@@ -1,11 +1,12 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.net.URL;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -13,6 +14,14 @@ import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
+
+
 /**
  * This is the start of our game. It is the first thing the user will see.
  *
@@ -20,7 +29,7 @@ import javax.swing.text.StyledDocument;
  */
 public class StartForGame extends JPanel implements ActionListener
 {
-	private static JFrame window;
+	private static BackgroundMusic music;
 	private static StartForGame start = null;
 	private int volume = 50;
 
@@ -29,7 +38,7 @@ public class StartForGame extends JPanel implements ActionListener
      */
     public static void main(String[] args) {   
     	
-        window = new JFrame("Conquer!");
+        JFrame window = new JFrame("Conquer!");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(U.width, U.height);
 		window.setResizable(false);
@@ -52,16 +61,19 @@ public class StartForGame extends JPanel implements ActionListener
         	writer.close();
         	
 			System.setOut(new PrintStream(gameAnalytics));
-			
 			System.setErr(new PrintStream(new File("error.log")));
 		} catch (FileNotFoundException e) {
 			//The premissions for the game are probably off?
 			e.printStackTrace();
 		}
         
-        BackgroundMusic music = new BackgroundMusic(); //The games music
+        music = new BackgroundMusic(); //The games music
     }
     
+    /**
+     * This is the constructor for the game
+     * @throws InterruptedException
+     */
     public StartForGame() throws InterruptedException {
     	//This moves the JPanel up fix pixels to remove any white space
 		FlowLayout flow = new FlowLayout();
@@ -146,8 +158,8 @@ public class StartForGame extends JPanel implements ActionListener
        button.addActionListener(this);
        buttonBar.add(button);
 
-       content.add(buttonBar);
-
+       content.add(buttonBar);       
+       
        //This is the panel that holds the publisher animation
        JPanel publisher = new JPanel();
        publisher.setPreferredSize(new Dimension(U.width, U.height));

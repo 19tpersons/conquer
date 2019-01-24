@@ -21,7 +21,7 @@ idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_c
 20,action,null,Super Nova,Lots and lots of energy,-500,null,0.03,Super Nova.png,null
 21,action,null,Super Novo,Am I drunk or is the air on fire?,-500,null,0.03,Super Novo.png,null
 22,action,null,Time Explosion,How strange that explosion seemed to have happened in the future...,-500,null,0.03,Time Explosion.png,null
-23,action,null,Total Core Meltdown,Too much lava not enough rock,600,null,0.03,Total Core Meltdown.png,null
+23,action,null,Total Core Meltdown,Too much lava not enough rock,-600,null,0.03,Total Core Meltdown.png,null
 24,planet,null,Planet Gergen,Known for its high amount of gasses,1400,null,0.05,Planet Gregren.png,450
 25,planet,null,Planet Lightner,Perfect place for a colony,1800,null,0.05,Planet Lightner.png,300
 26,planet,null,Planet Narges,A bit cold but has a great light show,1500,null,0.05,Planet Narges.png,300
@@ -45,3 +45,6 @@ idx,type*,sub_type,title*,description*,population,action_type_percent_rate,pop_c
 44,planet,null,Planet Telepan,A few gas storms but nothing our shields can't handle,1600,null,0.05,Planet Telepan.png,300
 45,planet,null,Planet Zastron,Just a big rock. Hopefully the core is usable,1200,null,0.05,Planet Zastron.png,650
 46,planet,null,Planet Zerox,A very nice planet,1600,null,0.05,Planet Zerox.png,300
+47,solar,null,Appert System,Do not mess with us,5,null,0.03,Appert System.png,300
+48,solar,null,Cartof System,We only like peaceful people here,5,null,0.03,Cartof System.png,300
+49,solar,null,VanWeiss System,Almost time travels through space,5,null,0.03,VanWeiss System.png,300
